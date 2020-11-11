@@ -1,146 +1,146 @@
-import { ICity } from './types/city.interface';
+import { ICity, CityId } from './cities.types';
 
 export const cities: ICity[] = [
   {
-    id: 1,
+    id: CityId.CHERKASY,
     en: 'Cherkasy',
     ru: 'Черкассы',
     ua: 'Черкаси'
   },
   {
-    id: 2,
+    id: CityId.CHERNIHIV,
     en: 'Chernihiv',
     ru: 'Чернигов',
     ua: 'Чернігів'
   },
   {
-    id: 3,
+    id: CityId.CHERNIVTSI,
     en: 'Chernivtsi',
     ru: 'Черновцы',
     ua: 'Чернівці'
   },
   {
-    id: 4,
+    id: CityId.DNIPRO,
     en: 'Dnipro',
     ru: 'Днепр',
     ua: 'Дніпро'
   },
   {
-    id: 5,
+    id: CityId.DONETSK,
     en: 'Donetsk',
     ru: 'Донецк',
     ua: 'Донецьк'
   },
   {
-    id: 6,
+    id: CityId.IVANO_FRANKIVSK,
     en: 'Ivano-Frankivsk',
     ru: 'Ивано-Франковск',
     ua: 'Івано-Франківськ'
   },
   {
-    id: 7,
+    id: CityId.KHARKIV,
     en: 'Kharkiv',
     ru: 'Харьков',
     ua: 'Харків'
   },
   {
-    id: 8,
+    id: CityId.KHERSON,
     en: 'Kherson',
     ru: 'Херсон',
     ua: 'Херсон'
   },
   {
-    id: 9,
+    id: CityId.KHMELNYTSKYI,
     en: 'Khmelnytskyi',
     ru: 'Хмельницкий',
     ua: 'Хмельницький'
   },
   {
-    id: 10,
+    id: CityId.KROPYVNYTSKYI,
     en: 'Kropyvnytskyi',
     ru: 'Кропивницкий',
     ua: 'Кропивницький'
   },
   {
-    id: 11,
-    en: 'Kyiv',
+    id: CityId.KYIV,
+    en: 'kyiv',
     ru: 'Киев',
     ua: 'Київ'
   },
   {
-    id: 12,
+    id: CityId.LUHANSK,
     en: 'Luhansk',
     ru: 'Луганск',
     ua: 'Луганськ'
   },
   {
-    id: 13,
+    id: CityId.LUTSK,
     en: 'Lutsk',
     ru: 'Луцк',
     ua: 'Луцьк'
   },
   {
-    id: 14,
+    id: CityId.LVIV,
     en: 'Lviv',
     ru: 'Львов',
     ua: 'Львів'
   },
   {
-    id: 15,
+    id: CityId.MYKOLAIV,
     en: 'Mykolaiv',
     ru: 'Николаев',
     ua: 'Миколаїв'
   },
   {
-    id: 16,
+    id: CityId.ODESSA,
     en: 'Odessa',
     ru: 'Одесса',
     ua: 'Одеса'
   },
   {
-    id: 17,
+    id: CityId.POLTAVA,
     en: 'Poltava',
     ru: 'Полтава',
     ua: 'Полтава'
   },
   {
-    id: 18,
+    id: CityId.RIVNE,
     en: 'Rivne',
     ru: 'Ровно',
     ua: 'Рівне'
   },
   {
-    id: 19,
+    id: CityId.SUMY,
     en: 'Sumy',
     ru: 'Сумы',
     ua: 'Суми'
   },
   {
-    id: 20,
+    id: CityId.TERNOPIL,
     en: 'Ternopil',
     ru: 'Тернополь',
     ua: 'Тернопіль'
   },
   {
-    id: 21,
+    id: CityId.UZHHOROD,
     en: 'Uzhhorod',
     ru: 'Ужгород',
     ua: 'Ужгород'
   },
   {
-    id: 22,
+    id: CityId.VINNYTSIA,
     en: 'Vinnytsia',
     ru: 'Винница',
     ua: 'Вінниця'
   },
   {
-    id: 23,
+    id: CityId.ZAPORIZHZHIA,
     en: 'Zaporizhzhia',
     ru: 'Запорожье',
     ua: 'Запоріжжя'
   },
   {
-    id: 24,
+    id: CityId.ZHYTOMYR,
     en: 'Zhytomyr',
     ru: 'Житомир',
     ua: 'Житомир'
@@ -149,49 +149,49 @@ export const cities: ICity[] = [
 
 
   {
-    id: 25,
+    id: CityId.KRYVYI_RIH,
     en: 'Kryvyi Rih',
     ru: 'Кривой Рог',
     ua: 'Кривий Ріг'
   },
   {
-    id: 26,
+    id: CityId.MARIUPOL,
     en: 'Mariupol',
     ru: 'Мариуполь',
     ua: 'Маріуполь'
   },
   {
-    id: 27,
+    id: CityId.SEVASTOPOL,
     en: 'Sevastopol',
     ru: 'Севастополь',
     ua: 'Севастополь'
   },
   {
-    id: 28,
+    id: CityId.SIMFEROPOL,
     en: 'Simferopol',
     ru: 'Симферопoль',
     ua: 'Сімферополь'
   },
   {
-    id: 29,
+    id: CityId.MAKIIVKA,
     en: 'Makiivka',
     ru: 'Макеевка',
     ua: 'Макіївка'
   },
   {
-    id: 30,
+    id: CityId.KAMIANSKE,
     en: 'Kamianske',
     ru: 'Каменское',
     ua: 'Кам\'янське'
   },
   {
-    id: 31,
+    id: CityId.KREMENCHUK,
     en: 'Kremenchuk',
     ru: 'Кременчуг',
     ua: 'Кременчук'
   },
   {
-    id: 32,
+    id: CityId.BILA_TSERKVA,
     en: 'Bila Tserkva',
     ru: 'Белая Церковь',
     ua: 'Біла Церква'

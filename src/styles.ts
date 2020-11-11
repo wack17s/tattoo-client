@@ -1,40 +1,40 @@
-import { IStyle } from './types/style.interface';
+import { IStyle, StyleId } from './styles.types';
 
 export const styles: IStyle[] = [
   {
-    id: 1,
+    id: StyleId.BLACKWORK,
     en: 'Blackwork',
   },
   {
-    id: 2,
+    id: StyleId.CHICANO,
     en: 'Chicano',
   },
   {
-    id: 3,
+    id: StyleId.JAPAN,
     en: 'Japan',
   },
   {
-    id: 4,
+    id: StyleId.NEOTRADITIONAL,
     en: 'Neotraditional',
   },
   {
-    id: 5,
+    id: StyleId.NEWSCHOOL,
     en: 'Newschool',
   },
   {
-    id: 6,
+    id: StyleId.REALISM,
     en: 'Realism',
   },
   {
-    id: 7,
+    id: StyleId.TRADITIONAL,
     en: 'Traditional',
   },
   {
-    id: 8,
+    id: StyleId.TRIBAL,
     en: 'Tribal',
   },
   {
-    id: 9,
+    id: StyleId.WATERCOLOR,
     en: 'Watercolor',
   },
 ];

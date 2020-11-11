@@ -1,7 +1,6 @@
 import { localizations } from '../localizations'
 import { PageName } from '../types/pageName.enum';
-import { ILocalization } from '../types/localization.interface';
-import { Language } from '../types/language.enum';
+import { ILocalization, Language } from '../localizations.types';
 
 export const getPageNames = (locale: string = Language.RU): ILocalization['pageNames'] => {
   return localizations[locale].pageNames;

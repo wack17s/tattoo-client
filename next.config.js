@@ -12,7 +12,7 @@ module.exports = {
 
     config.plugins = [
       ...(config.plugins || []),
-      new DotenvWebpackPlugin({ path: 'src/.env' }),
+      new DotenvWebpackPlugin(),
     ];
 
     return config;

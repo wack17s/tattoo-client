@@ -3,8 +3,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
-import { ICity } from '../../../types/city.interface';
-import { IStyle } from '../../../types/style.interface';
+import { ICity } from '../../../cities.types';
+import { IStyle } from '../../../styles.types';
 import { getTattooers } from '../../../utils/getLocalizedText';
 import { Chip } from '../../../components/Chip';
 import { Select } from '../../../components/Select';
@@ -54,7 +54,7 @@ export const Filters: React.StatelessComponent<IFiltersProps> = ({ selectedCity,
 
   const tattooers = getTattooers(locale);
 
-  const allCitiesOption = { value: 999, label: tattooers.text.selectCityPlaceholder };
+  const allCitiesOption = { value: '999', label: tattooers.text.selectCityPlaceholder };
 
   const selectCity = ({ value }) => {
     onCity(cities.find(item => item.id === value))

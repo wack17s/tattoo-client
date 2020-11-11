@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IStyle } from '../types/style.interface';
+import { IStyle } from '../styles.types';
 
 export const useStyles = (): [IStyle[] | null, React.Dispatch<React.SetStateAction<IStyle>>] => {
   const [selectedStyles, selectStyles] = React.useState<IStyle[]>([]);

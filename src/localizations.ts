@@ -1,6 +1,5 @@
-import { Language } from './types/language.enum'
-import { ILocalizations } from './types/localization.interface'
-import { PageName } from './types/pageName.enum'
+import { PageName } from './types/pageName.enum';
+import { ILocalizations, Language } from './localizations.types';
 
 export const localizations: ILocalizations = {
   [Language.RU]: {
@@ -149,4 +148,4 @@ export const localizations: ILocalizations = {
       }
     }
   },
-}
+};

@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { getPageNames } from '../../utils/getLocalizedText';
-import { Language } from '../../types/language.enum';
+import { Language } from '../../localizations.types';
 import { PageName } from '../../types/pageName.enum';
 import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 

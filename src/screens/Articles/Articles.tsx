@@ -7,7 +7,7 @@ import { Body } from '../../components/Body'
 import { Header, HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 
-import { Card } from './components/Card';
+import { ArticleCard } from './components/ArticleCard';
 
 const CardsContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
 
   & > div {
-    margin: 0px 32px 32px 0px;
+    margin: 0px 16px 32px 16px;
   }
 `;
 
@@ -35,7 +35,7 @@ export const Articles = () => {
         {articlesText.text.text}
       </Text>
       <CardsContainer>
-        {articles.map(article => <Card article={article} />)}
+        {articles.map(article => <ArticleCard article={article} />)}
       </CardsContainer>
     </Body>
   )

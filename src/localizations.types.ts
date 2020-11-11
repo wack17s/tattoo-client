@@ -1,5 +1,10 @@
-import { Language } from './language.enum'
-import { PageName } from './pageName.enum'
+import { PageName } from './types/pageName.enum'
+
+export enum Language {
+  UA = 'ua',
+  RU = 'ru',
+  EN = 'en',
+}
 
 export interface ILocalization {
   pageNames: {
