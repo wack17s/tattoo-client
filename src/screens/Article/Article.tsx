@@ -13,8 +13,7 @@ export const Article: NextPage = () => {
   const article = articles.find(item => String(item.id) === query.id);
 
   return (
-    <Body>
-      <Header logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES} />
+    <Body logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES}>
       {article && article[locale] && (
         <>
           <Text title style={{ marginTop: 48, marginBottom: 48 }}>

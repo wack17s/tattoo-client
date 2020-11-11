@@ -19,10 +19,10 @@ export enum HeaderMenuButton {
   ABOUT = 'HeaderMenuButton::ABOUT',
 }
 
-interface IHeaderProps {
+export interface IHeaderProps {
   selectedButton?: HeaderMenuButton;
 
-  children?: any;
+  headerFooter?: any;
 
   logoUri?: string;
 }
@@ -30,6 +30,9 @@ interface IHeaderProps {
 const Menu = styled.div`
   display: flex;
   flex-direction: row;
+  @media (orientation:portrait) {
+    display: none;
+  }
 `;
 
 const Logo = styled.img`
@@ -56,7 +59,7 @@ const InnerContainer = styled.div`
   padding: 0 16px;
 `;
 
-export const Header: NextPage<IHeaderProps> = ({ selectedButton, children, logoUri }) => {
+export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, logoUri }) => {
   const { locale, pathname } = useRouter();
 
   const pageNames = getPageNames(locale);
@@ -83,7 +86,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, children, logoU
           {/* <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} href={pathname} /> */}
         </Menu>
       </InnerContainer>
-      {children}
+      {headerFooter}
     </Container>
   )
 };

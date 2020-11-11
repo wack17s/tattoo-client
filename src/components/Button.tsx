@@ -23,4 +23,8 @@ export const Button = styled.div<IButtonProps>`
   }
   color: white;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;

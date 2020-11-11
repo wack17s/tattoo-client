@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { Body } from '../../components/Body'
-import { Header, HeaderMenuButton } from '../../components/Header'
+import { HeaderMenuButton } from '../../components/Header'
 import { useCity } from '../../hooks/useCity';
 import { useStyles } from '../../hooks/useStyles';
 import { useTattooers } from '../../hooks/useTattooers';
@@ -34,10 +34,7 @@ export const Tattooers: React.StatelessComponent<ITattooersProps> = () => {
   const { tattooers } = useTattooers(selectedCity ? selectedCity.en : undefined, selectedStyles ? selectedStyles.map(item => item.en) : undefined);
 
   return (
-    <Body>
-      <Header selectedButton={HeaderMenuButton.TATTOOERS}>
-        <Filters onStyle={selectStyle} onCity={setCity} selectedStyles={selectedStyles} selectedCity={selectedCity} />
-      </Header>
+    <Body selectedButton={HeaderMenuButton.TATTOOERS} headerFooter={<Filters onStyle={selectStyle} onCity={setCity} selectedStyles={selectedStyles} selectedCity={selectedCity} />}>
       <CardsContainer>
         {tattooers && tattooers.length ? tattooers.map(item => <TattooerCard tattooer={item} />) : null}
         {tattooers && tattooers.length ? tattooers.map(item => <TattooerCard tattooer={item} />) : null}

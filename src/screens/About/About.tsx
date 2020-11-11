@@ -30,8 +30,7 @@ export const About = () => {
   const about = getAbout(locale);
 
   return (
-    <Body>
-      <Header selectedButton={HeaderMenuButton.ABOUT} />
+    <Body selectedButton={HeaderMenuButton.ABOUT}>
       <Container>
         <InnerContainer>
           <Text title>{about.text.title}</Text>

@@ -1,13 +1,17 @@
+import * as React from 'react';
 import styled from 'styled-components';
+
+import { Header, IHeaderProps } from './Header';
+
+interface IBodyProps extends IHeaderProps {
+  children: any;
+}
 
 const Background = styled.div`
   background-color: ${({ theme }) => theme.colors.BACKGROUND};
   width: 100%;
   min-height: 100%;
 
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  line-height: 24px;
   color: ${({ theme }) => theme.colors.primaryText.DEFAULT};
 
   justify-content: center;
@@ -15,20 +19,40 @@ const Background = styled.div`
   display: flex;
 `;
 
-const InnerContainer = styled.div`
-  width: 1232px;
+const Container = styled.div`
+  width: 100%;
+  max-width: 1232px;
   min-height: 100%;
 
-  padding: 32px 0px;
+  margin: 32px 64px;
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 720px) {
+    margin: 16px 8px;
+  }
 `;
 
-export const Body = ({ children }) => (
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  margin: 0px 16px;
+
+  @media (max-width: 720px) {
+    margin: 0px 8px;
+  }
+`;
+
+export const Body: React.StatelessComponent<IBodyProps> = ({ children, ...props }) => (
   <Background>
-    <InnerContainer>
-      {children}
-    </InnerContainer>
+    <Container>
+      <Header {...props} />
+      <InnerContainer>
+        {children}
+      </InnerContainer>
+    </Container>
   </Background>
 )

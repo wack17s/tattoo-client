@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { articles } from '../../articles'
 import { getArticles } from '../../utils/getLocalizedText';
 import { Body } from '../../components/Body'
-import { Header, HeaderMenuButton } from '../../components/Header'
+import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 
 import { ArticleCard } from './components/ArticleCard';
@@ -16,7 +16,7 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
 
   & > div {
-    margin: 0px 16px 32px 16px;
+    margin: 0px 26px 32px 0px;
   }
 `;
 
@@ -26,8 +26,7 @@ export const Articles = () => {
   const articlesText = getArticles(locale);
 
   return (
-    <Body>
-      <Header selectedButton={HeaderMenuButton.ARTICLES} />
+    <Body selectedButton={HeaderMenuButton.ARTICLES}>
       <Text title style={{ marginTop: 64 }}>
         {articlesText.text.title}
       </Text>
