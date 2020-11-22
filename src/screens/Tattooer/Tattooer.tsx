@@ -96,7 +96,7 @@ export const Tattooer: React.StatelessComponent<ITattooerProps> = ({ tattooer })
   ) : null;
 }
 
-export async function getStaticProps(context: NextPageContext) {
+export async function getStaticProps(context) {
   // const res = await fetch('http://localhost:3001/tattooers', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
 
   console.log('context', context)
