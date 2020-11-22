@@ -1,10 +1,11 @@
 export interface ITattooerDTO {
   instagram: string;
   city: string;
-  styles: string[];
+  styles?: string[];
   about?: string;
+  aboutRaw?: string;
   approved?: boolean;
-  instagram_posts?: string[];
+  postURIs?: string[];
 
   // instagram_data?: {
   //   id: string;

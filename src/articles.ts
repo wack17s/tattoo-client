@@ -1,4 +1,4 @@
-import { IArticle } from "./types/article.interface";
+import { IArticle } from "./articles.types";
 
 const fakeText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis quam quis nisi ornare, sit amet lacinia ante convallis. Pellentesque varius turpis augue, et hendrerit nisi pellentesque id. Nam mi dolor, posuere vel tristique ac, tempus a justo. Aenean nunc magna, mollis sit amet mauris ut, varius suscipit nisl. Vestibulum nisl elit, pharetra eu faucibus eget, mollis ac dolor. Mauris eu odio turpis. Aliquam maximus erat quis urna feugiat convallis. Vivamus eu fringilla eros. Donec viverra tellus nec libero aliquam, at hendrerit purus blandit. Vestibulum interdum lobortis ante vel maximus. Cras sed urna quam. Fusce imperdiet urna ex, at semper ante tristique quis.
 

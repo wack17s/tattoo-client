@@ -3,7 +3,7 @@ import ReactSelect from 'react-select'
 import styled from 'styled-components';
 
 interface IOption {
-  value: number;
+  value: string;
   label: string;
 }
 

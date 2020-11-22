@@ -26,4 +26,10 @@ export const Chip = styled.div<IChipProps>`
     background-color: ${({ theme }) => theme.colors.secondaryButton.HOVER};
     color: ${({ theme }) => theme.colors.primaryText.ACTIVE};
   }
+
+  @media (max-width: 1024px) {
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 18px;
+  }
 `;

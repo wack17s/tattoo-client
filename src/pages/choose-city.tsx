@@ -1,3 +1,3 @@
-import { ChooseCity } from '../screens/ChooseCity';
+import { ChooseCity } from '../screens/Main/ChooseCity';
 
 export default ChooseCity;

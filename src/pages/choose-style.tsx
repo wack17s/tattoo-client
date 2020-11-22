@@ -1,3 +1,3 @@
-import { ChooseStyle } from '../screens/ChooseStyle';
+import { ChooseStyle } from '../screens/Main/ChooseStyle';
 
 export default ChooseStyle;

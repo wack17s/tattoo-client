@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styled from 'styled-components';
 
-import { IArticle } from '../../../types/article.interface';
+import { IArticle } from '../../../articles.types';
 
-interface ICardProps {
+interface IArticleCardProps {
   article: IArticle;
 }
 
@@ -17,6 +17,7 @@ const Container = styled.div`
   width: 378px;
   height: 480px;
   border-radius: 8px;
+  box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
 const TextContainer = styled.div`
@@ -49,10 +50,8 @@ const Text = styled.p`
   text-overflow: ellipsis;
 `
 
-export const Card: React.StatelessComponent<ICardProps> = ({ article }) => {
+export const ArticleCard: React.StatelessComponent<IArticleCardProps> = ({ article }) => {
   const { locale } = useRouter();
-
-  console.warn('article', locale, article)
 
   return article && article[locale] ? (
     <Link href="/articles/[id]" as={`articles/${article.id}`}>

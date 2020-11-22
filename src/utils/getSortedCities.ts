@@ -1,4 +1,4 @@
-import { Language } from '../types/language.enum';
+import { Language } from '../localizations.types';
 
 import { cities } from '../cities';
 

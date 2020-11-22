@@ -1,3 +1,3 @@
-import { Tattooers, getServerSideProps } from './Tattooers';
+import { Tattooers, getStaticProps } from './Tattooers';
 
-export { Tattooers, getServerSideProps };
+export { Tattooers, getStaticProps };
