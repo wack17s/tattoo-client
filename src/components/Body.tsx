@@ -5,6 +5,8 @@ import { Header, IHeaderProps } from './Header';
 
 interface IBodyProps extends IHeaderProps {
   children: any;
+
+  innerContainerStyle?: any;
 }
 
 const Background = styled.div`
@@ -46,11 +48,11 @@ const InnerContainer = styled.div`
   }
 `;
 
-export const Body: React.StatelessComponent<IBodyProps> = ({ children, ...props }) => (
+export const Body: React.StatelessComponent<IBodyProps> = ({ children, innerContainerStyle, ...props }) => (
   <Background>
     <Container>
       <Header {...props} />
-      <InnerContainer>
+      <InnerContainer style={innerContainerStyle}>
         {children}
       </InnerContainer>
     </Container>
