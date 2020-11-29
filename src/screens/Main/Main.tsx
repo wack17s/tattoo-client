@@ -21,7 +21,7 @@ export const Main: NextPage = () => {
     <Body selectedButton={HeaderMenuButton.MAIN}>
       <Container>
         <InnerContainer>
-          <Text title>{mainPage.text.title}</Text>
+          <Text h1>{mainPage.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: '3em' }}>{mainPage.text.text}<br />{mainPage.text.text2}</Text>
           <Link href='choose-city'>
             <Button>

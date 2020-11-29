@@ -33,16 +33,16 @@ export const About = () => {
     <Body selectedButton={HeaderMenuButton.ABOUT}>
       <Container>
         <InnerContainer>
-          <Text title>{about.text.title}</Text>
+          <Text h1>{about.text.title}</Text>
           <Text style={{ marginTop: 24, width: '50%' }}>{about.text.text1}</Text>
         </InnerContainer>
         <HalfContainer>
           <InnerContainer>
-            <Text subTitle>{about.text.subtitle1}</Text>
+            <Text h2>{about.text.subtitle1}</Text>
             <Text style={{ marginTop: 16 }}>{about.text.text2}</Text>
           </InnerContainer>
           <InnerContainer>
-            <Text subTitle>{about.text.subtitle2}</Text>
+            <Text h2>{about.text.subtitle2}</Text>
             <Text style={{ marginTop: 16 }}>{about.text.text3}</Text>
           </InnerContainer>
         </HalfContainer>

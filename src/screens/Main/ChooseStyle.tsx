@@ -33,7 +33,7 @@ export const ChooseStyle: NextPage = () => {
       <Container>
         <InnerContainer>
           <BreadCrumb pageNames={[pageNames[PageName.MAIN], pageNames[PageName.CHOOSE_CITY], chooseStyle.name]} />
-          <Text style={{ marginTop: 16 }} subTitle>{chooseStyle.text.title}</Text>
+          <Text style={{ marginTop: 16 }} h2>{chooseStyle.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: 48 }}>{chooseStyle.text.text}<br />{chooseStyle.text.text2}</Text>
           <ChipsContainer>
             {getSortedStyles().map(item => (

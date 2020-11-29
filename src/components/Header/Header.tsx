@@ -76,7 +76,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
             pathname: '/tattooers',
             query: tattooerQuery,
           }} locale={locale} />
-          <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />
+          {/* <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} /> */}
           <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />
           <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
         </Menu>

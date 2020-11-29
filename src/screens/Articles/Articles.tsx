@@ -27,7 +27,7 @@ export const Articles = () => {
 
   return (
     <Body selectedButton={HeaderMenuButton.ARTICLES}>
-      <Text title style={{ marginTop: 64 }}>
+      <Text h1 style={{ marginTop: 64 }}>
         {articlesText.text.title}
       </Text>
       <Text style={{ marginBottom: 48, marginTop: 24, width: '40%' }}>
