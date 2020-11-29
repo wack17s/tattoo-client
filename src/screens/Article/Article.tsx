@@ -16,7 +16,7 @@ export const Article: NextPage = () => {
     <Body logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES}>
       {article && article[locale] && (
         <>
-          <Text title style={{ marginTop: 48, marginBottom: 48 }}>
+          <Text h1 style={{ marginTop: 48, marginBottom: 48 }}>
             {article[locale].name}
           </Text>
           <Text>

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styled from 'styled-components';
 
+import { MasterInfoHeader } from '../../../components/MasterInfoHeader';
 import { ITattooerDTO } from '../../../dto/tattooer.dto';
 import { cities } from '../../../cities';
 
@@ -41,14 +42,13 @@ const PreviewImage = styled.img`
 `;
 
 const TextContainer = styled.div`
-  flex-direction: column;
+  /* flex-direction: column; */
   background-color: white;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 8px 16px;
   /* width: 378px; */
   height: ${TextContainerHeight}px;
   border-radius: 0px 0px 8px 8px;
-  display: flex;
 `;
 
 const Title = styled.p`
@@ -68,7 +68,7 @@ const FullCard = styled.div`
 
   display: none;
 
-  margin-bottom: ${(previewSize - (fullImageSize + TextContainerHeight)) / 2}px;
+  margin-bottom: ${(previewSize - (fullImageSize + TextContainerHeight * 2)) / 2}px;
   margin-left: ${(previewSize - fullImageSize) / 2}px;
 
   position: absolute;
@@ -96,8 +96,9 @@ export const TattooerCard: React.StatelessComponent<ITattooerCardProps> = ({ tat
         <FullCard>
           <FullImage src={tattooer.postURIs[0]} />
           <TextContainer>
-            <Title>{tattooer.instagram}</Title>
-            {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null}
+            <MasterInfoHeader city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='instagram.svg' />
+            {/* <Title>{tattooer.instagram}</Title>
+            {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null} */}
           </TextContainer>
         </FullCard>
       </Container>

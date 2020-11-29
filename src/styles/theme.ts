@@ -3,6 +3,19 @@ import 'styled-components'
 interface IDefaultTheme {
   colors: {
     BACKGROUND: string,
+    CORAL_700: string;
+    CORAL_500: string;
+    CORAL_300: string;
+
+    BLACK_900: string;
+    BLACK_400: string;
+    BLACK_300: string;
+    BLACK_200: string;
+    BLACK_100: string;
+
+    WHITE: string;
+
+    BLUE_900: string;
 
     primaryButton: {
       DEFAULT: string;
@@ -41,46 +54,48 @@ declare module 'styled-components' {
 export const Colors = {
   BACKGROUND: '#FFFBEE',
 
-  CORAL_MAIN: '#FF6B6B',
-  HOVER_RED: '#FA4A4A',
-  WACK_RED: '#FFB6B6',
+  CORAL_700: '#FA4A4A',
+  CORAL_500: '#FF6B6B',
+  CORAL_300: '#FFB6B6',
 
-  MAIN_BLACK: '#242424',
+  BLACK_900: '#242424',
+  BLACK_400: '#6D6D6D',
+  BLACK_300: '#959595',
+  BLACK_200: '#ECECEC',
+  BLACK_100: '#F4F4F4',
 
-  MAIN_LIGHT: '#F4F4F4',
-  HOVER_LIGHT: '#ECECEC',
+  WHITE: '#DEDEDE',
 
-  MAIN_DARK: '#6D6D6D',
-  HOVER_DARK: '#959595'
+  BLUE_900: '#0469FF',
 };
 
 export const theme: IDefaultTheme = {
   boxShadow: '0px 0px 5px 5px rgba(204, 204, 204, 0.1)',
   colors: {
-    BACKGROUND: Colors.BACKGROUND,
+    ...Colors,
     primaryButton: {
-      DEFAULT: Colors.CORAL_MAIN,
-      HOVER: Colors.HOVER_RED,
-      DISABLED: Colors.WACK_RED,
-      ACTIVE: Colors.CORAL_MAIN
+      DEFAULT: Colors.CORAL_500,
+      HOVER: Colors.CORAL_700,
+      DISABLED: Colors.CORAL_300,
+      ACTIVE: Colors.CORAL_500
     },
     secondaryButton: {
-      DEFAULT: Colors.MAIN_LIGHT,
-      HOVER: Colors.HOVER_LIGHT,
-      // FOCUSED: Colors.HOVER_LIGHT,
-      // ACTIVE: Colors.HOVER_LIGHT,
-      BOX_SHADOW: `0 0 0 1px ${Colors.WACK_RED}`,
-      BOX_SHADOW_HOVER: `0 0 0 1px ${Colors.MAIN_DARK}`
+      DEFAULT: Colors.BLACK_100,
+      HOVER: Colors.BLACK_200,
+      // FOCUSED: Colors.BLACK_200,
+      // ACTIVE: Colors.BLACK_200,
+      BOX_SHADOW: `0 0 0 1px ${Colors.CORAL_300}`,
+      BOX_SHADOW_HOVER: `0 0 0 1px ${Colors.BLACK_400}`
     },
     primaryText: {
-      DEFAULT: Colors.MAIN_BLACK,
-      ACTIVE: Colors.WACK_RED,
-      HOVER: Colors.HOVER_RED,
-      FOCUSED: Colors.CORAL_MAIN
+      DEFAULT: Colors.BLACK_900,
+      ACTIVE: Colors.CORAL_300,
+      HOVER: Colors.CORAL_700,
+      FOCUSED: Colors.CORAL_500
     },
     secondaryText: {
-      DEFAULT: Colors.MAIN_DARK,
-      HOVER: Colors.HOVER_DARK,
+      DEFAULT: Colors.BLACK_400,
+      HOVER: Colors.BLACK_300,
     }
   }
 };

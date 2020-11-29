@@ -1,21 +1,18 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import useSWR from 'swr';
-import { NextPageContext } from 'next';
+import lo from 'lodash';
+import { useRouter } from 'next/router';
 
 import { Body } from '../../components/Body'
+import { BreadCrumb } from '../../components/BreadCrumb'
 import { HeaderMenuButton } from '../../components/Header'
-import { useCity } from '../../hooks/useCity';
-import { useStyles } from '../../hooks/useStyles';
-import { useTattooer } from '../../hooks/useTattooer';
+import { MasterInfoHeader } from '../../components/MasterInfoHeader'
+import { Text } from '../../components/Text'
 import { ITattooerDTO } from '../../dto/tattooer.dto';
-import { encodeQueryData } from '../../utils/encodeQueryData';
-import { fetcher } from '../../utils/fetcher';
+import { PageName } from '../../types/pageName.enum';
+import { getChooseCity, getPageNames } from '../../utils/getLocalizedText';
 
 import tattooers from '../../parameters/tattooers.json';
-
-import { Filters } from './components/Filters'
-import { TattooerCard } from './components/TattooerCard'
 
 interface ITattooerProps {
   tattooer: ITattooerDTO | null;
@@ -28,6 +25,10 @@ const Container = styled.div`
   flex-direction: row;
 `;
 
+const BreadCrumbContainer = styled.div`
+  margin: 40px 0px 0px 16px;
+`;
+
 const CardsContainer = styled.div`
   display: flex;
   flex: 1;
@@ -35,8 +36,6 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 32px;
   margin-bottom: 64px;
-
-  justify-content: center;
 
   & > img {
     margin: 0px 16px 32px 16px;
@@ -55,41 +54,50 @@ const InfoContainer = styled.div`
   background-color: white;
   border-radius: 8px;
   width: ${previewSize}px;
-  height: 500px;
+  max-height: ${previewSize * 2 + 32}px;
   margin: 32px 16px;
   flex-direction: column;
   padding: 24px;
-
 `;
 
-const Title = styled.p`
-  font-weight: 600;
-  /* transform: scale(0.885, 0.645) translate(0, -30px); */
+const Divider = styled.div`
+  opacity: 0.1;
+  border-bottom: 0.5px solid #000000;
+  width: 100%;
+
+  margin: 24px 0px;
 `;
 
-const Text = styled.p`
-  /* transform: scale(0.885, 0.645) translate(0, -30px); */
-  margin: 16px 0;
-`;
+const textStyle = {
+  marginTop: 8,
+  marginBottom: 24,
+};
 
 export const Tattooer: React.StatelessComponent<ITattooerProps> = ({ tattooer }) => {
+  const { locale } = useRouter();
+
+  const pageNames = getPageNames(locale);
+
   return tattooer ? (
     <Body logoUri='../logo.png' innerContainerStyle={{ margin: 0 }} selectedButton={HeaderMenuButton.TATTOOERS}>
+      <BreadCrumbContainer>
+        <BreadCrumb pageNames={[pageNames[PageName.TATTOOERS], `${tattooer.instagram}`]} />
+      </BreadCrumbContainer>
       <Container>
         <InfoContainer>
-          <Title>{tattooer.instagram}</Title>
-          <Text>{tattooer.city}</Text>
-          <Title>Описание</Title>
-          <Text>{tattooer.about}</Text>
+          <MasterInfoHeader city={tattooer.city} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
+          <Divider />
+          <Text p5>Описание</Text>
+          <Text style={textStyle} p1>{tattooer.about}</Text>
           {tattooer.styles && tattooer.styles.length ? (
             <>
-              <Title>Стили</Title>
-              <Text>{tattooer.styles}</Text>
+              <Text p5>Стиль</Text>
+              <Text style={textStyle} p1>{tattooer.styles.map(item => lo.capitalize(item)).join(', ')}</Text>
             </>
           ) : null}
         </InfoContainer>
         <CardsContainer>
-          {tattooer && tattooer.postURIs && tattooer.postURIs.length ? tattooer.postURIs.map(src => <PreviewImage key={src} src={src} />) : null}
+          {tattooer && tattooer.postURIs && tattooer.postURIs.length ? tattooer.postURIs.map(src => <PreviewImage key={src} src={src} />).slice(0,5) : null}
         </CardsContainer>
       </Container>
     </Body>

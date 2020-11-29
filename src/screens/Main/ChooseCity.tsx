@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import * as React from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -30,7 +29,7 @@ export const ChooseCity: NextPage = () => {
       <Container>
         <InnerContainer>
           <BreadCrumb pageNames={[pageNames[PageName.MAIN], chooseCity.name]} />
-          <Text style={{ marginTop: 16 }} subTitle>{chooseCity.text.title}</Text>
+          <Text style={{ marginTop: 16 }} h2>{chooseCity.text.title}</Text>
           <Text style={{ marginTop: 16, marginBottom: 48 }}>{chooseCity.text.text}</Text>
           <ChipsContainer>
             {getSortedCities(locale).map(item => (
