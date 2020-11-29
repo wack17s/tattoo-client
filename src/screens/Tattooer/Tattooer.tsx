@@ -10,7 +10,7 @@ import { MasterInfoHeader } from '../../components/MasterInfoHeader'
 import { Text } from '../../components/Text'
 import { ITattooerDTO } from '../../dto/tattooer.dto';
 import { PageName } from '../../types/pageName.enum';
-import { getChooseCity, getPageNames } from '../../utils/getLocalizedText';
+import { getPageNames } from '../../utils/getLocalizedText';
 
 import tattooers from '../../parameters/tattooers.json';
 
@@ -47,6 +47,10 @@ const PreviewImage = styled.img`
   height: ${previewSize}px;
 
   border-radius: 8px;
+
+  /* & :hover {
+    transform: scale(1.5, 1.5);
+  } */
 `;
 
 const InfoContainer = styled.div`

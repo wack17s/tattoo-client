@@ -19,6 +19,10 @@ const Label = styled.p<Pick<IMenuItemProps, 'selected'>>`
   &:active {
     color: ${({ theme }) => theme.colors.primaryText.ACTIVE};
   }
+
+  @media (orientation:portrait) {
+    margin: 24px 0px;
+  }
 `;
 
 export const MenuItem: React.StatelessComponent<IMenuItemProps> = ({ selected, label, href, locale }) => (

@@ -23,13 +23,10 @@ interface ITattooersProps {
 
 const CardsContainer = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 32px;
   margin-bottom: 64px;
-
-  justify-content: center;
 
   & > div {
     margin: 0px 16px 32px 16px;

@@ -14,7 +14,7 @@ const Container = styled.div`
   flex-direction: column;
   background-color: grey;
   justify-content: flex-end;
-  width: 378px;
+  width: 370px;
   height: 480px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
@@ -26,7 +26,7 @@ const TextContainer = styled.div`
   background-color: white;
   justify-content: space-between;
   padding: 20px;
-  width: 378px;
+  width: 370px;
   height: 120px;
   border-radius: 0px 0px 8px 8px;
 `;

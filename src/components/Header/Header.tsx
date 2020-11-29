@@ -9,6 +9,7 @@ import { PageName } from '../../types/pageName.enum';
 import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 
 import { MenuItem } from './components/MenuItem';
+import { Burger, Menu } from './components/HamburgeMenu';
 import { LangItem } from './components/LangItem';
 
 export enum HeaderMenuButton {
@@ -27,11 +28,19 @@ export interface IHeaderProps {
   logoUri?: string;
 }
 
-const Menu = styled.div`
+const MenuContainer = styled.div`
   display: flex;
   flex-direction: row;
   @media (orientation:portrait) {
     display: none;
+  }
+`;
+
+const Hamburger = styled.div`
+  display: none;
+
+  @media (orientation:portrait) {
+    display: flex;
   }
 `;
 
@@ -40,13 +49,13 @@ const Logo = styled.img`
   height: 32px;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ hamburgerOpen?: boolean }>`
   background-color: white;
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border-radius: 8px;
+  border-radius: ${({ hamburgerOpen }) => hamburgerOpen ? '8px 8px 0px 0px' : '8px 8px 8px 8px'};
   box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
@@ -66,11 +75,26 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
 
   const tattooerQuery = useTattooersQuery();
 
+  const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
+
   return (
-    <Container>
+    <Container hamburgerOpen={hamburgerOpen}>
+      <Menu open={hamburgerOpen} setOpen={setHamburgerOpen}>
+        <MenuItem label={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />
+        <MenuItem label={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
+          pathname: '/tattooers',
+          query: tattooerQuery,
+        }} locale={locale} />
+        {/* <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} /> */}
+        <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />
+        <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
+      </Menu>
       <InnerContainer>
         <Logo src={logoUri || './logo.png'} />
-        <Menu>
+        <Hamburger>
+          <Burger open={hamburgerOpen} setOpen={setHamburgerOpen} />
+        </Hamburger>
+        <MenuContainer>
           <MenuItem label={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />
           <MenuItem label={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
             pathname: '/tattooers',
@@ -79,12 +103,12 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
           {/* <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} /> */}
           <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />
           <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
-        </Menu>
-        <Menu>
+        </MenuContainer>
+        <MenuContainer>
           <LangItem label='Рус' selected={locale === Language.RU} locale={Language.RU} href={pathname} />
           <LangItem label='Укр' selected={locale === Language.UA} locale={Language.UA} href={pathname} />
           {/* <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} href={pathname} /> */}
-        </Menu>
+        </MenuContainer>
       </InnerContainer>
       {headerFooter}
     </Container>

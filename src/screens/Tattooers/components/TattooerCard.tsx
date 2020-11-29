@@ -24,10 +24,6 @@ const Container = styled.div`
   height: ${previewSize}px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
-
-  /* & :hover {
-    transform: scale(1.115, 1.355) translate(0, 30px);
-  } */
 `;
 
 const PreviewImage = styled.img`
@@ -42,22 +38,10 @@ const PreviewImage = styled.img`
 `;
 
 const TextContainer = styled.div`
-  /* flex-direction: column; */
   background-color: white;
-  /* justify-content: center; */
   padding: 8px 16px;
-  /* width: 378px; */
   height: ${TextContainerHeight}px;
   border-radius: 0px 0px 8px 8px;
-`;
-
-const Title = styled.p`
-  font-weight: 600;
-  /* transform: scale(0.885, 0.645) translate(0, -30px); */
-`;
-
-const Text = styled.p`
-  /* transform: scale(0.885, 0.645) translate(0, -30px); */
 `;
 
 const FullCard = styled.div`
@@ -78,7 +62,6 @@ const FullCard = styled.div`
   }
 `;
 
-
 const FullImage = styled.img`
   width: ${fullImageSize}px;
   height: ${fullImageSize}px;
@@ -86,15 +69,57 @@ const FullImage = styled.img`
   border-radius: 8px 8px 0px 0px;
 `;
 
+const ImageSelectContainer = styled.div`
+  display: flex;
+  width: ${fullImageSize}px;
+  height: ${fullImageSize}px;
+  flex-direction: row;
+
+  position: absolute;
+`;
+
+const ImageSelectItem = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
+const ImageSelectItemBottom = styled.div`
+  display: flex;
+  background: #FFFFFF;
+  height: 6px;
+  opacity: 0.5;
+
+  ${ImageSelectItem}:hover & {
+    height: 8px;
+    opacity: 0.8;
+  }
+`;
+
+
 export const TattooerCard: React.StatelessComponent<ITattooerCardProps> = ({ tattooer }) => {
   const { locale } = useRouter();
+
+  const postURIs = tattooer.postURIs || [];
+
+  const previewImage = postURIs[0];
+
+  const [currentImage, setCurrentImage] = React.useState(previewImage);
 
   return tattooer ? (
     <Link href="/tattooers/[instagram]" as={`tattooers/${tattooer.instagram}`}>
       <Container>
-        {tattooer.postURIs && tattooer.postURIs.length ? <PreviewImage src={tattooer.postURIs[0]} /> : null}
+        {currentImage && <PreviewImage src={currentImage} />}
         <FullCard>
-          <FullImage src={tattooer.postURIs[0]} />
+          <FullImage src={currentImage} />
+          <ImageSelectContainer>
+            {postURIs.map(item => (
+              <ImageSelectItem key={item} onMouseEnter={() => { setCurrentImage(item); }}>
+                <ImageSelectItemBottom />
+              </ImageSelectItem>
+            )).slice(0, Math.min(postURIs.length, 4))}
+          </ImageSelectContainer>
           <TextContainer>
             <MasterInfoHeader city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='instagram.svg' />
             {/* <Title>{tattooer.instagram}</Title>
