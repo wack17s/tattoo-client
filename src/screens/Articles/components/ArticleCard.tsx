@@ -50,7 +50,7 @@ const Text = styled.p`
   text-overflow: ellipsis;
 `
 
-export const ArticleCard: React.StatelessComponent<IArticleCardProps> = ({ article }) => {
+export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ article }) => {
   const { locale } = useRouter();
 
   return article && article[locale] ? (

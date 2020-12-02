@@ -40,7 +40,7 @@ const TextContainer = styled.div`
   flex-direction: column;
 `;
 
-export const MasterInfoHeader: React.StatelessComponent<IMasterInfoHeaderProps> = ({ profileIconUri, instagram, city, instagramIconUri }) => (
+export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> = ({ profileIconUri, instagram, city, instagramIconUri }) => (
   <Container>
     {profileIconUri ? <ProfileIcon src={profileIconUri} /> : null}
     <TextContainer>

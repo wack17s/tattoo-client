@@ -34,7 +34,7 @@ export const Articles = () => {
         {articlesText.text.text}
       </Text>
       <CardsContainer>
-        {articles.map(article => <ArticleCard article={article} />)}
+        {articles.map(article => <ArticleCard key={'article' + article.id} article={article} />)}
       </CardsContainer>
     </Body>
   )

@@ -23,10 +23,19 @@ const previewSize = 276;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 720px) {
+    flex-direction: column-reverse;
+    padding: 0 8px;
+  }
 `;
 
 const BreadCrumbContainer = styled.div`
   margin: 40px 0px 0px 16px;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 const CardsContainer = styled.div`
@@ -40,17 +49,30 @@ const CardsContainer = styled.div`
   & > img {
     margin: 0px 16px 32px 16px;
   }
+
+  @media (max-width: 720px) {
+    flex-wrap: nowrap;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    overflow: scroll;
+    width: 100%;
+
+    & > img {
+      margin: 0px 16px 0px 0px;
+    }
+  }
 `;
 
-const PreviewImage = styled.img`
+const Image = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
 
   border-radius: 8px;
 
-  /* & :hover {
-    transform: scale(1.5, 1.5);
-  } */
+  @media (max-width: 720px) {
+    width: 85%;
+    height: 327px;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -62,6 +84,12 @@ const InfoContainer = styled.div`
   margin: 32px 16px;
   flex-direction: column;
   padding: 24px;
+
+
+  @media (max-width: 720px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 const Divider = styled.div`
@@ -77,7 +105,7 @@ const textStyle = {
   marginBottom: 24,
 };
 
-export const Tattooer: React.StatelessComponent<ITattooerProps> = ({ tattooer }) => {
+export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) => {
   const { locale } = useRouter();
 
   const pageNames = getPageNames(locale);
@@ -101,7 +129,7 @@ export const Tattooer: React.StatelessComponent<ITattooerProps> = ({ tattooer })
           ) : null}
         </InfoContainer>
         <CardsContainer>
-          {tattooer && tattooer.postURIs && tattooer.postURIs.length ? tattooer.postURIs.map(src => <PreviewImage key={src} src={src} />).slice(0,5) : null}
+          {tattooer && tattooer.postURIs && tattooer.postURIs.length ? tattooer.postURIs.map(src => <Image key={src} src={src} />).slice(0,5) : null}
         </CardsContainer>
       </Container>
     </Body>

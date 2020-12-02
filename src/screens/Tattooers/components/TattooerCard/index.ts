@@ -1,0 +1,1 @@
+export { TattooerCard } from './TattooerCard';

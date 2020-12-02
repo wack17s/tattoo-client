@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 import styled from 'styled-components';
+import Link from 'next/link'
 
-import { MasterInfoHeader } from '../../../components/MasterInfoHeader';
-import { ITattooerDTO } from '../../../dto/tattooer.dto';
-import { cities } from '../../../cities';
+import { MasterInfoHeader } from '../../../../components/MasterInfoHeader';
 
-interface ITattooerCardProps {
-  tattooer: ITattooerDTO;
+interface IDesktopTattooerCardProps {
+  postURIs: string[];
+  currentImage: string;
+  setCurrentImage: (currentImage: string) => void;
+  city?: string;
+  instagram: string;
 }
 
 const previewSize = 276;
@@ -18,20 +19,21 @@ const TextContainerHeight = 66;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: grey;
   justify-content: flex-end;
   width: ${previewSize}px;
   height: ${previewSize}px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
+
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 const PreviewImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
-
   border-radius: 8px;
-
   ${Container}:hover & {
     display: none;
   }
@@ -47,16 +49,12 @@ const TextContainer = styled.div`
 const FullCard = styled.div`
   width: ${fullImageSize}px;
   height: ${fullImageSize + TextContainerHeight}px;
-
+  box-shadow: ${({ theme }) => theme.boxShadow};
   flex-direction: column;
-
   display: none;
-
   margin-bottom: ${(previewSize - (fullImageSize + TextContainerHeight * 2)) / 2}px;
   margin-left: ${(previewSize - fullImageSize) / 2}px;
-
   position: absolute;
-
   ${Container}:hover & {
     display: flex;
   }
@@ -65,7 +63,6 @@ const FullCard = styled.div`
 const FullImage = styled.img`
   width: ${fullImageSize}px;
   height: ${fullImageSize}px;
-
   border-radius: 8px 8px 0px 0px;
 `;
 
@@ -74,7 +71,6 @@ const ImageSelectContainer = styled.div`
   width: ${fullImageSize}px;
   height: ${fullImageSize}px;
   flex-direction: row;
-
   position: absolute;
 `;
 
@@ -90,7 +86,6 @@ const ImageSelectItemBottom = styled.div`
   background: #FFFFFF;
   height: 6px;
   opacity: 0.5;
-
   ${ImageSelectItem}:hover & {
     height: 8px;
     opacity: 0.8;
@@ -98,17 +93,9 @@ const ImageSelectItemBottom = styled.div`
 `;
 
 
-export const TattooerCard: React.StatelessComponent<ITattooerCardProps> = ({ tattooer }) => {
-  const { locale } = useRouter();
-
-  const postURIs = tattooer.postURIs || [];
-
-  const previewImage = postURIs[0];
-
-  const [currentImage, setCurrentImage] = React.useState(previewImage);
-
-  return tattooer ? (
-    <Link href="/tattooers/[instagram]" as={`tattooers/${tattooer.instagram}`}>
+export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram }) => {
+  return (
+    <Link href="/tattooers/[instagram]" as={`tattooers/${instagram}`}>
       <Container>
         {currentImage && <PreviewImage src={currentImage} />}
         <FullCard>
@@ -121,12 +108,12 @@ export const TattooerCard: React.StatelessComponent<ITattooerCardProps> = ({ tat
             )).slice(0, Math.min(postURIs.length, 4))}
           </ImageSelectContainer>
           <TextContainer>
-            <MasterInfoHeader city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='instagram.svg' />
+            <MasterInfoHeader city={city} instagram={instagram} instagramIconUri='instagram.svg' />
             {/* <Title>{tattooer.instagram}</Title>
             {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null} */}
           </TextContainer>
         </FullCard>
       </Container>
     </Link>
-  ) : null;
+  )
 }
