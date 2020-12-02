@@ -15,7 +15,7 @@ const Container = styled.div`
   }
 `;
 
-export const BreadCrumb: React.StatelessComponent<IBreadCrumbProps> = ({ pageNames }) => {
+export const BreadCrumb: React.FunctionComponent<IBreadCrumbProps> = ({ pageNames }) => {
   return (
     <Container>
       <GreyText>

@@ -24,7 +24,7 @@ export const Button = styled.div<IButtonProps>`
   color: white;
   font-weight: 600;
 
-  @media (max-width: 768px) {
+  @media (max-width: 720px) {
     width: 100%;
   }
 `;

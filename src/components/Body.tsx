@@ -48,7 +48,7 @@ const InnerContainer = styled.div`
   }
 `;
 
-export const Body: React.StatelessComponent<IBodyProps> = ({ children, innerContainerStyle, ...props }) => (
+export const Body: React.FunctionComponent<IBodyProps> = ({ children, innerContainerStyle, ...props }) => (
   <Background>
     <Container>
       <Header {...props} />

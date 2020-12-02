@@ -12,6 +12,8 @@ interface IStyledProps {
 }
 
 const StyledBurgerMenu = styled.nav<IStyledProps>`
+  z-index: 3;
+
   display: flex;
   flex-direction: column;
   align-items: center;

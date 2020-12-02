@@ -1,16 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import useSWR from 'swr';
 import { NextPageContext } from 'next';
 
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { useCity } from '../../hooks/useCity';
 import { useStyles } from '../../hooks/useStyles';
-import { useTattooers } from '../../hooks/useTattooers';
 import { ITattooerDTO } from '../../dto/tattooer.dto';
-import { encodeQueryData } from '../../utils/encodeQueryData';
-import { fetcher } from '../../utils/fetcher';
 
 import tattooers from '../../parameters/tattooers.json';
 
@@ -31,9 +27,20 @@ const CardsContainer = styled.div`
   & > div {
     margin: 0px 16px 32px 16px;
   }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 24px;
+    padding: 0 8px;
+
+    & > div {
+      margin: 0px 0px 8px 0px;
+    }
+  }
 `;
 
-export const Tattooers: React.StatelessComponent<ITattooersProps> = ({ tattooers }) => {
+export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers }) => {
   const [selectedCity, setCity] = useCity();
   const [selectedStyles, selectStyle] = useStyles();
 

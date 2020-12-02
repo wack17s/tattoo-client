@@ -5,6 +5,7 @@ import { P1, P2, P3, P4, P5 } from './components/P';
 
 interface ITextProps {
   children: any;
+  className?: string;
 
   style?: any;
 
@@ -20,10 +21,10 @@ interface ITextProps {
   p5?: boolean;
 }
 
-export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5, p1, p2, p3, p4, p5, children, style }) => {
+export const Text: React.FunctionComponent<ITextProps> = ({ h1, h2, h3, h4, h5, p1, p2, p3, p4, p5, children, style, className }) => {
   if (h1) {
     return (
-      <H1 style={style}>
+      <H1 className={className} style={style}>
         {children}
       </H1>
     )
@@ -31,7 +32,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (h2) {
     return (
-      <H2 style={style}>
+      <H2 className={className} style={style}>
         {children}
       </H2>
     )
@@ -39,7 +40,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (h3) {
     return (
-      <H3 style={style}>
+      <H3 className={className} style={style}>
         {children}
       </H3>
     )
@@ -47,7 +48,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (h4) {
     return (
-      <H4 style={style}>
+      <H4 className={className} style={style}>
         {children}
       </H4>
     )
@@ -55,7 +56,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (h5) {
     return (
-      <H5 style={style}>
+      <H5 className={className} style={style}>
         {children}
       </H5>
     )
@@ -63,7 +64,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (p1) {
     return (
-      <P1 style={style}>
+      <P1 className={className} style={style}>
         {children}
       </P1>
     )
@@ -71,7 +72,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (p2) {
     return (
-      <P2 style={style}>
+      <P2 className={className} style={style}>
         {children}
       </P2>
     )
@@ -79,7 +80,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (p3) {
     return (
-      <P3 style={style}>
+      <P3 className={className} style={style}>
         {children}
       </P3>
     )
@@ -87,7 +88,7 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (p4) {
     return (
-      <P4 style={style}>
+      <P4 className={className} style={style}>
         {children}
       </P4>
     )
@@ -95,11 +96,11 @@ export const Text: React.StatelessComponent<ITextProps> = ({ h1, h2, h3, h4, h5,
 
   if (p5) {
     return (
-      <P5 style={style}>
+      <P5 className={className} style={style}>
         {children}
       </P5>
     )
   }
 
-  return <p style={style}>{children}</p>
+  return <p className={className} style={style}>{children}</p>
 };

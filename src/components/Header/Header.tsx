@@ -58,6 +58,10 @@ const Container = styled.div<{ hamburgerOpen?: boolean }>`
   padding: 16px;
   border-radius: ${({ hamburgerOpen }) => hamburgerOpen ? '8px 8px 0px 0px' : '8px 8px 8px 8px'};
   box-shadow: ${({ theme }) => theme.boxShadow};
+
+  @media (max-width: 720px) {
+    padding: 8px;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -67,6 +71,10 @@ const InnerContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+
+  @media (max-width: 720px) {
+    padding: 8px 16px;
+  }
 `;
 
 const BurgeLangContainer = styled.div`
@@ -89,20 +97,20 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const menuButtons = [
-    <MenuItem label={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />,
-    <MenuItem label={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
+    <MenuItem label={pageNames[PageName.MAIN]} key={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />,
+    <MenuItem label={pageNames[PageName.TATTOOERS]} key={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
       pathname: '/tattooers',
       query: tattooerQuery,
     }} locale={locale} />,
-    // <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />,
-    <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />,
-    <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
+    // <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} key={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />,
+    <MenuItem label={pageNames[PageName.ARTICLES]} key={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />,
+    <MenuItem label={pageNames[PageName.ABOUT]} key={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
   ];
 
   const langButtons = [
-    <LangItem label='Рус' selected={locale === Language.RU} locale={Language.RU} href={pathname} />,
-    <LangItem label='Укр' selected={locale === Language.UA} locale={Language.UA} href={pathname} />,
-    // <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} href={pathname} />
+    <LangItem label='Рус' selected={locale === Language.RU} locale={Language.RU} key={Language.RU} href={pathname} />,
+    <LangItem label='Укр' selected={locale === Language.UA} locale={Language.UA} key={Language.UA} href={pathname} />,
+    // <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} key={Language.EN} href={pathname} />
   ];
 
   return (

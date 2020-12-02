@@ -68,7 +68,7 @@ const StyledSelect = styled(ReactSelect)`
   }
 `;
 
-export const Select: React.StatelessComponent<ISelectProps> = ({ options, onChange, value, className }) => {
+export const Select: React.FunctionComponent<ISelectProps> = ({ options, onChange, value, className }) => {
   return (
     <StyledSelect className={className} isFocused={false} classNamePrefix={'Select'} options={options} value={value} onChange={onChange} />
   )

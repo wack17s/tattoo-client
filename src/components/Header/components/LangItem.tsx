@@ -19,7 +19,7 @@ const Label = styled.p<Pick<ILangItemProps, 'selected'>>`
   }
 `;
 
-export const LangItem: React.StatelessComponent<ILangItemProps> = ({ selected, label, locale, href }) => (
+export const LangItem: React.FunctionComponent<ILangItemProps> = ({ selected, label, locale, href }) => (
   <Link locale={locale} href={href}>
     <Label selected={selected}>{label}</Label>
   </Link>

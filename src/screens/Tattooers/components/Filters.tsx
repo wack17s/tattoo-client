@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { ICity } from '../../../cities.types';
 import { IStyle } from '../../../styles.types';
 import { getTattooers } from '../../../utils/getLocalizedText';
-import { Button } from '../../../components/Button';
+import { Text } from '../../../components/Text';
 import { Chip } from '../../../components/Chip';
 import { CityPicker } from '../../../components/CityPicker';
 import { Select } from '../../../components/Select';
@@ -26,17 +26,34 @@ const Container = styled.div`
   flex-direction: row;
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
   margin-top: 16px;
+  padding-top: 16px;
+
+  @media (max-width: 720px) {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
 `;
 
-const InnerContainer = styled.div`
+const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+
   margin-right: 16px;
+
+  @media (max-width: 720px) {
+    flex: 5;
+    margin-right: 8px;
+  }
 `;
 
-const Title = styled.p`
-  font-weight: 600;
-  margin-top: 16px;
+const RightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+`;
+
+const Title = styled(Text)`
   margin-bottom: 12px;
 
   @media (max-width: 720px) {
@@ -65,7 +82,7 @@ const StyledSelect = styled(Select)`
   }
 `;
 
-export const Filters: React.StatelessComponent<IFiltersProps> = ({ selectedCity, selectedStyles, onCity, onStyle }) => {
+export const Filters: React.FunctionComponent<IFiltersProps> = ({ selectedCity, selectedStyles, onCity, onStyle }) => {
   const { locale } = useRouter();
 
   const tattooers = getTattooers(locale);
@@ -82,22 +99,19 @@ export const Filters: React.StatelessComponent<IFiltersProps> = ({ selectedCity,
 
   return (
     <Container>
-      <InnerContainer>
-        <Title>{tattooers.text.selectCity}</Title>
+      <LeftContainer>
+        <Title h5>{tattooers.text.selectCity}</Title>
         <StyledSelect onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />
-        <Button onClick={() => { setCityPickerOpen(true); }}>
-          {selectedCity ? selectedCity.en : 'Choose City'}
-        </Button>
-      </InnerContainer>
-      <InnerContainer>
-        <Title>{tattooers.text.selectStyle}</Title>
+        <CityPicker selectedCity={selectedCity ? selectedCity[locale] : undefined} small open={cityPickerOpen} onCity={city => { selectCity({ value: city.id }) }} setOpen={setCityPickerOpen} />
+      </LeftContainer>
+      <RightContainer>
+        <Title h5>{tattooers.text.selectStyle}</Title>
         <StylesContainer>
           {getSortedStyles().map(item => (
             <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={onStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
           ))}
         </StylesContainer>
-      </InnerContainer>
-      <CityPicker open={cityPickerOpen} onCity={city => { selectCity({ value: city.id }) }} close={() => { setCityPickerOpen(false) }} />
+      </RightContainer>
     </Container>
   );
 }
