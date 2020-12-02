@@ -2,7 +2,8 @@ import 'styled-components'
 
 interface IDefaultTheme {
   colors: {
-    BACKGROUND: string,
+    BACKGROUND: string;
+    PICKER_BACKGROUND: string;
     CORAL_700: string;
     CORAL_500: string;
     CORAL_300: string;
@@ -53,6 +54,7 @@ declare module 'styled-components' {
 
 export const Colors = {
   BACKGROUND: '#FFFBEE',
+  PICKER_BACKGROUND: '#E5E5E5',
 
   CORAL_700: '#FA4A4A',
   CORAL_500: '#FF6B6B',

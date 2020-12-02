@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import styled from 'styled-components';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 
@@ -22,7 +21,7 @@ export const Main: NextPage = () => {
       <Container>
         <InnerContainer>
           <Text h1>{mainPage.text.title}</Text>
-          <Text style={{ marginTop: 24, marginBottom: '3em' }}>{mainPage.text.text}<br />{mainPage.text.text2}</Text>
+          <Text style={{ marginTop: 24, marginBottom: '3em' }}>{mainPage.text.text}</Text>
           <Link href='choose-city'>
             <Button>
               {mainPage.text.button}
