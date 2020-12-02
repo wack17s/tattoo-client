@@ -6,7 +6,9 @@ import { useRouter } from 'next/router';
 import { ICity } from '../../../cities.types';
 import { IStyle } from '../../../styles.types';
 import { getTattooers } from '../../../utils/getLocalizedText';
+import { Button } from '../../../components/Button';
 import { Chip } from '../../../components/Chip';
+import { CityPicker } from '../../../components/CityPicker';
 import { Select } from '../../../components/Select';
 import { getSortedStyles } from '../../../utils/getSortedStyles';
 import { cities } from '../../../cities';
@@ -36,6 +38,10 @@ const Title = styled.p`
   font-weight: 600;
   margin-top: 16px;
   margin-bottom: 12px;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 const StylesContainer = styled.div`
@@ -47,6 +53,16 @@ const StylesContainer = styled.div`
   & > div {
     margin-right: 8px;
   }
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+`;
+
+const StyledSelect = styled(Select)`
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 export const Filters: React.StatelessComponent<IFiltersProps> = ({ selectedCity, selectedStyles, onCity, onStyle }) => {
@@ -56,17 +72,22 @@ export const Filters: React.StatelessComponent<IFiltersProps> = ({ selectedCity,
 
   const allCitiesOption = { value: '999', label: tattooers.text.selectCityPlaceholder };
 
-  const selectCity = ({ value }) => {
+  const selectCity = ({ value }: { value: string; }) => {
     onCity(cities.find(item => item.id === value))
   }
 
   const citiesOptions = [allCitiesOption, ...cities.map(item => ({ value: item.id, label: item[locale] }))];
 
+  const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
+
   return (
     <Container>
       <InnerContainer>
         <Title>{tattooers.text.selectCity}</Title>
-        <Select onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />
+        <StyledSelect onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />
+        <Button onClick={() => { setCityPickerOpen(true); }}>
+          {selectedCity ? selectedCity.en : 'Choose City'}
+        </Button>
       </InnerContainer>
       <InnerContainer>
         <Title>{tattooers.text.selectStyle}</Title>
@@ -76,6 +97,7 @@ export const Filters: React.StatelessComponent<IFiltersProps> = ({ selectedCity,
           ))}
         </StylesContainer>
       </InnerContainer>
+      <CityPicker open={cityPickerOpen} onCity={city => { selectCity({ value: city.id }) }} close={() => { setCityPickerOpen(false) }} />
     </Container>
   );
 }

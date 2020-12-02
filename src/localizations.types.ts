@@ -23,7 +23,6 @@ export interface ILocalization {
       text: {
         title: string;
         text: string;
-        text2: string;
         button: string;
       };
     };
@@ -41,7 +40,6 @@ export interface ILocalization {
       text: {
         title: string;
         text: string;
-        text2: string;
         button: string;
         chooseButton: string;
       };

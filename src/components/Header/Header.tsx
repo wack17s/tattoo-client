@@ -9,7 +9,8 @@ import { PageName } from '../../types/pageName.enum';
 import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 
 import { MenuItem } from './components/MenuItem';
-import { Burger, Menu } from './components/HamburgeMenu';
+import { Burger } from './components/Burger';
+import { BurgerMenu } from './components/BurgerMenu';
 import { LangItem } from './components/LangItem';
 
 export enum HeaderMenuButton {
@@ -36,7 +37,7 @@ const MenuContainer = styled.div`
   }
 `;
 
-const Hamburger = styled.div`
+const BurgerContainer = styled.div`
   display: none;
 
   @media (orientation:portrait) {
@@ -68,6 +69,16 @@ const InnerContainer = styled.div`
   padding: 0 16px;
 `;
 
+const BurgeLangContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+`;
+
 export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, logoUri }) => {
   const { locale, pathname } = useRouter();
 
@@ -77,37 +88,41 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
 
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
+  const menuButtons = [
+    <MenuItem label={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />,
+    <MenuItem label={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
+      pathname: '/tattooers',
+      query: tattooerQuery,
+    }} locale={locale} />,
+    // <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />,
+    <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />,
+    <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
+  ];
+
+  const langButtons = [
+    <LangItem label='Рус' selected={locale === Language.RU} locale={Language.RU} href={pathname} />,
+    <LangItem label='Укр' selected={locale === Language.UA} locale={Language.UA} href={pathname} />,
+    // <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} href={pathname} />
+  ];
+
   return (
     <Container hamburgerOpen={hamburgerOpen}>
-      <Menu open={hamburgerOpen} setOpen={setHamburgerOpen}>
-        <MenuItem label={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />
-        <MenuItem label={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
-          pathname: '/tattooers',
-          query: tattooerQuery,
-        }} locale={locale} />
-        {/* <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} /> */}
-        <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />
-        <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
-      </Menu>
+      <BurgerMenu open={hamburgerOpen} setOpen={setHamburgerOpen}>
+        {menuButtons}
+        <BurgeLangContainer>
+          {langButtons}
+        </BurgeLangContainer>
+      </BurgerMenu>
       <InnerContainer>
         <Logo src={logoUri || './logo.png'} />
-        <Hamburger>
+        <BurgerContainer>
           <Burger open={hamburgerOpen} setOpen={setHamburgerOpen} />
-        </Hamburger>
+        </BurgerContainer>
         <MenuContainer>
-          <MenuItem label={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />
-          <MenuItem label={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
-            pathname: '/tattooers',
-            query: tattooerQuery,
-          }} locale={locale} />
-          {/* <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} /> */}
-          <MenuItem label={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />
-          <MenuItem label={pageNames[PageName.ABOUT]} selected={selectedButton === HeaderMenuButton.ABOUT} href='/about' locale={locale} />
+          {menuButtons}
         </MenuContainer>
         <MenuContainer>
-          <LangItem label='Рус' selected={locale === Language.RU} locale={Language.RU} href={pathname} />
-          <LangItem label='Укр' selected={locale === Language.UA} locale={Language.UA} href={pathname} />
-          {/* <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} href={pathname} /> */}
+          {langButtons}
         </MenuContainer>
       </InnerContainer>
       {headerFooter}

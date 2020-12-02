@@ -11,6 +11,7 @@ interface ISelectProps {
   options: IOption[];
   onChange: (value: IOption) => void;
   value: IOption;
+  className?: string;
 }
 
 const StyledSelect = styled(ReactSelect)`
@@ -67,8 +68,8 @@ const StyledSelect = styled(ReactSelect)`
   }
 `;
 
-export const Select: React.StatelessComponent<ISelectProps> = ({ options, onChange, value }) => {
+export const Select: React.StatelessComponent<ISelectProps> = ({ options, onChange, value, className }) => {
   return (
-    <StyledSelect isFocused={false} classNamePrefix={'Select'} options={options} value={value} onChange={onChange} />
+    <StyledSelect className={className} isFocused={false} classNamePrefix={'Select'} options={options} value={value} onChange={onChange} />
   )
 };
