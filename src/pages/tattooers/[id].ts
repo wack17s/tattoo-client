@@ -1,7 +1,6 @@
 import { Tattooer, getStaticProps } from '../../screens/Tattooer';
 import tattooers from '../../parameters/tattooers.json';
 
-
 export { getStaticProps };
 
 export async function getStaticPaths() {

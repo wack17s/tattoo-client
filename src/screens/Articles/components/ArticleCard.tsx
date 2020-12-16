@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styled from 'styled-components';
 
-import { IArticle } from '../../../articles.types';
-
 interface IArticleCardProps {
-  article: IArticle;
+  name: string;
+  placeholder: string;
+  id: string;
 }
 
 const Container = styled.div`
@@ -50,17 +49,15 @@ const Text = styled.p`
   text-overflow: ellipsis;
 `
 
-export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ article }) => {
-  const { locale } = useRouter();
-
-  return article && article[locale] ? (
-    <Link href="/articles/[id]" as={`articles/${article.id}`}>
+export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ name, placeholder, id }) => {
+  return (
+    <Link href="/articles/[id]" as={`articles/${id}`}>
       <Container>
         <TextContainer>
-          <Title>{article[locale].name}</Title>
-          <Text>{article[locale].text}</Text>
+          <Title>{name}</Title>
+          <Text>{placeholder}</Text>
         </TextContainer>
       </Container>
     </Link>
-  ) : null;
+  );
 }

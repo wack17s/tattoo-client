@@ -14,7 +14,7 @@ const Background = styled.div`
   width: 100%;
   min-height: 100%;
 
-  color: ${({ theme }) => theme.colors.primaryText.DEFAULT};
+  color: ${({ theme }) => theme.colors.BLACK_900};
 
   justify-content: center;
 

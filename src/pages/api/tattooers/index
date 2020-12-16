@@ -1,5 +1,3 @@
-// import { tattooersService } from '../../../services/tattooers.service'
-
 // export default async (req, res) => {
 //   const {
 //     query
@@ -7,11 +5,14 @@
 
 //   let tattooers;
 
-//   if (query && (query.city || query.styles)) {
-//     tattooers = await tattooersService.findQuery({ city: query.city, styles: query.styles });
-//   } else {
-//     tattooers = await tattooersService.findAll();
-//   }
+//   const response = await fetch('https://tattoo-admin.herokuapp.com/tattooers-ready', {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${access_token}`,
+//         Accept: 'application/json',
+//       },
+//     });
 
 //   res.statusCode = 200
 //   res.json(tattooers);
