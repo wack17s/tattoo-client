@@ -1,3 +1,3 @@
-import { Article } from './Article';
+import { Article, getStaticProps } from './Article';
 
-export { Article };
+export { Article, getStaticProps };

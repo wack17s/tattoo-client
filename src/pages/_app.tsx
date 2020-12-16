@@ -69,6 +69,70 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
+  .article {
+    h2 {
+      font-size: 21px;
+    }
+  }
+
+  h1 {
+    font-family: 'Rubik';
+    font-size: 71px;
+    line-height: 80px;
+    letter-spacing: 0.01em;
+
+    @media (max-width: 720px) {
+      font-size: 42px;
+      line-height: 52px;
+    }
+  }
+
+  h2 {
+    font-family: 'Rubik';
+    font-size: 42px;
+    line-height: 56px;
+
+    @media (max-width: 720px) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  h3 {
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+
+  h4 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+
+  h5 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+
+    @media (max-width: 720px) {
+      display: none;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 const MyApp = ({ Component, pageProps }) => (

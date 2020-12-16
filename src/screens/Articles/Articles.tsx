@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router'
 
-import { articles } from '../../articles'
 import { getArticles } from '../../utils/getLocalizedText';
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 
 import { ArticleCard } from './components/ArticleCard';
+import { ChooseTattooId, ChooseTattooName, ChooseTattooPlaceholder } from '../../articles/ChooseTattoo/params';
 
 const CardsContainer = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ export const Articles = () => {
         {articlesText.text.text}
       </Text>
       <CardsContainer>
-        {articles.map(article => <ArticleCard key={'article' + article.id} article={article} />)}
+        <ArticleCard id={ChooseTattooId} name={ChooseTattooName} placeholder={ChooseTattooPlaceholder} />
       </CardsContainer>
     </Body>
   )
