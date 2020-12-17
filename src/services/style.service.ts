@@ -5,6 +5,7 @@ class StyleService {
   private styles: IStyle[] | null = null;
 
   private fetchStyles = async () => {
+    console.log('process.env.ACCESS_TOKEN', process.env.ACCESS_TOKEN)
     this.styles = await fetcher('https://tattoo-backend17.herokuapp.com/style', {
       method: 'GET',
       headers: {

@@ -8,6 +8,7 @@ class TattooerService {
   private tattooers: ITattooer[] | null = null;
 
   private fetchTattooers = async () => {
+    console.log('process.env.ACCESS_TOKEN', process.env.ACCESS_TOKEN)
     const allTattooers: ITattooer[] = (await fetcher('https://tattoo-backend17.herokuapp.com/tattooer', {
       method: 'GET',
       headers: {
