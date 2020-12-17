@@ -1,18 +1,18 @@
-import { useCity } from './useCity'
-import { useStyles } from './useStyles'
+import { useSelectedCity } from './useSelectedCity'
+import { useSelectedStyles } from './useSelectedStyles'
 
 export const useTattooersQuery = () => {
-  const [selectedCity] = useCity();
-  const [selectedStyles] = useStyles();
+  const [selectedCity] = useSelectedCity();
+  const [selectedStyles] = useSelectedStyles();
 
   const query: { city?: string; styles?: string; } = {};
 
   if (selectedCity) {
-    query.city = `${selectedCity.id}`;
+    query.city = `${selectedCity.name}`;
   }
 
   if (selectedStyles && selectedStyles.length) {
-    query.styles = selectedStyles.map(item => item.id).join(',');
+    query.styles = selectedStyles.map(item => item.name).join(',');
   }
 
   return query;

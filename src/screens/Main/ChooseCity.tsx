@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-import { getSortedCities } from '../../utils/getSortedCities';
 import { getChooseCity, getPageNames } from '../../utils/getLocalizedText';
+import { sortByLang } from '../../utils/sortByLang';
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
@@ -14,8 +14,9 @@ import { Chip } from '../../components/Chip';
 import { Button } from '../../components/Button';
 import { BreadCrumb } from '../../components/BreadCrumb';
 import { PageName } from '../../types/pageName.enum';
-import { useCity } from '../../hooks/useCity';
-import { useTattooersQuery } from '../../hooks/useTattooersQuery';
+import { useSelectedCity } from '../../hooks/useSelectedCity';
+// import { useTattooersQuery } from '../../hooks/useTattooersQuery';
+import { useCities } from '../../hooks/useCities';
 
 import { Image, InnerContainer, Container, ChipsContainer } from './components';
 
@@ -42,11 +43,12 @@ export const ChooseCity: NextPage = () => {
   const chooseCity = getChooseCity(locale);
   const pageNames = getPageNames(locale);
 
-  const [selectedCity, setCity] = useCity();
+  const [selectedCity, setCity] = useSelectedCity();
+  const [cities] = useCities();
 
   const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
 
-  const tattooerQuery = useTattooersQuery();
+  // const tattooerQuery = useTattooersQuery();
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
@@ -56,12 +58,12 @@ export const ChooseCity: NextPage = () => {
           <Title h2>{chooseCity.text.title}</Title>
           <StyledText>{chooseCity.text.text}</StyledText>
           <ChipsContainer>
-            {getSortedCities(locale).map(item => (
+            {sortByLang(locale, cities).map(item => (
               <Chip key={`${item.id}_${item.en}`} selected={selectedCity && selectedCity[locale] === item[locale]} onClick={setCity.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
           <CityPicker selectedCity={selectedCity ? selectedCity[locale] : undefined} open={cityPickerOpen} onCity={setCity} setOpen={setCityPickerOpen} />
-          <Link href={{ pathname: 'tattooers', query: tattooerQuery }} locale={locale}>
+          <Link href={{ pathname: 'choose-style' }} locale={locale}>
             <StyledButton>
               {selectedCity ? chooseCity.text.chooseButton : chooseCity.text.button}
             </StyledButton>

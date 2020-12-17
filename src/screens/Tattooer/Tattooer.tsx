@@ -3,19 +3,18 @@ import styled from 'styled-components';
 import lo from 'lodash';
 import { useRouter } from 'next/router';
 
+import { tattooerService } from '../../services/tattooer.service';
 import { Body } from '../../components/Body'
 import { BreadCrumb } from '../../components/BreadCrumb'
 import { HeaderMenuButton } from '../../components/Header'
 import { MasterInfoHeader } from '../../components/MasterInfoHeader'
 import { Text } from '../../components/Text'
-import { ITattooerDTO } from '../../dto/tattooer.dto';
 import { PageName } from '../../types/pageName.enum';
 import { getPageNames } from '../../utils/getLocalizedText';
-
-import tattooers from '../../parameters/tattooers.json';
+import { ITattooer } from '../../types/tattooer';
 
 interface ITattooerProps {
-  tattooer: ITattooerDTO | null;
+  tattooer: ITattooer | null;
 }
 
 const previewSize = 276;
@@ -117,19 +116,19 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
       </BreadCrumbContainer>
       <Container>
         <InfoContainer>
-          <MasterInfoHeader city={tattooer.city} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
+          <MasterInfoHeader city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
           <Divider />
           <Text p5>Описание</Text>
           <Text style={textStyle} p1>{tattooer.about}</Text>
           {tattooer.styles && tattooer.styles.length ? (
             <>
               <Text p5>Стиль</Text>
-              <Text style={textStyle} p1>{tattooer.styles.map(item => lo.capitalize(item)).join(', ')}</Text>
+              <Text style={textStyle} p1>{tattooer.styles.map(item => lo.capitalize(item.en)).join(', ')}</Text>
             </>
           ) : null}
         </InfoContainer>
         <CardsContainer>
-          {tattooer && tattooer.postURIs && tattooer.postURIs.length ? tattooer.postURIs.map(src => <Image key={src} src={src} />).slice(0,5) : null}
+          {tattooer && tattooer.posts && tattooer.posts.length ? tattooer.posts.map(post => <Image key={post.uri} src={post.uri} />) : null}
         </CardsContainer>
       </Container>
     </Body>
@@ -137,13 +136,11 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
 }
 
 export async function getStaticProps(context) {
-  // const res = await fetch('http://localhost:3001/tattooers', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
-
-  console.log('context', context)
+  const tattooer = await tattooerService.getTattooer(context.params.instagram);
 
   return {
     props: {
-      tattooer: context.params.id ? tattooers.find(item => item.instagram === context.params.id) : null
+      tattooer
     }
   }
 }

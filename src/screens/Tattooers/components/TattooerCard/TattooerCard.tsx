@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { useRouter } from 'next/router'
 
-import { ITattooerDTO } from '../../../../dto/tattooer.dto';
-import { cities } from '../../../../cities';
+import { ITattooer } from '../../../../types/tattooer';
 
 import { DesktopTattooerCard } from './DesktopTattooerCard';
 import { MobileTattooerCard } from './MobileTattooerCard';
 
 interface ITattooerCardProps {
-  tattooer: ITattooerDTO;
+  tattooer: ITattooer;
 }
 
 export const TattooerCard: React.FunctionComponent<ITattooerCardProps> = ({ tattooer }) => {
   const { locale } = useRouter();
 
-  const postURIs = tattooer.postURIs || [];
+  const posts = tattooer.posts || [];
+  const postURIs = posts.map(item => item.uri);
 
-  const previewImage = postURIs[0];
+  const previewImage = posts[0].uri;
 
   const [currentImage, setCurrentImage] = React.useState(previewImage);
 
@@ -24,14 +24,14 @@ export const TattooerCard: React.FunctionComponent<ITattooerCardProps> = ({ tatt
     <>
       <DesktopTattooerCard
         postURIs={postURIs}
-        city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined}
+        city={tattooer.city ? tattooer.city[locale] : undefined}
         instagram={tattooer.instagram}
         currentImage={currentImage}
         setCurrentImage={setCurrentImage}
       />
       <MobileTattooerCard
         postURIs={postURIs}
-        city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined}
+        // city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined}
         instagram={tattooer.instagram}
       />
     </>

@@ -2,9 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
-import { cities } from '../cities';
-import { ICity } from '../cities.types';
 import { getTattooers } from '../utils/getLocalizedText';
+import { ICity } from '../types/city';
+import { useCities } from '../hooks/useCities';
 
 import { LeftArrow, RightArrow } from './Arrow';
 import { Text } from './Text';
@@ -107,6 +107,8 @@ export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ open, se
   const { locale } = useRouter();
 
   const tattooers = getTattooers(locale);
+
+  const [cities] = useCities();
 
   return (
     <>

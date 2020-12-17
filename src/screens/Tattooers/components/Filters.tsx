@@ -3,15 +3,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
-import { ICity } from '../../../cities.types';
-import { IStyle } from '../../../styles.types';
 import { getTattooers } from '../../../utils/getLocalizedText';
 import { Text } from '../../../components/Text';
 import { Chip } from '../../../components/Chip';
 import { CityPicker } from '../../../components/CityPicker';
 import { Select } from '../../../components/Select';
-import { getSortedStyles } from '../../../utils/getSortedStyles';
-import { cities } from '../../../cities';
+import { ICity } from '../../../types/city';
+import { IStyle } from '../../../types/style';
+import { useCities } from '../../../hooks/useCities';
+import { useStyles } from '../../../hooks/useStyles';
 
 interface IFiltersProps {
   selectedCity?: ICity;
@@ -86,6 +86,8 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ selectedCity, 
   const { locale } = useRouter();
 
   const tattooers = getTattooers(locale);
+  const [cities] = useCities();
+  const [styles] = useStyles();
 
   const allCitiesOption = { value: '999', label: tattooers.text.selectCityPlaceholder };
 
@@ -107,7 +109,7 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ selectedCity, 
       <RightContainer>
         <Title h5>{tattooers.text.selectStyle}</Title>
         <StylesContainer>
-          {getSortedStyles().map(item => (
+          {styles.map(item => (
             <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={onStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
           ))}
         </StylesContainer>

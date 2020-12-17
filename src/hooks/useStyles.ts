@@ -1,29 +1,22 @@
+import { styleService } from './../services/style.service';
 import * as React from 'react';
 
-import { IStyle } from '../styles.types';
+import { IStyle } from '../types/style';
 
-export const useStyles = (): [IStyle[] | null, React.Dispatch<React.SetStateAction<IStyle>>] => {
-  const [selectedStyles, selectStyles] = React.useState<IStyle[]>([]);
+export const useStyles = (): [IStyle[]] => {
+  const [styles, setStyles] = React.useState<IStyle[]>([]);
 
   React.useEffect(() => {
-    const savedStyles = localStorage.getItem('styles');
+    const setStylesAsync = async () => {
+      const styles = await styleService.getStyles();
 
-    if (savedStyles) {
-      selectStyles(JSON.parse(savedStyles));
+      if (styles) {
+        setStyles(styles);
+      }
     }
+
+    setStylesAsync();
   }, []);
 
-  const selectNewStyle = (style: IStyle) => {
-    const newStylesList = selectedStyles.some(item => item.id === style.id) ? [...selectedStyles.filter(item => item.id !== style.id)] : [...selectedStyles, style];
-
-    if (newStylesList.length) {
-      localStorage.setItem('styles', JSON.stringify(newStylesList));
-    } else {
-      localStorage.removeItem('styles');
-    }
-
-    selectStyles([...newStylesList]);
-  }
-
-  return [selectedStyles, selectNewStyle];
+  return [styles];
 };
