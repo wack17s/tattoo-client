@@ -1,12 +1,14 @@
+import { tattooerService } from '../../services/tattooer.service';
 import { Tattooer, getStaticProps } from '../../screens/Tattooer';
-import tattooers from '../../parameters/tattooers.json';
 
 export { getStaticProps };
 
 export async function getStaticPaths() {
+  const tattooers = await tattooerService.getTattooers();
+
   return {
     paths: tattooers.map(tattooer => ({
-      params: { id: tattooer.instagram }
+      params: { instagram: tattooer.instagram }
     })),
     fallback: true,
   }

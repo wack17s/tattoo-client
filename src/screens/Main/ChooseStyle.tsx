@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { NextPage } from 'next';
-import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { getSortedStyles } from '../../utils/getSortedStyles';
 import { getChooseStyle, getPageNames } from '../../utils/getLocalizedText';
 import { PageName } from '../../types/pageName.enum';
 import { Body } from '../../components/Body'
@@ -13,10 +11,11 @@ import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 import { Button } from '../../components/Button';
 import { BreadCrumb } from '../../components/BreadCrumb';
-import { useStyles } from '../../hooks/useStyles';
-import { useTattooersQuery } from '../../hooks/useTattooersQuery';
+import { useSelectedStyles } from '../../hooks/useSelectedStyles';
+// import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 
 import { Image, Container, InnerContainer, ChipsContainer } from './components';
+import { useStyles } from '../../hooks/useStyles';
 
 export const ChooseStyle: NextPage = () => {
   const { locale } = useRouter();
@@ -24,9 +23,10 @@ export const ChooseStyle: NextPage = () => {
   const chooseStyle = getChooseStyle(locale);
   const pageNames = getPageNames(locale);
 
-  const [selectedStyles, selectStyle] = useStyles();
+  const [selectedStyles, selectStyle] = useSelectedStyles();
+  const [styles] = useStyles();
 
-  const tattooerQuery = useTattooersQuery();
+  // const tattooerQuery = useTattooersQuery();
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
@@ -36,11 +36,11 @@ export const ChooseStyle: NextPage = () => {
           <Text style={{ marginTop: 16 }} h2>{chooseStyle.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: 48 }}>{chooseStyle.text.text}</Text>
           <ChipsContainer>
-            {getSortedStyles().map(item => (
+            {styles.map(item => (
               <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={selectStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
-          <Link href={{ pathname: 'tattooers', query: tattooerQuery }} locale={locale}>
+          <Link href={{ pathname: 'tattooers' }} locale={locale}>
             <Button style={{ marginTop: 48 }}>
               {selectedStyles.length ? chooseStyle.text.chooseButton : chooseStyle.text.button}
             </Button>

@@ -2,19 +2,18 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { NextPageContext } from 'next';
 
+import { tattooerService } from '../../services/tattooer.service';
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
-import { useCity } from '../../hooks/useCity';
-import { useStyles } from '../../hooks/useStyles';
-import { ITattooerDTO } from '../../dto/tattooer.dto';
-
-import tattooers from '../../parameters/tattooers.json';
+import { useSelectedCity } from '../../hooks/useSelectedCity';
+import { useSelectedStyles } from '../../hooks/useSelectedStyles';
 
 import { Filters } from './components/Filters'
 import { TattooerCard } from './components/TattooerCard'
+import { ITattooer } from '../../types/tattooer';
 
 interface ITattooersProps {
-  tattooers: ITattooerDTO[];
+  tattooers: ITattooer[];
 }
 
 const CardsContainer = styled.div`
@@ -41,18 +40,18 @@ const CardsContainer = styled.div`
 `;
 
 export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers }) => {
-  const [selectedCity, setCity] = useCity();
-  const [selectedStyles, selectStyle] = useStyles();
+  const [selectedCity, setCity] = useSelectedCity();
+  const [selectedStyles, selectStyle] = useSelectedStyles();
 
   let tatts = [...tattooers];
 
   if (selectedCity) {
-    tatts = [...tatts.filter(item => item.city === selectedCity.id)];
+    tatts = [...tatts.filter(item => item.city && item.city.id === selectedCity.id)];
   }
 
   if (selectedStyles && selectedStyles.length) {
     tatts = [...tatts.filter(item => {
-      return item.styles && item.styles.length && item.styles.some(style => selectedStyles.some(item => item.id === style))
+      return item.styles && item.styles.length && item.styles.some(style => selectedStyles.some(item => item.id === style.id))
     })];
   }
 
@@ -66,7 +65,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers 
 }
 
 export async function getStaticProps(context: NextPageContext) {
-  // const res = await fetch('http://localhost:3001/tattooers', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+  const tattooers = await tattooerService.getTattooers();
 
   return {
     props: {

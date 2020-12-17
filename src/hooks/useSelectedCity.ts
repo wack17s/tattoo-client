@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { ICity } from '../cities.types';
+import { ICity } from '../types/city';
 
-export const useCity = (): [ICity | null, React.Dispatch<React.SetStateAction<ICity>>] => {
+export const useSelectedCity = (): [ICity | null, React.Dispatch<React.SetStateAction<ICity>>] => {
   const [selectedCity, setCity] = React.useState<ICity | null>(null);
 
   React.useEffect(() => {

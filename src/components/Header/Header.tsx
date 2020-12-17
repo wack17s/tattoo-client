@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { getPageNames } from '../../utils/getLocalizedText';
 import { Language } from '../../localizations.types';
 import { PageName } from '../../types/pageName.enum';
-import { useTattooersQuery } from '../../hooks/useTattooersQuery';
+// import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 
 import { MenuItem } from './components/MenuItem';
 import { Burger } from './components/Burger';
@@ -92,7 +92,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
 
   const pageNames = getPageNames(locale);
 
-  const tattooerQuery = useTattooersQuery();
+  // const tattooerQuery = useTattooersQuery();
 
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
@@ -100,7 +100,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
     <MenuItem label={pageNames[PageName.MAIN]} key={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />,
     <MenuItem label={pageNames[PageName.TATTOOERS]} key={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
       pathname: '/tattooers',
-      query: tattooerQuery,
+      // query: tattooerQuery,
     }} locale={locale} />,
     // <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} key={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />,
     <MenuItem label={pageNames[PageName.ARTICLES]} key={pageNames[PageName.ARTICLES]} selected={selectedButton === HeaderMenuButton.ARTICLES} href='/articles' locale={locale} />,
