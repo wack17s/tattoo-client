@@ -5,12 +5,11 @@ class CityService {
   private cities: ICity[] | null = null;
 
   private fetchCities = async () => {
-    console.log('process.env.ACCESS_TOKEN', process.env.ACCESS_TOKEN)
     this.cities = (await fetcher('https://tattoo-backend17.herokuapp.com/city', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
         Accept: 'application/json',
       },
     })) || [];

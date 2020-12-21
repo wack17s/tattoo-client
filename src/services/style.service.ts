@@ -5,12 +5,11 @@ class StyleService {
   private styles: IStyle[] | null = null;
 
   private fetchStyles = async () => {
-    console.log('process.env.ACCESS_TOKEN', process.env.ACCESS_TOKEN)
     this.styles = await fetcher('https://tattoo-backend17.herokuapp.com/style', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
         Accept: 'application/json',
       },
     });

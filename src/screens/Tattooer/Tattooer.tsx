@@ -140,7 +140,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      tattooer
+      tattooer: JSON.parse(JSON.stringify(tattooer))
     }
   }
 }

@@ -1,1 +1,15 @@
-export const fetcher = (input: RequestInfo, init?: RequestInit) => fetch(input, init).then(res => res.json());
+export const fetcher = async (input: RequestInfo, init?: RequestInit) => {
+  try {
+    const res = await fetch(input, init);
+
+    const data = await res.json();
+
+    if (data.statusCode && data.message) {
+      throw `${input} error:  ${data.message}`;
+    }
+
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}
