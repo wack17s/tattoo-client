@@ -69,7 +69,7 @@ export async function getStaticProps(context: NextPageContext) {
 
   return {
     props: {
-      tattooers
+      tattooers: JSON.parse(JSON.stringify(tattooers))
     }
   }
 }
