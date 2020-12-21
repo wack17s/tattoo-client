@@ -7,7 +7,6 @@ export const getPageNames = (locale: string = Language.RU): ILocalization['pageN
 };
 
 export const getMainPage = (locale: string): ILocalization['pages'][PageName.MAIN] => {
-  console.warn('wtf', locale)
   return localizations[locale || Language.RU].pages[PageName.MAIN];
 };
 
