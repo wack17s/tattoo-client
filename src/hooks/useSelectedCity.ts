@@ -22,6 +22,8 @@ export const useSelectedCity = (): [ICity | null, React.Dispatch<React.SetStateA
       localStorage.removeItem('city');
     }
 
+    localStorage.removeItem('styles');
+
     setCity(newCity);
   }
 

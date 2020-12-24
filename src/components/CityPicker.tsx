@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { getTattooers } from '../utils/getLocalizedText';
 import { ICity } from '../types/city';
-import { useCities } from '../hooks/useCities';
+// import { useCities } from '../hooks/useCities';
 
 import { LeftArrow, RightArrow } from './Arrow';
 import { Text } from './Text';
@@ -13,11 +13,13 @@ interface ICityPickerProps {
   open?: boolean;
 
   setOpen: (open?: boolean) => void;
-  onCity: (city: ICity) => void;
+  onCity: (city?: ICity) => void;
 
   small?: boolean;
 
   selectedCity?: string;
+
+  cities: ICity[];
 }
 
 interface IStyledProps {
@@ -67,8 +69,9 @@ const CloseButton = styled.div`
 const ListContainer = styled.div<IStyledProps>`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow: scroll;
+  /* align-items: center; */
+  overflow-x: hidden; //horizontal
+  overflow-y: scroll; //vertical
   padding-top: 72px;
   width: 100%;
 `;
@@ -76,12 +79,12 @@ const ListContainer = styled.div<IStyledProps>`
 const ListItem = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   width: 100%;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
   margin-left: 16px;
-  padding: 20px 27px 20px 0;
+  padding: 20px 40px 20px 0;
 `;
 
 const ButtonContainer = styled.div<IStyledProps>`
@@ -103,12 +106,12 @@ const ButtonContainer = styled.div<IStyledProps>`
   }
 `;
 
-export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ open, setOpen, onCity, small, selectedCity }) => {
+export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ cities, open, setOpen, onCity, small, selectedCity }) => {
   const { locale } = useRouter();
 
   const tattooers = getTattooers(locale);
 
-  const [cities] = useCities();
+  // const [cities] = useCities();
 
   return (
     <>
@@ -125,6 +128,7 @@ export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ open, se
           <CloseButton />
         </Header>
         <ListContainer>
+          <ListItem key={'city_picker_all'} onClick={() => { onCity(); setOpen(false); }}><Text>{tattooers.text.allCities}</Text><RightArrow grey /></ListItem>
           {cities.map(city => <ListItem key={'city_picker' + city.id} onClick={() => { onCity(city); setOpen(false); }}><Text>{city[locale]}</Text><RightArrow grey /></ListItem>)}
         </ListContainer>
       </Container>

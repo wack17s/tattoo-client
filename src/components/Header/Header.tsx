@@ -12,6 +12,8 @@ import { MenuItem } from './components/MenuItem';
 import { Burger } from './components/Burger';
 import { BurgerMenu } from './components/BurgerMenu';
 import { LangItem } from './components/LangItem';
+import { ICity } from '../../types/city';
+// import { useSelectedCity } from '../../hooks/useSelectedCity';
 
 export enum HeaderMenuButton {
   MAIN = 'HeaderMenuButton::MAIN',
@@ -27,6 +29,8 @@ export interface IHeaderProps {
   headerFooter?: any;
 
   logoUri?: string;
+
+  selectedCity?: ICity;
 }
 
 const MenuContainer = styled.div`
@@ -87,10 +91,12 @@ const BurgeLangContainer = styled.div`
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
 `;
 
-export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, logoUri }) => {
-  const { locale, pathname } = useRouter();
+export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, headerFooter, logoUri }) => {
+  const { locale, pathname, query } = useRouter();
 
   const pageNames = getPageNames(locale);
+
+  // const [selectedCity] = useSelectedCity();
 
   // const tattooerQuery = useTattooersQuery();
 
@@ -99,7 +105,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
   const menuButtons = [
     <MenuItem label={pageNames[PageName.MAIN]} key={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />,
     <MenuItem label={pageNames[PageName.TATTOOERS]} key={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
-      pathname: '/tattooers',
+      pathname: selectedCity ? selectedCity.name : 'tattooers',
       // query: tattooerQuery,
     }} locale={locale} />,
     // <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} key={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />,
@@ -108,8 +114,22 @@ export const Header: NextPage<IHeaderProps> = ({ selectedButton, headerFooter, l
   ];
 
   const langButtons = [
-    <LangItem label='Рус' selected={locale === Language.RU} locale={Language.RU} key={Language.RU} href={pathname} />,
-    <LangItem label='Укр' selected={locale === Language.UA} locale={Language.UA} key={Language.UA} href={pathname} />,
+    <LangItem
+      label='Рус'
+      selected={locale === Language.RU}
+      locale={Language.RU}
+      key={Language.RU}
+      href={{ pathname, query: { superslug: query.superslug } }}
+      as={query.superslug || query.id || pathname}
+    />,
+    <LangItem
+      label='Укр'
+      selected={locale === Language.UA}
+      locale={Language.UA}
+      key={Language.UA}
+      href={{ pathname, query: { superslug: query.superslug } }}
+      as={query.superslug || query.id || pathname}
+    />,
     // <LangItem label='Eng' selected={locale === Language.EN} locale={Language.EN} key={Language.EN} href={pathname} />
   ];
 

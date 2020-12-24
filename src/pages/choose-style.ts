@@ -1,3 +1,5 @@
-import { ChooseStyle } from '../screens/Main/ChooseStyle';
+import { ChooseStyle, getStaticProps } from '../screens/Main/ChooseStyle';
+
+export { getStaticProps };
 
 export default ChooseStyle;

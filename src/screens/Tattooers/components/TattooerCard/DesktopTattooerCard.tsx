@@ -95,7 +95,7 @@ const ImageSelectItemBottom = styled.div`
 
 export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram }) => {
   return (
-    <Link href="/tattooers/[instagram]" as={`tattooers/${instagram}`}>
+    <Link href="/[superslug]" as={`${instagram}`}>
       <Container>
         {currentImage && <PreviewImage src={currentImage} />}
         <FullCard>

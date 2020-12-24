@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import * as React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
@@ -15,10 +15,12 @@ import { Button } from '../../components/Button';
 import { BreadCrumb } from '../../components/BreadCrumb';
 import { PageName } from '../../types/pageName.enum';
 import { useSelectedCity } from '../../hooks/useSelectedCity';
-// import { useTattooersQuery } from '../../hooks/useTattooersQuery';
-import { useCities } from '../../hooks/useCities';
+import { dataService } from '../../services/data.service';
+import { ICity } from '../../types/city';
 
 import { Image, InnerContainer, Container, ChipsContainer } from './components';
+import { ITattooer } from '../../types/tattooer';
+import { IStyle } from '../../types/style';
 
 const StyledButton = styled(Button)`
   margin-top: 48px;
@@ -37,16 +39,34 @@ const StyledText = styled(Text)`
   margin-bottom: 48px;
 `;
 
-export const ChooseCity: NextPage = () => {
-  const { locale } = useRouter();
+interface IChooseCityProps {
+  cities?: ICity[];
+  styles: IStyle[];
+  tattooers: ITattooer[];
+}
+
+export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooers }) => {
+  const { locale, push } = useRouter();
 
   const chooseCity = getChooseCity(locale);
   const pageNames = getPageNames(locale);
 
   const [selectedCity, setCity] = useSelectedCity();
-  const [cities] = useCities();
 
   const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
+
+  const navigate = async () => {
+    const filteredTattooers = tattooers.filter(item => !selectedCity || item.city_id === selectedCity.id);
+    const filteredStyles = styles.filter(style => 
+      filteredTattooers.some(tattooer => tattooer.style_ids && tattooer.style_ids.includes(style.id))
+    );
+
+    if (filteredStyles.length) {
+      push('choose-style')
+    } else {
+      push(selectedCity ? selectedCity.name : 'tattooers')
+    }
+  }
 
   // const tattooerQuery = useTattooersQuery();
 
@@ -62,12 +82,12 @@ export const ChooseCity: NextPage = () => {
               <Chip key={`${item.id}_${item.en}`} selected={selectedCity && selectedCity[locale] === item[locale]} onClick={setCity.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
-          <CityPicker selectedCity={selectedCity ? selectedCity[locale] : undefined} open={cityPickerOpen} onCity={setCity} setOpen={setCityPickerOpen} />
-          <Link href={{ pathname: 'choose-style' }} locale={locale}>
-            <StyledButton>
+          <CityPicker cities={cities} selectedCity={selectedCity ? selectedCity[locale] : undefined} open={cityPickerOpen} onCity={setCity} setOpen={setCityPickerOpen} />
+          {/* <Link href={{ pathname: 'choose-style' }} locale={locale}> */}
+            <StyledButton onClick={navigate}>
               {selectedCity ? chooseCity.text.chooseButton : chooseCity.text.button}
             </StyledButton>
-          </Link>
+          {/* </Link> */}
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
           <Image src="/croco.svg" />
@@ -75,4 +95,17 @@ export const ChooseCity: NextPage = () => {
       </Container>
     </Body>
   )
+}
+
+export async function getStaticProps() {
+  await dataService.init();
+  const { usedCities, usedStyles, allTattooers } = dataService.getData();
+
+  return {
+    props: JSON.parse(JSON.stringify({
+      cities: usedCities,
+      styles: usedStyles,
+      tattooers: allTattooers
+    }))
+  }
 }

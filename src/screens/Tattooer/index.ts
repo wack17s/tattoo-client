@@ -1,3 +1,3 @@
-import { Tattooer, getStaticProps } from './Tattooer';
+import { Tattooer } from './Tattooer';
 
-export { Tattooer, getStaticProps };
+export { Tattooer };

@@ -1,18 +1,26 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { NextPageContext } from 'next';
+import { useRouter } from 'next/router';
 
-import { tattooerService } from '../../services/tattooer.service';
+// import { tattooerService } from '../../services/tattooer.service';
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
-import { useSelectedCity } from '../../hooks/useSelectedCity';
 import { useSelectedStyles } from '../../hooks/useSelectedStyles';
 
 import { Filters } from './components/Filters'
 import { TattooerCard } from './components/TattooerCard'
 import { ITattooer } from '../../types/tattooer';
+import { ICity } from '../../types/city';
+import { IStyle } from '../../types/style';
+import { useSelectedCity } from '../../hooks/useSelectedCity';
 
 interface ITattooersProps {
+  cities: ICity[];
+  styles: IStyle[];
+
+  city?: ICity;
+
   tattooers: ITattooer[];
 }
 
@@ -39,15 +47,17 @@ const CardsContainer = styled.div`
   }
 `;
 
-export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers }) => {
-  const [selectedCity, setCity] = useSelectedCity();
-  const [selectedStyles, selectStyle] = useSelectedStyles();
+export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities }) => {
+  const { push } = useRouter();
+
+  const [selectedStyles, selectStyle, removeStyles] = useSelectedStyles();
+
+  const onCity = (city: ICity) => {
+    removeStyles();
+    push(city ? city.name : 'tattooers');
+  }
 
   let tatts = [...tattooers];
-
-  if (selectedCity) {
-    tatts = [...tatts.filter(item => item.city && item.city.id === selectedCity.id)];
-  }
 
   if (selectedStyles && selectedStyles.length) {
     tatts = [...tatts.filter(item => {
@@ -56,20 +66,23 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers 
   }
 
   return (
-    <Body innerContainerStyle={{ margin: 0 }} selectedButton={HeaderMenuButton.TATTOOERS} headerFooter={<Filters onStyle={selectStyle} onCity={setCity} selectedStyles={selectedStyles} selectedCity={selectedCity} />}>
+    <Body
+      innerContainerStyle={{ margin: 0 }}
+      selectedButton={HeaderMenuButton.TATTOOERS}
+      headerFooter={(
+        <Filters
+          onStyle={selectStyle}
+          onCity={onCity}
+          selectedStyles={selectedStyles}
+          selectedCity={city}
+          cities={cities}
+          styles={styles}
+        />
+      )}
+    >
       <CardsContainer>
         {tatts && tatts.length ? tatts.map(item => <TattooerCard key={item.instagram} tattooer={item} />) : null}
       </CardsContainer>
     </Body>
   )
-}
-
-export async function getStaticProps(context: NextPageContext) {
-  const tattooers = await tattooerService.getTattooers();
-
-  return {
-    props: {
-      tattooers: JSON.parse(JSON.stringify(tattooers))
-    }
-  }
 }
