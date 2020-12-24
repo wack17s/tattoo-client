@@ -16,7 +16,7 @@ export const TattooerCard: React.FunctionComponent<ITattooerCardProps> = ({ tatt
   const posts = tattooer.posts || [];
   const postURIs = posts.map(item => item.uri);
 
-  const previewImage = posts[0] ? undefined : posts[0].uri;
+  const previewImage = posts[0] ? posts[0].uri : undefined;
 
   const [currentImage, setCurrentImage] = React.useState(previewImage);
 
