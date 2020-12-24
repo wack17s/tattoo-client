@@ -45,7 +45,7 @@ const TextContainer = styled.div`
 
 export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProps> = ({ postURIs, city, instagram }) => {
   return (
-    <Link href="/tattooers/[instagram]" as={`tattooers/${instagram}`}>
+    <Link href="[instagram]" as={`${instagram}`}>
       <Container>
         <ImageContainer>
           {postURIs.map(item => <Image src={item} key={`img_${item}`} />)}
