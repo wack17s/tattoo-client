@@ -1,3 +1,5 @@
-import { ChooseCity } from '../screens/Main/ChooseCity';
+import { ChooseCity, getStaticProps } from '../screens/Main/ChooseCity';
+
+export { getStaticProps }
 
 export default ChooseCity;

@@ -15,18 +15,29 @@ import { useSelectedStyles } from '../../hooks/useSelectedStyles';
 // import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 
 import { Image, Container, InnerContainer, ChipsContainer } from './components';
-import { useStyles } from '../../hooks/useStyles';
+import { useSelectedCity } from '../../hooks/useSelectedCity';
+import { IStyle } from '../../types/style';
+import { dataService } from '../../services/data.service';
+import { ITattooer } from '../../types/tattooer';
 
-export const ChooseStyle: NextPage = () => {
+interface IChooseStyleProps {
+  styles: IStyle[];
+  tattooers: ITattooer[];
+}
+
+export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) => {
   const { locale } = useRouter();
 
   const chooseStyle = getChooseStyle(locale);
   const pageNames = getPageNames(locale);
 
   const [selectedStyles, selectStyle] = useSelectedStyles();
-  const [styles] = useStyles();
+  const [selectedCity] = useSelectedCity();
 
-  // const tattooerQuery = useTattooersQuery();
+  const filteredTattooers = tattooers.filter(item => !selectedCity || item.city_id === selectedCity.id);
+  const filteredStyles = styles.filter(style => 
+    filteredTattooers.some(tattooer => tattooer.style_ids && tattooer.style_ids.includes(style.id))
+  );
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
@@ -36,11 +47,11 @@ export const ChooseStyle: NextPage = () => {
           <Text style={{ marginTop: 16 }} h2>{chooseStyle.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: 48 }}>{chooseStyle.text.text}</Text>
           <ChipsContainer>
-            {styles.map(item => (
+            {filteredStyles.map(item => (
               <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={selectStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
-          <Link href={{ pathname: 'tattooers' }} locale={locale}>
+          <Link href={{ pathname: selectedCity ? selectedCity.name : 'tattooers' }} locale={locale}>
             <Button style={{ marginTop: 48 }}>
               {selectedStyles.length ? chooseStyle.text.chooseButton : chooseStyle.text.button}
             </Button>
@@ -52,4 +63,16 @@ export const ChooseStyle: NextPage = () => {
       </Container>
     </Body>
   )
+}
+
+export async function getStaticProps() {
+  await dataService.init();
+  const { usedStyles, allTattooers } = dataService.getData();
+
+  return {
+    props: JSON.parse(JSON.stringify({
+      styles: usedStyles,
+      tattooers: allTattooers
+    }))
+  }
 }

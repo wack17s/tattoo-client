@@ -1,43 +1,36 @@
 import { fetcher } from './../utils/fetcher';
 import { ICity } from '../types/city';
 
-class CityService {
-  private cities: ICity[] | null = null;
+export class CityService {
+  private cities: ICity[] = [];
+  private backendUrl: string;
+  private accessToken: string;
 
-  private fetchCities = async () => {
-    this.cities = (await fetcher('https://tattoo-backend17.herokuapp.com/city', {
+  public constructor({ backendUrl, accessToken }) {
+    this.backendUrl = backendUrl;
+    this.accessToken = accessToken;
+  }
+
+  public fetchCities = async () => {
+    this.cities = (await fetcher(`${this.backendUrl}/city`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${this.accessToken}`,
         Accept: 'application/json',
       },
     })) || [];
   }
 
-  public getCities = async (): Promise<ICity[]> => {
-    if (!this.cities) {
-      await this.fetchCities();
-    }
-
+  public getCities = (): ICity[] => {
     return this.cities;
   }
 
-  public getCityByName = async (name: string): Promise<ICity | null> => {
-    if (!this.cities) {
-      await this.fetchCities();
-    }
-
+  public getCityByName = (name: string): ICity | null => {
     return this.cities.find(item => item.name === name) || null;
   }
 
-  public getCityById = async (id: string): Promise<ICity | null> => {
-    if (!this.cities) {
-      await this.fetchCities();
-    }
-
+  public getCityById = (id: string): ICity | null => {
     return this.cities.find(item => item.id === id) || null;
   }
 }
-
-export const cityService = new CityService();

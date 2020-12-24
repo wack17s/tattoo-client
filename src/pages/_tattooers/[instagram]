@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import { tattooerService } from '../../services/tattooer.service';
 import { Tattooer, getStaticProps } from '../../screens/Tattooer';
 
@@ -7,9 +9,11 @@ export async function getStaticPaths() {
   const tattooers = await tattooerService.getTattooers();
 
   return {
-    paths: tattooers.map(tattooer => ({
-      params: { instagram: tattooer.instagram }
-    })),
+    paths: _.flatten(tattooers.map(tattooer => ([{
+      params: { instagram: tattooer.instagram, locale: 'ru' }
+    }, {
+      params: { instagram: tattooer.instagram, locale: 'ua' }
+    }]))),
     fallback: true,
   }
 }

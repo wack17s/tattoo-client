@@ -1,43 +1,37 @@
 import { fetcher } from './../utils/fetcher';
 import { IStyle } from '../types/style';
 
-class StyleService {
-  private styles: IStyle[] | null = null;
+export class StyleService {
+  private styles: IStyle[] = [];
+  private backendUrl: string;
+  private accessToken: string;
 
-  private fetchStyles = async () => {
-    this.styles = await fetcher('https://tattoo-backend17.herokuapp.com/style', {
+  public constructor({ backendUrl, accessToken }) {
+    this.backendUrl = backendUrl;
+    this.accessToken = accessToken;
+  }
+
+
+  public fetchStyles = async () => {
+    this.styles = await fetcher(`${this.backendUrl}/style`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${this.accessToken}`,
         Accept: 'application/json',
       },
     });
   }
 
-  public getStyles = async (): Promise<IStyle[]> => {
-    if (!this.styles) {
-      await this.fetchStyles();
-    }
-
+  public getStyles = (): IStyle[] => {
     return this.styles;
   }
 
-  public getStyleByName = async (name: string): Promise<IStyle | null> => {
-    if (!this.styles) {
-      await this.fetchStyles();
-    }
-
+  public getStyleByName = (name: string): IStyle | null => {
     return this.styles.find(item => item.name === name) || null;
   }
 
-  public getStyleById = async (id: string): Promise<IStyle | null> => {
-    if (!this.styles) {
-      await this.fetchStyles();
-    }
-
+  public getStyleById = (id: string): IStyle | null => {
     return this.styles.find(item => item.id === id) || null;
   }
 }
-
-export const styleService = new StyleService();

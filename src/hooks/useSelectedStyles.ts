@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { IStyle } from '../types/style';
 
-export const useSelectedStyles = (): [IStyle[] | null, React.Dispatch<React.SetStateAction<IStyle>>] => {
+export const useSelectedStyles = (): [IStyle[] | null, React.Dispatch<React.SetStateAction<IStyle>>, () => void] => {
   const [selectedStyles, selectStyles] = React.useState<IStyle[]>([]);
 
   React.useEffect(() => {
@@ -25,5 +25,10 @@ export const useSelectedStyles = (): [IStyle[] | null, React.Dispatch<React.SetS
     selectStyles([...newStylesList]);
   }
 
-  return [selectedStyles, selectNewStyle];
+  const removeStyles = () => {
+    localStorage.removeItem('styles');
+    selectStyles([]);
+  }
+
+  return [selectedStyles, selectNewStyle, removeStyles];
 };

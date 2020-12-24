@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import lo from 'lodash';
 import { useRouter } from 'next/router';
 
-import { tattooerService } from '../../services/tattooer.service';
 import { Body } from '../../components/Body'
 import { BreadCrumb } from '../../components/BreadCrumb'
 import { HeaderMenuButton } from '../../components/Header'
@@ -133,14 +132,4 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
       </Container>
     </Body>
   ) : null;
-}
-
-export async function getStaticProps(context) {
-  const tattooer = await tattooerService.getTattooer(context.params.instagram);
-
-  return {
-    props: {
-      tattooer: JSON.parse(JSON.stringify(tattooer))
-    }
-  }
 }

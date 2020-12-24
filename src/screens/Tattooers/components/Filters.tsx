@@ -10,10 +10,11 @@ import { CityPicker } from '../../../components/CityPicker';
 import { Select } from '../../../components/Select';
 import { ICity } from '../../../types/city';
 import { IStyle } from '../../../types/style';
-import { useCities } from '../../../hooks/useCities';
-import { useStyles } from '../../../hooks/useStyles';
 
 interface IFiltersProps {
+  cities: ICity[];
+  styles: IStyle[];
+
   selectedCity?: ICity;
   selectedStyles?: IStyle[];
 
@@ -76,20 +77,18 @@ const StylesContainer = styled.div`
   }
 `;
 
-const StyledSelect = styled(Select)`
+const StyledCitySelect = styled(Select)`
   @media (max-width: 720px) {
     display: none;
   }
 `;
 
-export const Filters: React.FunctionComponent<IFiltersProps> = ({ selectedCity, selectedStyles, onCity, onStyle }) => {
+export const Filters: React.FunctionComponent<IFiltersProps> = ({ cities, styles, selectedCity, selectedStyles, onCity, onStyle }) => {
   const { locale } = useRouter();
 
-  const tattooers = getTattooers(locale);
-  const [cities] = useCities();
-  const [styles] = useStyles();
+  const tattooersLocales = getTattooers(locale);
 
-  const allCitiesOption = { value: '999', label: tattooers.text.selectCityPlaceholder };
+  const allCitiesOption = { value: '999', label: tattooersLocales.text.selectCityPlaceholder };
 
   const selectCity = ({ value }: { value: string; }) => {
     onCity(cities.find(item => item.id === value))
@@ -102,17 +101,21 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ selectedCity, 
   return (
     <Container>
       <LeftContainer>
-        <Title h5>{tattooers.text.selectCity}</Title>
-        <StyledSelect onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />
-        <CityPicker selectedCity={selectedCity ? selectedCity[locale] : undefined} small open={cityPickerOpen} onCity={city => { selectCity({ value: city.id }) }} setOpen={setCityPickerOpen} />
+        <Title h5>{tattooersLocales.text.selectCity}</Title>
+        <StyledCitySelect onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />
+        <CityPicker cities={cities} selectedCity={selectedCity ? selectedCity[locale] : undefined} small open={cityPickerOpen} onCity={onCity} setOpen={setCityPickerOpen} />
       </LeftContainer>
       <RightContainer>
-        <Title h5>{tattooers.text.selectStyle}</Title>
-        <StylesContainer>
-          {styles.map(item => (
-            <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={onStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
-          ))}
-        </StylesContainer>
+        {Boolean(styles.length) && (
+          <>
+            <Title h5>{tattooersLocales.text.selectStyle}</Title>
+            <StylesContainer>
+              {styles.map(item => (
+                <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={onStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
+              ))}
+            </StylesContainer>
+          </>
+        )}
       </RightContainer>
     </Container>
   );

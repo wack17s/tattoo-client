@@ -6,8 +6,9 @@ import Link from 'next/link';
 interface ILangItemProps {
   label: string;
   selected?: boolean;
-  href: string;
+  href: string | object;
   locale: string;
+  as?: any;
 }
 
 const Label = styled.p<Pick<ILangItemProps, 'selected'>>`
@@ -19,8 +20,8 @@ const Label = styled.p<Pick<ILangItemProps, 'selected'>>`
   }
 `;
 
-export const LangItem: React.FunctionComponent<ILangItemProps> = ({ selected, label, locale, href }) => (
-  <Link locale={locale} href={href}>
+export const LangItem: React.FunctionComponent<ILangItemProps> = ({ selected, label, locale, href, as }) => (
+  <Link locale={locale} href={href} as={as}>
     <Label selected={selected}>{label}</Label>
   </Link>
 );
