@@ -22,10 +22,18 @@ export const getTattooers = (locale: string = Language.RU): ILocalization['pages
   return localizations[locale].pages[PageName.TATTOOERS];
 };
 
+export const getTattooer = (locale: string = Language.RU): ILocalization['pages'][PageName.TATTOOER] => {
+  return localizations[locale].pages[PageName.TATTOOER];
+};
+
 export const getArticles = (locale: string = Language.RU): ILocalization['pages'][PageName.ARTICLES] => {
   return localizations[locale].pages[PageName.ARTICLES];
 };
 
 export const getAbout = (locale: string = Language.RU): ILocalization['pages'][PageName.ABOUT] => {
   return localizations[locale].pages[PageName.ABOUT];
+};
+
+export const getNotFound = (locale: string = Language.RU): ILocalization['pages'][PageName.NOT_FOUND] => {
+  return localizations[locale].pages[PageName.NOT_FOUND];
 };

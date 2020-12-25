@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 import { getPageNames } from '../../utils/getLocalizedText';
 import { Language } from '../../localizations.types';
@@ -142,7 +143,9 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
         </BurgeLangContainer>
       </BurgerMenu>
       <InnerContainer>
-        <Logo src={logoUri || './logo.png'} />
+        <Link href='tattooers'>
+          <Logo src={logoUri || './logo.png'} />
+        </Link>
         <BurgerContainer>
           <Burger open={hamburgerOpen} setOpen={setHamburgerOpen} />
         </BurgerContainer>
@@ -158,6 +161,6 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
   )
 };
 
-Header.defaultProps = {
-  selectedButton: HeaderMenuButton.MAIN
-}
+// Header.defaultProps = {
+//   selectedButton: HeaderMenuButton.MAIN
+// }

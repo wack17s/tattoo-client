@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { NextPageContext } from 'next';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useRouter } from 'next/router';
 
 // import { tattooerService } from '../../services/tattooer.service';
@@ -13,7 +13,6 @@ import { TattooerCard } from './components/TattooerCard'
 import { ITattooer } from '../../types/tattooer';
 import { ICity } from '../../types/city';
 import { IStyle } from '../../types/style';
-import { useSelectedCity } from '../../hooks/useSelectedCity';
 
 interface ITattooersProps {
   cities: ICity[];
@@ -24,7 +23,7 @@ interface ITattooersProps {
   tattooers: ITattooer[];
 }
 
-const CardsContainer = styled.div`
+const StyledInfiniteScroll = styled(InfiniteScroll)`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -47,22 +46,35 @@ const CardsContainer = styled.div`
   }
 `;
 
+const PER_PAGE = 30;
+
 export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities }) => {
   const { push } = useRouter();
 
-  const [selectedStyles, selectStyle, removeStyles] = useSelectedStyles();
+  const [tattooersPortioned, setTattooersPortioned] = React.useState([]);
+
+  const { selectedStyles, setStyle, setStyles } = useSelectedStyles();
+  const tatts = [...tattooers.filter(item => {
+    if (!selectedStyles || !selectedStyles.length) {
+      return true;
+    }
+
+    return item.styles && item.styles.length && item.styles.some(style => (selectedStyles || []).some(item => item.id === style.id))
+  })];
+
+  React.useEffect(() => {
+    setTattooersPortioned(tatts.slice(0, PER_PAGE));
+  }, [selectedStyles, city]);
 
   const onCity = (city: ICity) => {
-    removeStyles();
     push(city ? city.name : 'tattooers');
+    setStyles([]);
   }
 
-  let tatts = [...tattooers];
-
-  if (selectedStyles && selectedStyles.length) {
-    tatts = [...tatts.filter(item => {
-      return item.styles && item.styles.length && item.styles.some(style => selectedStyles.some(item => item.id === style.id))
-    })];
+  const addPortion = () => {
+    if (tatts.length > tattooersPortioned.length) {
+      setTattooersPortioned([...tattooersPortioned, ...tatts.slice(tattooersPortioned.length, tattooersPortioned.length + PER_PAGE)]);
+    }
   }
 
   return (
@@ -71,7 +83,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
       selectedButton={HeaderMenuButton.TATTOOERS}
       headerFooter={(
         <Filters
-          onStyle={selectStyle}
+          onStyle={setStyle}
           onCity={onCity}
           selectedStyles={selectedStyles}
           selectedCity={city}
@@ -80,9 +92,32 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
         />
       )}
     >
-      <CardsContainer>
-        {tatts && tatts.length ? tatts.map(item => <TattooerCard key={item.instagram} tattooer={item} />) : null}
-      </CardsContainer>
+      <StyledInfiniteScroll
+        dataLength={tattooersPortioned.length} //This is important field to render the next data
+        next={addPortion}
+        hasMore={tatts.length > tattooersPortioned.length}
+        loader={null}
+        // endMessage={
+        //   <p style={{ textAlign: 'center' }}>
+        //     <b>Yay! You have seen it all</b>
+        //   </p>
+        // }
+        // below props only if you need pull down functionality
+        // refreshFunction={() => {}}
+        // pullDownToRefresh
+        // pullDownToRefreshThreshold={50}
+        // pullDownToRefreshContent={
+        //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+        // }
+        // releaseToRefreshContent={
+        //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+        // }
+      >
+        {tattooersPortioned && tattooersPortioned.length ? tattooersPortioned.map(item => <TattooerCard key={item.instagram} tattooer={item} />) : null}
+      </StyledInfiniteScroll>
+      {/* <CardsContainer>
+        
+      </CardsContainer> */}
     </Body>
   )
 }

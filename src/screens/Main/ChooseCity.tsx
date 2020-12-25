@@ -82,7 +82,12 @@ export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooe
               <Chip key={`${item.id}_${item.en}`} selected={selectedCity && selectedCity[locale] === item[locale]} onClick={setCity.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
-          <CityPicker cities={cities} selectedCity={selectedCity ? selectedCity[locale] : undefined} open={cityPickerOpen} onCity={setCity} setOpen={setCityPickerOpen} />
+          <CityPicker
+            cities={cities}
+            selectedCity={selectedCity ? selectedCity[locale] : undefined}
+            open={cityPickerOpen} onCity={setCity}
+            setOpen={setCityPickerOpen}
+          />
           {/* <Link href={{ pathname: 'choose-style' }} locale={locale}> */}
             <StyledButton onClick={navigate}>
               {selectedCity ? chooseCity.text.chooseButton : chooseCity.text.button}

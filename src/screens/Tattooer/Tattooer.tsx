@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 
 import { Body } from '../../components/Body'
 import { BreadCrumb } from '../../components/BreadCrumb'
-import { HeaderMenuButton } from '../../components/Header'
 import { MasterInfoHeader } from '../../components/MasterInfoHeader'
 import { Text } from '../../components/Text'
 import { PageName } from '../../types/pageName.enum';
-import { getPageNames } from '../../utils/getLocalizedText';
+import { getPageNames, getTattooer } from '../../utils/getLocalizedText';
 import { ITattooer } from '../../types/tattooer';
+import { Button } from '../../components/Button';
 
 interface ITattooerProps {
   tattooer: ITattooer | null;
@@ -66,6 +66,8 @@ const Image = styled.img`
   height: ${previewSize}px;
 
   border-radius: 8px;
+  object-fit: scale-down;
+  background: white;
 
   @media (max-width: 720px) {
     width: 85%;
@@ -107,9 +109,10 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
   const { locale } = useRouter();
 
   const pageNames = getPageNames(locale);
+  const tattooerLocales = getTattooer(locale);
 
   return tattooer ? (
-    <Body logoUri='../logo.png' innerContainerStyle={{ margin: 0 }} selectedButton={HeaderMenuButton.TATTOOERS}>
+    <Body logoUri='../logo.png' innerContainerStyle={{ margin: 0 }}>
       <BreadCrumbContainer>
         <BreadCrumb pageNames={[pageNames[PageName.TATTOOERS], `${tattooer.instagram}`]} />
       </BreadCrumbContainer>
@@ -117,14 +120,19 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
         <InfoContainer>
           <MasterInfoHeader city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
           <Divider />
-          <Text p5>Описание</Text>
+          <Text p5>{tattooerLocales.text.description}</Text>
           <Text style={textStyle} p1>{tattooer.about}</Text>
           {tattooer.styles && tattooer.styles.length ? (
             <>
-              <Text p5>Стиль</Text>
+              <Text p5>{tattooerLocales.text.style}</Text>
               <Text style={textStyle} p1>{tattooer.styles.map(item => lo.capitalize(item.en)).join(', ')}</Text>
             </>
           ) : null}
+          <a style={{ textDecoration: 'none' }} href={`https://instagram.com/${tattooer.instagram}`} target="_blank">
+            <Button style={{ width: '100%' }}>
+              {tattooerLocales.text.contact}
+            </Button>
+          </a>
         </InfoContainer>
         <CardsContainer>
           {tattooer && tattooer.posts && tattooer.posts.length ? tattooer.posts.map(post => <Image key={post.uri} src={post.uri} />) : null}

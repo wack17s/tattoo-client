@@ -10,6 +10,7 @@ import { CityPicker } from '../../../components/CityPicker';
 import { Select } from '../../../components/Select';
 import { ICity } from '../../../types/city';
 import { IStyle } from '../../../types/style';
+import { StylesPicker } from '../../../components/StylesPicker';
 
 interface IFiltersProps {
   cities: ICity[];
@@ -69,7 +70,7 @@ const StylesContainer = styled.div`
   flex-wrap: wrap;
 
   & > div {
-    margin-right: 8px;
+    margin: 0px 8px 8px 0px;
   }
 
   @media (max-width: 720px) {
@@ -97,13 +98,21 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ cities, styles
   const citiesOptions = [allCitiesOption, ...cities.map(item => ({ value: item.id, label: item[locale] }))];
 
   const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
+  const [stylesPickerOpen, setStylesPickerOpen] = React.useState(false);
 
   return (
     <Container>
       <LeftContainer>
         <Title h5>{tattooersLocales.text.selectCity}</Title>
         <StyledCitySelect onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />
-        <CityPicker cities={cities} selectedCity={selectedCity ? selectedCity[locale] : undefined} small open={cityPickerOpen} onCity={onCity} setOpen={setCityPickerOpen} />
+        <CityPicker
+          cities={cities}
+          selectedCity={selectedCity ? selectedCity[locale] : undefined}
+          small
+          open={cityPickerOpen}
+          onCity={onCity}
+          setOpen={setCityPickerOpen}
+        />
       </LeftContainer>
       <RightContainer>
         {Boolean(styles.length) && (
@@ -114,6 +123,14 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ cities, styles
                 <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={onStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
               ))}
             </StylesContainer>
+            <StylesPicker
+              styles={styles}
+              selectedStyles={selectedStyles}
+              small
+              open={stylesPickerOpen}
+              onStyle={onStyle}
+              setOpen={setStylesPickerOpen}
+            />
           </>
         )}
       </RightContainer>

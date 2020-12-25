@@ -31,7 +31,7 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
   const chooseStyle = getChooseStyle(locale);
   const pageNames = getPageNames(locale);
 
-  const [selectedStyles, selectStyle] = useSelectedStyles();
+  const { selectedStyles, setStyle } = useSelectedStyles();
   const [selectedCity] = useSelectedCity();
 
   const filteredTattooers = tattooers.filter(item => !selectedCity || item.city_id === selectedCity.id);
@@ -46,9 +46,9 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
           <BreadCrumb pageNames={[pageNames[PageName.MAIN], pageNames[PageName.CHOOSE_CITY], chooseStyle.name]} />
           <Text style={{ marginTop: 16 }} h2>{chooseStyle.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: 48 }}>{chooseStyle.text.text}</Text>
-          <ChipsContainer>
+          <ChipsContainer displayOnMobile>
             {filteredStyles.map(item => (
-              <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={selectStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
+              <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={setStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
           <Link href={{ pathname: selectedCity ? selectedCity.name : 'tattooers' }} locale={locale}>

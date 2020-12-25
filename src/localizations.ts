@@ -50,7 +50,16 @@ export const localizations: ILocalizations = {
           less: 'Меньше',
           allCities: 'Все города',
           allStyles: 'Все стили',
-          discard: 'Сбросить'
+          discard: 'Сбросить',
+          select: 'Выбрать'
+        }
+      },
+      [PageName.TATTOOER]: {
+        name: "Мастер",
+        text: {
+          description: 'Описание',
+          style: 'Стиль',
+          contact: 'Связаться',
         }
       },
       [PageName.ARTICLES]: {
@@ -69,6 +78,13 @@ export const localizations: ILocalizations = {
           text1: 'Это нон профит проект создан командой интузиастов которые сами столкнулись с проблемой поиска мастеров тату.',
           text2: 'Мы небольшая инхаус команда в которую входят разработчик, дизайнер и SSM специалист.',
           text3: 'Если у тебя есть вопросы, предложения или вам нужен проект под ключ, напишите нам на suckmydick@gmail.com'
+        }
+      },
+      [PageName.NOT_FOUND]: {
+        name: 'Error 404',
+        text: {
+          title: 'Error 404',
+          text: 'Страница не найдена.',
         }
       }
     }
@@ -121,7 +137,16 @@ export const localizations: ILocalizations = {
           less: 'Менше',
           allCities: 'Всі міста',
           allStyles: 'Всі стилі',
-          discard: 'Скинути'
+          discard: 'Скинути',
+          select: 'Обрати'
+        }
+      },
+      [PageName.TATTOOER]: {
+        name: "Майстер",
+        text: {
+          description: 'Опис',
+          style: 'Стиль',
+          contact: 'Зв`язатися'
         }
       },
       [PageName.ARTICLES]: {
@@ -140,6 +165,13 @@ export const localizations: ILocalizations = {
           text1: 'Это нон профит проект создан командой интузиастов которые сами столкнулись с проблемой поиска мастеров тату.',
           text2: 'Мы небольшая инхаус команда в которую входят разработчик, дизайнер и SSM специалист.',
           text3: 'Если у тебя есть вопросы, предложения или вам нужен проект под ключ, напишите нам на suckmydick@gmail.com'
+        }
+      },
+      [PageName.NOT_FOUND]: {
+        name: 'Error 404',
+        text: {
+          title: 'Error 404',
+          text: 'Сторінка не знайдена.',
         }
       }
     }

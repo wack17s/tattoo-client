@@ -7,6 +7,8 @@ interface IBodyProps extends IHeaderProps {
   children: any;
 
   innerContainerStyle?: any;
+
+  hideHeader?: boolean;
 }
 
 const Background = styled.div`
@@ -25,6 +27,8 @@ const Container = styled.div`
   width: 100%;
   max-width: 1232px;
   min-height: 100%;
+
+  overflow-x: hidden;
 
   margin: 32px 64px;
 
@@ -48,10 +52,10 @@ const InnerContainer = styled.div`
   }
 `;
 
-export const Body: React.FunctionComponent<IBodyProps> = ({ children, innerContainerStyle, ...props }) => (
+export const Body: React.FunctionComponent<IBodyProps> = ({ children, innerContainerStyle, hideHeader, ...props }) => (
   <Background>
     <Container>
-      <Header {...props} />
+      {!hideHeader && <Header {...props} />}
       <InnerContainer style={innerContainerStyle}>
         {children}
       </InnerContainer>

@@ -24,6 +24,7 @@ const Container = styled.div`
   height: ${previewSize}px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
+  background: white;
 
   @media (max-width: 720px) {
     display: none;
@@ -34,6 +35,7 @@ const PreviewImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
   border-radius: 8px;
+  object-fit: scale-down;
   ${Container}:hover & {
     display: none;
   }
@@ -55,6 +57,8 @@ const FullCard = styled.div`
   margin-bottom: ${(previewSize - (fullImageSize + TextContainerHeight * 2)) / 2}px;
   margin-left: ${(previewSize - fullImageSize) / 2}px;
   position: absolute;
+  border-radius: 8px;
+  background: white;
   ${Container}:hover & {
     display: flex;
   }
@@ -64,6 +68,7 @@ const FullImage = styled.img`
   width: ${fullImageSize}px;
   height: ${fullImageSize}px;
   border-radius: 8px 8px 0px 0px;
+  object-fit: scale-down;
 `;
 
 const ImageSelectContainer = styled.div`
