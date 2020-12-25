@@ -11,6 +11,7 @@ export const Button = styled.div<IButtonProps>`
   align-items: center;
   justify-content: center;
   display: flex;
+  text-decoration: none;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.primaryButton.ACTIVE};
   background-color: ${({ theme, disabled }) => disabled ? theme.colors.primaryButton.DISABLED : theme.colors.primaryButton.DEFAULT};

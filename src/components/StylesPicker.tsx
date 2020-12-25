@@ -3,23 +3,25 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
 import { getTattooers } from '../utils/getLocalizedText';
-import { ICity } from '../types/city';
 // import { useCities } from '../hooks/useCities';
 
 import { LeftArrow, RightArrow } from './Arrow';
+import { Chip } from './Chip';
 import { Text } from './Text';
+import { IStyle } from '../types/style';
+import { Button } from './Button';
 
-interface ICityPickerProps {
+interface IStylesPickerProps {
   open?: boolean;
 
   setOpen: (open?: boolean) => void;
-  onCity: (city?: ICity) => void;
+  onStyle: (style: IStyle) => void;
 
   small?: boolean;
 
-  selectedCity?: string;
+  selectedStyles?: IStyle[];
 
-  cities: ICity[];
+  styles: IStyle[];
 }
 
 interface IStyledProps {
@@ -69,27 +71,16 @@ const CloseButton = styled.div`
   justify-content: center;
 `;
 
-const ListContainer = styled.div<IStyledProps>`
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  overflow-x: hidden; //horizontal
-  overflow-y: scroll; //vertical
-  padding-top: 72px;
-  width: 100%;
-
-  padding-bottom: 50px;
-`;
-
-const ListItem = styled.div`
+const ChipsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
-  justify-content: space-between;
-  width: 100%;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-  margin-left: 16px;
-  padding: 20px 40px 20px 0;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  width: 90%;
+
+  & > div {
+    margin: 0px 10px 10px 0px;
+  }
 `;
 
 const ButtonContainer = styled.div<IStyledProps>`
@@ -111,29 +102,76 @@ const ButtonContainer = styled.div<IStyledProps>`
   }
 `;
 
-export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ cities, open, setOpen, onCity, small, selectedCity }) => {
+const StyledButton = styled(Button)`
+  position: absolute;
+  bottom: 16px;
+  width: 90%;
+`;
+
+const Circle = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.CORAL_500};
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.05em;
+  margin-right: 4px;
+`;
+
+const Row = styled.div`
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+`;
+
+export const StylesPicker: React.FunctionComponent<IStylesPickerProps> = ({ styles, open, setOpen, onStyle, small, selectedStyles }) => {
   const { locale } = useRouter();
 
   const tattooersLocale = getTattooers(locale);
 
+  const close = () => {
+    setOpen(false);
+  }
+
   return (
     <>
       <ButtonContainer small={small} onClick={() => { setOpen(true); }}>
-        <Text p1={!small} p4={small}>{selectedCity || tattooersLocale.text.selectCity}</Text>
-        <RightArrow grey />
+        <Text p1={!small} p4={small}>{selectedStyles && selectedStyles.length ? (selectedStyles[0][locale] || selectedStyles[0].en) : tattooersLocale.text.selectStyle}</Text>
+        <Row>
+          {Boolean(selectedStyles && selectedStyles.length > 1) && (<Circle>
+            {`+${selectedStyles.length - 1}`}
+          </Circle>)}
+          <RightArrow grey />
+        </Row>
       </ButtonContainer>
       <Container open={open}>
         <Header>
-          <CloseButton onClick={() => { setOpen(false); }}>
+          <CloseButton onClick={close}>
             <LeftArrow />
           </CloseButton>
-          <Text p3>{tattooersLocale.text.selectCity}</Text>
+          <Text p3>{tattooersLocale.text.selectStyle}</Text>
           <CloseButton />
         </Header>
-        <ListContainer>
-          <ListItem key={'city_picker_all'} onClick={() => { onCity(); setOpen(false); }}><Text>{tattooersLocale.text.allCities}</Text><RightArrow grey /></ListItem>
-          {cities.map(city => <ListItem key={'city_picker' + city.id} onClick={() => { onCity(city); setOpen(false); }}><Text>{city[locale]}</Text><RightArrow grey /></ListItem>)}
-        </ListContainer>
+        <ChipsContainer>
+          {styles.map(style => (
+            <Chip
+              key={`${style.id}_${style.en}`}
+              selected={selectedStyles.some(item => item.id === style.id)}
+              onClick={() => { onStyle(style); }}
+            >
+              {style[locale] || style.en}
+            </Chip>
+          ))}
+        </ChipsContainer>
+        <StyledButton disabled={!selectedStyles || !selectedStyles.length} onClick={selectedStyles && selectedStyles.length ? close : undefined}>
+          {tattooersLocale.text.select}
+        </StyledButton>
       </Container>
     </>
   )

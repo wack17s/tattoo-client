@@ -29,7 +29,9 @@ const ImageContainer = styled.div`
   flex-direction: row;
   padding-left: 4px;
   padding-top: 4px;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
 `;
 
 const Image = styled.img`
@@ -37,6 +39,8 @@ const Image = styled.img`
   height: 222px;
   border-radius: 6px;
   margin-right: 4px;
+  object-fit: scale-down;
+  display: inline;
 `;
 
 const TextContainer = styled.div`

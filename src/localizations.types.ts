@@ -55,6 +55,15 @@ export interface ILocalization {
         allCities: string;
         allStyles: string;
         discard: string;
+        select: string;
+      }
+    };
+    [PageName.TATTOOER]: {
+      name: string;
+      text: {
+        description: string;
+        style: string;
+        contact: string;
       }
     };
     [PageName.ARTICLES]: {
@@ -73,6 +82,13 @@ export interface ILocalization {
         text1: string;
         text2: string;
         text3: string;
+      }
+    }
+    [PageName.NOT_FOUND]: {
+      name: string;
+      text: {
+        title: string;
+        text: string;
       }
     }
   };

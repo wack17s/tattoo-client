@@ -31,7 +31,7 @@ export const Image = styled.img`
   }
 `;
 
-export const ChipsContainer = styled.div`
+export const ChipsContainer = styled.div<{ displayOnMobile?: boolean }>`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -41,6 +41,6 @@ export const ChipsContainer = styled.div`
   }
 
   @media (orientation:portrait) {
-    display: none;
+    display: ${({ displayOnMobile }) => displayOnMobile ? 'flex' : 'none'};
   }
 `;
