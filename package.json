@@ -10,6 +10,8 @@
   "dependencies": {
     "firebase": "^8.0.1",
     "firebase-admin": "^9.3.0",
+    "libphonenumber-js": "^1.9.6",
+    "linkifyjs": "^2.1.9",
     "lodash": "^4.17.20",
     "next": "^10.0.3",
     "path": "^0.12.7",

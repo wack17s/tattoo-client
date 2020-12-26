@@ -77,10 +77,12 @@ export interface ILocalization {
       name: string;
       text: {
         title: string;
+        description: string;
         subtitle1: string;
-        subtitle2: string;
         text1: string;
+        subtitle2: string;
         text2: string;
+        subtitle3: string;
         text3: string;
       }
     }

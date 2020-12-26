@@ -51,14 +51,19 @@ const BurgerContainer = styled.div`
 `;
 
 const Logo = styled.img`
+  cursor: pointer;
   width: 32px;
   height: 32px;
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const Container = styled.div<{ hamburgerOpen?: boolean }>`
   background-color: white;
   width: 100%;
   display: flex;
+  pointer-events: auto;
   flex-direction: column;
   padding: 16px;
   border-radius: ${({ hamburgerOpen }) => hamburgerOpen ? '8px 8px 0px 0px' : '8px 8px 8px 8px'};
@@ -106,7 +111,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
   const menuButtons = [
     <MenuItem label={pageNames[PageName.MAIN]} key={pageNames[PageName.MAIN]} selected={selectedButton === HeaderMenuButton.MAIN} href='/' locale={locale} />,
     <MenuItem label={pageNames[PageName.TATTOOERS]} key={pageNames[PageName.TATTOOERS]} selected={selectedButton === HeaderMenuButton.TATTOOERS} href={{
-      pathname: selectedCity ? selectedCity.name : 'tattooers',
+      pathname: selectedCity ? selectedCity.name : '/tattooers',
       // query: tattooerQuery,
     }} locale={locale} />,
     // <MenuItem label={pageNames[PageName.FOR_TATTOOERS]} key={pageNames[PageName.FOR_TATTOOERS]} selected={selectedButton === HeaderMenuButton.FOR_TATTOOERS} href='/for-tattooers' locale={locale} />,
@@ -143,7 +148,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
         </BurgeLangContainer>
       </BurgerMenu>
       <InnerContainer>
-        <Link href='tattooers'>
+        <Link href='/tattooers'>
           <Logo src={logoUri || './logo.png'} />
         </Link>
         <BurgerContainer>

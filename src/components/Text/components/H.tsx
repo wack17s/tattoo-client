@@ -27,28 +27,16 @@ export const H3 = styled.h3`
   font-size: 24px;
   line-height: 34px;
   font-weight: 600;
-
-  @media (max-width: 720px) {
-    display: none;
-  }
 `;
 
 export const H4 = styled.h4`
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
-
-  @media (max-width: 720px) {
-    display: none;
-  }
 `;
 
 export const H5 = styled.h5`
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-
-  @media (max-width: 720px) {
-    display: none;
-  }
 `;

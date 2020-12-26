@@ -36,15 +36,28 @@ const InstagramIcon = styled.img`
 `;
 
 const TextContainer = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
+`;
+
+const Title = styled(Text)`
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 160px;
+
+  @media (max-width: 720px) {
+    width: 90%;
+  }
 `;
 
 export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> = ({ profileIconUri, instagram, city, instagramIconUri }) => (
   <Container>
     {profileIconUri ? <ProfileIcon src={profileIconUri} /> : null}
     <TextContainer>
-      <Text p5>{instagram}</Text>
+      <Title p1>{instagram}</Title>
       <Text p2>{city || ''}</Text>
     </TextContainer>
     <a href={`https://instagram.com/${instagram}`} target="_blank">
