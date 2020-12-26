@@ -15,6 +15,8 @@ import { ITattooer } from '../../types/tattooer';
 import { Button } from '../../components/Button';
 import { telify } from '../../utils/telify';
 
+import { ImageWrapper, DOG_SRC } from '../../components/ImageWrapper';
+
 interface ITattooerProps {
   tattooer: ITattooer | null;
 }
@@ -25,6 +27,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
 
+  margin-top: 140px;
+
   @media (max-width: 720px) {
     flex-direction: column-reverse;
     padding: 0 8px;
@@ -32,7 +36,11 @@ const Container = styled.div`
 `;
 
 const BreadCrumbContainer = styled.div`
-  margin: 40px 0px 0px 16px;
+  margin: 120px 0px 0px 16px;
+  position: fixed;
+  background: ${({ theme }) => theme.colors.BACKGROUND};
+  padding: 4px;
+  border-radius: 4px;
 
   @media (max-width: 720px) {
     display: none;
@@ -64,20 +72,6 @@ const CardsContainer = styled.div`
     & > img {
       margin: 0px 16px 0px 0px;
     }
-  }
-`;
-
-const Image = styled.img`
-  width: ${previewSize}px;
-  height: ${previewSize}px;
-
-  border-radius: 8px;
-  object-fit: cover;
-  background: white;
-
-  @media (max-width: 720px) {
-    width: 85%;
-    height: 327px;
   }
 `;
 
@@ -124,20 +118,49 @@ const DescriptionText = styled.div`
   }
 `;
 
+const StyledImage = styled.img`
+  width: ${previewSize}px;
+  height: ${previewSize}px;
+
+  border-radius: 8px;
+  object-fit: ${({ src }) => src === DOG_SRC ? 'scale-down' : 'cover'};
+  background: white;
+
+  @media (max-width: 720px) {
+    width: 85%;
+    height: 327px;
+  }
+`;
+
 export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) => {
-  const { locale } = useRouter();
+  const { locale, push, reload, back } = useRouter();
 
   const pageNames = getPageNames(locale);
   const tattooerLocales = getTattooer(locale);
 
+  const breadCrumbs = [
+    {
+      label: pageNames[PageName.TATTOOERS],
+      onPress: () => {
+        push('/tattooers');
+      }
+    },
+    {
+      label: `${tattooer.instagram}`,
+      onPress: () => {
+        reload();
+      }
+    },
+  ];
+
   return tattooer ? (
     <Body selectedButton={HeaderMenuButton.TATTOOERS} logoUri='../logo.png' innerContainerStyle={{ margin: 0 }}>
       <BreadCrumbContainer>
-        <BreadCrumb pageNames={[pageNames[PageName.TATTOOERS], `${tattooer.instagram}`]} />
+        <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
       <Container>
         <InfoContainer>
-          <MasterInfoHeader profileIconUri={tattooer.profilePic} city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
+          <MasterInfoHeader small profileIconUri={tattooer.profilePic} city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='instagram.svg' />
           <Divider />
           <Text p5>{tattooerLocales.text.description}</Text>
           <Description p1>
@@ -160,7 +183,13 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
           </a>
         </InfoContainer>
         <CardsContainer>
-          {tattooer && tattooer.posts && tattooer.posts.length ? tattooer.posts.map(post => <Image key={post.uri} src={post.uri} />) : null}
+          {tattooer && tattooer.posts && tattooer.posts.length ? tattooer.posts.map(post => (
+            <ImageWrapper
+              key={post.uri}
+              uri={post.uri}
+              renderComponent={({ src, onError }) => <StyledImage src={src} onError={onError} />}
+            />
+          )) : null}
         </CardsContainer>
       </Container>
     </Body>

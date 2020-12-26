@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { ImageWrapper } from './ImageWrapper';
 
 import { Text } from './Text';
 
@@ -9,6 +10,8 @@ interface IMasterInfoHeaderProps {
   city?: string;
 
   instagramIconUri: string;
+
+  small?: boolean;
 }
 
 const Container = styled.div`
@@ -22,6 +25,7 @@ const ProfileIcon = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 20px;
+  object-fit: 'scale-down';
 
   margin-right: 16px;
 `;
@@ -41,23 +45,28 @@ const TextContainer = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled(Text)`
+const Title = styled<any>(Text)`
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 160px;
+  width: ${({ small }) => small ? '140px' : '180px'};
 
   @media (max-width: 720px) {
     width: 90%;
   }
 `;
 
-export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> = ({ profileIconUri, instagram, city, instagramIconUri }) => (
+export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> = ({ profileIconUri, instagram, city, instagramIconUri, small }) => (
   <Container>
-    {profileIconUri ? <ProfileIcon src={profileIconUri} /> : null}
+    {profileIconUri ? (
+      <ImageWrapper
+        uri={profileIconUri}
+        renderComponent={({ src, onError }) => <ProfileIcon src={src} onError={onError} />}
+      />
+    ) : null}
     <TextContainer>
-      <Title p1>{instagram}</Title>
+      <Title small={small} p1>{instagram}</Title>
       <Text p2>{city || ''}</Text>
     </TextContainer>
     <a href={`https://instagram.com/${instagram}`} target="_blank">

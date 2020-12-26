@@ -13,19 +13,18 @@ export const Chip = styled.div<IChipProps>`
   cursor: pointer;
   display: flex;
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.primaryButton.ACTIVE};
-  background-color: ${({ theme, selected }) => selected ? theme.colors.secondaryButton.HOVER : theme.colors.secondaryButton.DEFAULT};
-  color: ${({ theme, selected }) => selected ? theme.colors.primaryText.FOCUSED : theme.colors.secondaryText.DEFAULT};
+  color: ${({ theme }) => theme.colors.BLACK_400};
+  background: ${({ theme, selected }) => selected ? theme.colors.BLACK_200 : theme.colors.BLACK_100};
+  color: ${({ theme, selected }) => selected ? theme.colors.CORAL_500 : theme.colors.BLACK_400};
   font-size: 14px;
   line-height: 24px;
-  box-shadow: ${({ selected, theme }) => selected ? theme.colors.secondaryButton.BOX_SHADOW : 'none'};
+  box-shadow: ${({ selected, theme }) => selected ? theme.coralBorderShadow : 'none'};
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondaryButton.HOVER};
-    color: ${({ theme }) => theme.colors.secondaryText.DEFAULT};
+    background: ${({ theme }) => theme.colors.BLACK_200};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors.secondaryButton.HOVER};
-    color: ${({ theme }) => theme.colors.primaryText.ACTIVE};
+    background: ${({ theme }) => theme.colors.BLACK_200};
+    color: ${({ theme }) => theme.colors.CORAL_300};
   }
 
   @media (max-width: 1024px) {

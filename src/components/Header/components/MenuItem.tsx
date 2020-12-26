@@ -13,12 +13,9 @@ interface IMenuItemProps {
 const Label = styled.p<Pick<IMenuItemProps, 'selected'>>`
   margin: 0px 20px;
   cursor: pointer;
-  color: ${({ selected, theme }) => selected ? theme.colors.primaryText.FOCUSED : theme.colors.primaryText.DEFAULT};
+  color: ${({ selected, theme }) => selected ? theme.colors.CORAL_500 : theme.colors.BLACK_400};
   &:hover {
-    color: ${({ theme }) => theme.colors.primaryText.HOVER};
-  }
-  &:active {
-    color: ${({ theme }) => theme.colors.primaryText.ACTIVE};
+    color: ${({ theme }) => theme.colors.CORAL_700};
   }
 
   @media (orientation:portrait) {

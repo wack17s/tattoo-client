@@ -17,34 +17,11 @@ interface IDefaultTheme {
     WHITE: string;
 
     BLUE_900: string;
-
-    primaryButton: {
-      DEFAULT: string;
-      HOVER: string;
-      DISABLED: string;
-      ACTIVE: string;
-    },
-    secondaryButton: {
-      DEFAULT: string;
-      HOVER: string;
-      // FOCUSED: string;
-      // ACTIVE: string;
-      BOX_SHADOW: string;
-      BOX_SHADOW_HOVER: string;
-    },
-    primaryText: {
-      DEFAULT: string;
-      HOVER: string;
-      FOCUSED: string;
-      ACTIVE: string;
-    },
-    secondaryText: {
-      DEFAULT: string;
-      HOVER: string;
-    }
   }
 
   boxShadow: string;
+  coralBorderShadow: string;
+  grayBorderShadow: string;
 }
 
 declare module 'styled-components' {
@@ -66,38 +43,16 @@ export const Colors = {
   BLACK_200: '#ECECEC',
   BLACK_100: '#F4F4F4',
 
-  WHITE: '#DEDEDE',
+  WHITE: '#FFF',
 
   BLUE_900: '#0469FF',
 };
 
 export const theme: IDefaultTheme = {
   boxShadow: '0px 0px 5px 5px rgba(204, 204, 204, 0.1)',
+  coralBorderShadow: `0 0 0 1px ${Colors.CORAL_300}`,
+  grayBorderShadow: `0 0 0 1px ${Colors.BLACK_400}`,
   colors: {
     ...Colors,
-    primaryButton: {
-      DEFAULT: Colors.CORAL_500,
-      HOVER: Colors.CORAL_700,
-      DISABLED: Colors.CORAL_300,
-      ACTIVE: Colors.CORAL_500
-    },
-    secondaryButton: {
-      DEFAULT: Colors.BLACK_100,
-      HOVER: Colors.BLACK_200,
-      // FOCUSED: Colors.BLACK_200,
-      // ACTIVE: Colors.BLACK_200,
-      BOX_SHADOW: `0 0 0 1px ${Colors.CORAL_300}`,
-      BOX_SHADOW_HOVER: `0 0 0 1px ${Colors.BLACK_400}`
-    },
-    primaryText: {
-      DEFAULT: Colors.BLACK_900,
-      ACTIVE: Colors.CORAL_300,
-      HOVER: Colors.CORAL_700,
-      FOCUSED: Colors.CORAL_500
-    },
-    secondaryText: {
-      DEFAULT: Colors.BLACK_400,
-      HOVER: Colors.BLACK_300,
-    }
   }
 };

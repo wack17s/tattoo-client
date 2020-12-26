@@ -17,6 +17,7 @@ const Container = styled.div`
   height: ${CARD_SIZE}px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
+  cursor: pointer;
 
   @media (max-width: 720px) {
     width: 100%;

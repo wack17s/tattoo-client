@@ -33,41 +33,52 @@ const StyledSelect = styled(ReactSelect)`
     .Select__dropdown-indicator,
     .Select__menu {
       cursor: pointer;
-      background-color: ${({ theme }) => theme.colors.secondaryButton.DEFAULT};
+      background-color: ${({ theme }) => theme.colors.BLACK_100};
       border: 0;
       border-radius: 8px;
-      color: ${({ theme }) => theme.colors.secondaryText.DEFAULT};
+      color: ${({ theme }) => theme.colors.BLACK_400};
   }
   & .Select__single-value {
-    color: ${({ theme }) => theme.colors.secondaryText.DEFAULT};
+    font-size: 14px;
+    line-height: 24px;
+    color: ${({ theme }) => theme.colors.BLACK_400};
   }
   & .Select__control--menu-is-opened,
     .Select__control--is-focused {
     border-color: transparent;
-    box-shadow: ${({ theme }) => theme.colors.secondaryButton.BOX_SHADOW};
+    box-shadow: ${({ theme }) => theme.boxShadow};
   }
   & .Select__control--menu-is-opened,
     .Select__control--is-focused > div > div {
-    color: ${({ theme }) => theme.colors.primaryText.FOCUSED};
+    color: ${({ theme }) => theme.colors.CORAL_500};
   }
   & .Select__indicator:hover {
-    color: ${({ theme }) => theme.colors.primaryText.FOCUSED};
+    color: ${({ theme }) => theme.colors.CORAL_500};
   }
   
   /* menu */
   & .Select__option,
     .Select__option:active {
       cursor: pointer;
-      background-color: ${({ theme }) => theme.colors.secondaryButton.DEFAULT};
-      color: ${({ theme }) => theme.colors.secondaryText.DEFAULT};
+      background-color: ${({ theme }) => theme.colors.BLACK_100};
+      color: ${({ theme }) => theme.colors.BLACK_400};
       border-radius: 8px;
+      font-size: 14px;
+      line-height: 24px;
+  }
+  & .Select__option:active,
+    .Select__option--is-selected {
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 24px;
   }
   & .Select__option:hover,
     .Select__option:active,
     .Select__option--is-selected {
       cursor: pointer;
-      color: ${({ theme }) => theme.colors.primaryText.FOCUSED};
-      border-radius: 8px;
+      background: ${({ theme }) => theme.colors.BLACK_200};
+      font-size: 14px;
+      line-height: 24px;
   }
 `;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { H1, H2, H3, H4, H5 } from './components/H';
-import { P1, P2, P3, P4, P5 } from './components/P';
+import { P1, P2, P3, P4, P5, P1Book, P2Book, P3Book, P4Book, P5Book } from './components/P';
 
 interface ITextProps {
   children: any;
@@ -19,9 +19,19 @@ interface ITextProps {
   p3?: boolean;
   p4?: boolean;
   p5?: boolean;
+  p1book?: boolean;
+  p2book?: boolean;
+  p3book?: boolean;
+  p4book?: boolean;
+  p5book?: boolean;
 }
 
-export const Text: React.FunctionComponent<ITextProps> = ({ h1, h2, h3, h4, h5, p1, p2, p3, p4, p5, children, style, className }) => {
+export const Text: React.FunctionComponent<ITextProps> = ({
+  h1, h2, h3, h4, h5,
+  p1, p2, p3, p4, p5,
+  p1book, p2book, p3book, p4book, p5book,
+  children, style, className
+}) => {
   if (h1) {
     return (
       <H1 className={className} style={style}>
@@ -99,6 +109,46 @@ export const Text: React.FunctionComponent<ITextProps> = ({ h1, h2, h3, h4, h5, 
       <P5 className={className} style={style}>
         {children}
       </P5>
+    )
+  }
+
+  if (p1book) {
+    return (
+      <P1Book className={className} style={style}>
+        {children}
+      </P1Book>
+    )
+  }
+
+  if (p2book) {
+    return (
+      <P2Book className={className} style={style}>
+        {children}
+      </P2Book>
+    )
+  }
+
+  if (p3book) {
+    return (
+      <P3Book className={className} style={style}>
+        {children}
+      </P3Book>
+    )
+  }
+
+  if (p4book) {
+    return (
+      <P4Book className={className} style={style}>
+        {children}
+      </P4Book>
+    )
+  }
+
+  if (p5book) {
+    return (
+      <P5Book className={className} style={style}>
+        {children}
+      </P5Book>
     )
   }
 

@@ -4,17 +4,18 @@ import * as React from 'react';
 interface IArrowProps {
   className?: string;
   grey?: boolean;
+  slim?: boolean;
 }
 
-const Horizontal = styled.div`
+const Horizontal = styled.div<IArrowProps>`
   width: 9px;
-  height: 2px;
+  height: ${({ slim }) => slim ? 1 : 2}px;
   border-radius: 4.5px;
   position: absolute;
 `;
 
-const Vertical = styled.div`
-  width: 2px;
+const Vertical = styled.div<IArrowProps>`
+  width: ${({ slim }) => slim ? 1 : 2}px;
   height: 9px;
   border-radius: 4.5px;
   position: absolute;
@@ -38,16 +39,16 @@ const RightArrowContainer = styled(ArrowContainer)`
   transform: rotate(135deg);
 `;
 
-export const LeftArrow: React.FunctionComponent<IArrowProps> = ({ className, grey }) => (
+export const LeftArrow: React.FunctionComponent<IArrowProps> = ({ className, grey, slim }) => (
   <LeftArrowContainer className={className} grey={grey}>
-    <Horizontal />
-    <Vertical />
+    <Horizontal slim={slim} />
+    <Vertical slim={slim} />
   </LeftArrowContainer>
 );
 
-export const RightArrow: React.FunctionComponent<IArrowProps> = ({ className, grey }) => (
+export const RightArrow: React.FunctionComponent<IArrowProps> = ({ className, grey, slim }) => (
   <RightArrowContainer className={className} grey={grey}>
-    <Horizontal />
-    <Vertical />
+    <Horizontal slim={slim} />
+    <Vertical slim={slim} />
   </RightArrowContainer>
 );

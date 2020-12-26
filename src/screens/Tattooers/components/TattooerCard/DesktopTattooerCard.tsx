@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link'
 
 import { MasterInfoHeader } from '../../../../components/MasterInfoHeader';
+import { ImageWrapper, DOG_SRC } from '../../../../components/ImageWrapper';
 
 interface IDesktopTattooerCardProps {
   postURIs: string[];
@@ -17,6 +18,26 @@ const previewSize = 276;
 const fullImageSize = 308;
 const TextContainerHeight = 66;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${previewSize}px;
+  height: ${previewSize}px;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+
+  @media (max-width: 1360px) {
+    width: 30%;
+  }
+
+  @media (max-width: 1088px) {
+    width: 44%;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,17 +48,14 @@ const Container = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow};
   background: white;
   cursor: pointer;
-
-  @media (max-width: 720px) {
-    display: none;
-  }
 `;
 
 const PreviewImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: ${({ src }) => src === DOG_SRC ? 'scale-down' : 'cover'};
+
   ${Container}:hover & {
     display: none;
   }
@@ -71,6 +89,7 @@ const FullImage = styled.img`
   height: ${fullImageSize}px;
   border-radius: 8px 8px 0px 0px;
   object-fit: cover;
+  object-fit: ${({ src }) => src === DOG_SRC ? 'scale-down' : 'cover'};
 `;
 
 const ImageSelectContainer = styled.div`
@@ -103,24 +122,34 @@ const ImageSelectItemBottom = styled.div`
 export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram, profilePic }) => {
   return (
     <Link href="/[superslug]" as={`${instagram}`}>
-      <Container>
-        {currentImage && <PreviewImage src={currentImage} />}
-        <FullCard>
-          <FullImage src={currentImage} />
-          <ImageSelectContainer>
-            {postURIs.map(item => (
-              <ImageSelectItem key={item} onMouseEnter={() => { setCurrentImage(item); }}>
-                <ImageSelectItemBottom />
-              </ImageSelectItem>
-            )).slice(0, Math.min(postURIs.length, 4))}
-          </ImageSelectContainer>
-          <TextContainer>
-            <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
-            {/* <Title>{tattooer.instagram}</Title>
-            {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null} */}
-          </TextContainer>
-        </FullCard>
-      </Container>
+      <Wrapper>
+        <Container>
+          {currentImage && (
+            <ImageWrapper
+              uri={currentImage}
+              renderComponent={({ src, onError }) => <PreviewImage src={src} onError={onError} />}
+            />
+          )}
+          <FullCard>
+            <ImageWrapper
+              uri={currentImage}
+              renderComponent={({ src, onError }) => <FullImage src={src} onError={onError} />}
+            />
+            <ImageSelectContainer>
+              {postURIs.map(item => (
+                <ImageSelectItem key={item} onMouseEnter={() => { setCurrentImage(item); }}>
+                  <ImageSelectItemBottom />
+                </ImageSelectItem>
+              )).slice(0, Math.min(postURIs.length, 4))}
+            </ImageSelectContainer>
+            <TextContainer>
+              <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
+              {/* <Title>{tattooer.instagram}</Title>
+              {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null} */}
+            </TextContainer>
+          </FullCard>
+        </Container>
+      </Wrapper>
     </Link>
   )
 }

@@ -148,7 +148,7 @@ export const localizations: ILocalizations = {
         text: {
           description: 'Опис',
           style: 'Стиль',
-          contact: 'Зв`язатися'
+          contact: 'Зв\'язатися'
         }
       },
       [PageName.ARTICLES]: {
