@@ -14,7 +14,11 @@ export const ImageWrapper: React.FunctionComponent<IImageProps> = ({ uri, render
     if (!uri) {
       setDogSrc()
     }
-  }, [])
+
+    if (uri !== src) {
+      setSrc(uri);
+    }
+  }, [uri])
 
   const setDogSrc = () => {
     setSrc(DOG_SRC);
