@@ -27,10 +27,12 @@ export const TattooerCard: React.FunctionComponent<ITattooerCardProps> = ({ tatt
         city={tattooer.city ? tattooer.city[locale] : undefined}
         instagram={tattooer.instagram}
         currentImage={currentImage}
+        profilePic={tattooer.profilePic}
         setCurrentImage={setCurrentImage}
       />
       <MobileTattooerCard
         postURIs={postURIs}
+        profilePic={tattooer.profilePic}
         // city={cities.find(item => item.id === tattooer.city) ? cities.find(item => item.id === tattooer.city)[locale] : undefined}
         instagram={tattooer.instagram}
       />

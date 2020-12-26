@@ -10,6 +10,7 @@ interface IDesktopTattooerCardProps {
   setCurrentImage: (currentImage: string) => void;
   city?: string;
   instagram: string;
+  profilePic?: string;
 }
 
 const previewSize = 276;
@@ -25,6 +26,7 @@ const Container = styled.div`
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   background: white;
+  cursor: pointer;
 
   @media (max-width: 720px) {
     display: none;
@@ -35,7 +37,7 @@ const PreviewImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
   border-radius: 8px;
-  object-fit: scale-down;
+  object-fit: cover;
   ${Container}:hover & {
     display: none;
   }
@@ -68,7 +70,7 @@ const FullImage = styled.img`
   width: ${fullImageSize}px;
   height: ${fullImageSize}px;
   border-radius: 8px 8px 0px 0px;
-  object-fit: scale-down;
+  object-fit: cover;
 `;
 
 const ImageSelectContainer = styled.div`
@@ -98,7 +100,7 @@ const ImageSelectItemBottom = styled.div`
 `;
 
 
-export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram }) => {
+export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram, profilePic }) => {
   return (
     <Link href="/[superslug]" as={`${instagram}`}>
       <Container>
@@ -113,7 +115,7 @@ export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardPr
             )).slice(0, Math.min(postURIs.length, 4))}
           </ImageSelectContainer>
           <TextContainer>
-            <MasterInfoHeader city={city} instagram={instagram} instagramIconUri='instagram.svg' />
+            <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
             {/* <Title>{tattooer.instagram}</Title>
             {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null} */}
           </TextContainer>

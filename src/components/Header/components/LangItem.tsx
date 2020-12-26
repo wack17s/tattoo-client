@@ -13,6 +13,7 @@ interface ILangItemProps {
 
 const Label = styled.p<Pick<ILangItemProps, 'selected'>>`
   margin: 0px 4px;
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.primaryText.DEFAULT};
   font-weight: ${({ selected }) => selected ? 700 : 400};
   &:hover {

@@ -2,8 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import lo from 'lodash';
 import { useRouter } from 'next/router';
+import linkify from 'linkifyjs/html';
 
 import { Body } from '../../components/Body'
+import { HeaderMenuButton } from '../../components/Header'
 import { BreadCrumb } from '../../components/BreadCrumb'
 import { MasterInfoHeader } from '../../components/MasterInfoHeader'
 import { Text } from '../../components/Text'
@@ -11,6 +13,7 @@ import { PageName } from '../../types/pageName.enum';
 import { getPageNames, getTattooer } from '../../utils/getLocalizedText';
 import { ITattooer } from '../../types/tattooer';
 import { Button } from '../../components/Button';
+import { telify } from '../../utils/telify';
 
 interface ITattooerProps {
   tattooer: ITattooer | null;
@@ -48,12 +51,15 @@ const CardsContainer = styled.div`
     margin: 0px 16px 32px 16px;
   }
 
+  margin-left: 300px;
+
   @media (max-width: 720px) {
     flex-wrap: nowrap;
-    margin-top: 16px;
+    margin-top: 80px;
     margin-bottom: 24px;
     overflow: scroll;
     width: 100%;
+    margin-left: 0;
 
     & > img {
       margin: 0px 16px 0px 0px;
@@ -66,7 +72,7 @@ const Image = styled.img`
   height: ${previewSize}px;
 
   border-radius: 8px;
-  object-fit: scale-down;
+  object-fit: cover;
   background: white;
 
   @media (max-width: 720px) {
@@ -80,13 +86,14 @@ const InfoContainer = styled.div`
   background-color: white;
   border-radius: 8px;
   width: ${previewSize}px;
-  max-height: ${previewSize * 2 + 32}px;
   margin: 32px 16px;
   flex-direction: column;
   padding: 24px;
 
+  position: fixed;
 
   @media (max-width: 720px) {
+    position: initial;
     width: 100%;
     margin: 0;
   }
@@ -100,10 +107,22 @@ const Divider = styled.div`
   margin: 24px 0px;
 `;
 
-const textStyle = {
-  marginTop: 8,
-  marginBottom: 24,
-};
+const Description = styled(Text) `
+  margin-top: 8px;
+  margin-bottom: 24px;
+`;
+
+const DescriptionText = styled.div`
+  a {
+    color: ${({ theme }) => theme.colors.CORAL_500};
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`;
 
 export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) => {
   const { locale } = useRouter();
@@ -112,20 +131,26 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
   const tattooerLocales = getTattooer(locale);
 
   return tattooer ? (
-    <Body logoUri='../logo.png' innerContainerStyle={{ margin: 0 }}>
+    <Body selectedButton={HeaderMenuButton.TATTOOERS} logoUri='../logo.png' innerContainerStyle={{ margin: 0 }}>
       <BreadCrumbContainer>
         <BreadCrumb pageNames={[pageNames[PageName.TATTOOERS], `${tattooer.instagram}`]} />
       </BreadCrumbContainer>
       <Container>
         <InfoContainer>
-          <MasterInfoHeader city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
+          <MasterInfoHeader profileIconUri={tattooer.profilePic} city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='../instagram.svg' />
           <Divider />
           <Text p5>{tattooerLocales.text.description}</Text>
-          <Text style={textStyle} p1>{tattooer.about}</Text>
+          <Description p1>
+            <DescriptionText dangerouslySetInnerHTML={{
+              __html: telify(linkify(tattooer.about || '', {
+                defaultProtocol: 'https'
+              }))
+            }} />
+          </Description>
           {tattooer.styles && tattooer.styles.length ? (
             <>
               <Text p5>{tattooerLocales.text.style}</Text>
-              <Text style={textStyle} p1>{tattooer.styles.map(item => lo.capitalize(item.en)).join(', ')}</Text>
+              <Description p1>{tattooer.styles.map(item => lo.capitalize(item.en)).join(', ')}</Description>
             </>
           ) : null}
           <a style={{ textDecoration: 'none' }} href={`https://instagram.com/${tattooer.instagram}`} target="_blank">

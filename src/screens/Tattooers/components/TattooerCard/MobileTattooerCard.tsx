@@ -8,6 +8,7 @@ interface IMobileTattooerCardProps {
   postURIs: string[];
   city?: string;
   instagram: string;
+  profilePic?: string;
 }
 
 const Container = styled.div`
@@ -39,7 +40,7 @@ const Image = styled.img`
   height: 222px;
   border-radius: 6px;
   margin-right: 4px;
-  object-fit: scale-down;
+  object-fit: cover;
   display: inline;
 `;
 
@@ -47,15 +48,15 @@ const TextContainer = styled.div`
   padding: 8px 16px;
 `;
 
-export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProps> = ({ postURIs, city, instagram }) => {
+export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProps> = ({ postURIs, city, instagram, profilePic }) => {
   return (
-    <Link href="[instagram]" as={`${instagram}`}>
+    <Link href="/[instagram]" as={`${instagram}`}>
       <Container>
         <ImageContainer>
           {postURIs.map(item => <Image src={item} key={`img_${item}`} />)}
         </ImageContainer>
         <TextContainer>
-          <MasterInfoHeader city={city} instagram={instagram} instagramIconUri='instagram.svg' />
+          <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
         </TextContainer>
       </Container>
     </Link>

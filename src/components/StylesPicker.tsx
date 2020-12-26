@@ -44,7 +44,7 @@ const Container = styled.div<IStyledProps>`
   overflow: hidden;
   position: fixed;
 
-  z-index: 1;
+  z-index: 101;
 `;
 
 const Header = styled.div`
@@ -60,7 +60,7 @@ const Header = styled.div`
   background: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
   overflow: hidden;
 
-  z-index: 2;
+  z-index: 102;
 `;
 
 const CloseButton = styled.div`

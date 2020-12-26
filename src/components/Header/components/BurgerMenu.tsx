@@ -31,7 +31,7 @@ const StyledBurgerMenu = styled.nav<IStyledProps>`
   border-radius: 0px 0px 8px 8px;
 
   @media (max-width: 720px) {
-    top: 80px;
+    top: 64px;
     left: 8px;
     right: 8px;
   }

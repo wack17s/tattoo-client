@@ -22,7 +22,7 @@ export const Main: NextPage = () => {
         <InnerContainer>
           <Text h1>{mainPage.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: '3em' }}>{mainPage.text.text}</Text>
-          <Link href='choose-city'>
+          <Link href='/choose-city'>
             <Button>
               {mainPage.text.button}
             </Button>

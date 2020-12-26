@@ -32,6 +32,7 @@ const StyledSelect = styled(ReactSelect)`
     .Select__indicator,
     .Select__dropdown-indicator,
     .Select__menu {
+      cursor: pointer;
       background-color: ${({ theme }) => theme.colors.secondaryButton.DEFAULT};
       border: 0;
       border-radius: 8px;
@@ -56,6 +57,7 @@ const StyledSelect = styled(ReactSelect)`
   /* menu */
   & .Select__option,
     .Select__option:active {
+      cursor: pointer;
       background-color: ${({ theme }) => theme.colors.secondaryButton.DEFAULT};
       color: ${({ theme }) => theme.colors.secondaryText.DEFAULT};
       border-radius: 8px;
@@ -63,6 +65,7 @@ const StyledSelect = styled(ReactSelect)`
   & .Select__option:hover,
     .Select__option:active,
     .Select__option--is-selected {
+      cursor: pointer;
       color: ${({ theme }) => theme.colors.primaryText.FOCUSED};
       border-radius: 8px;
   }

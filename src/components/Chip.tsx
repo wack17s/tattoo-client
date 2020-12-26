@@ -10,6 +10,7 @@ export const Chip = styled.div<IChipProps>`
   padding: 8px 12px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   display: flex;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.primaryButton.ACTIVE};

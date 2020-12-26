@@ -17,6 +17,28 @@ const CardsContainer = styled.div`
 
   & > div {
     margin: 0px 26px 32px 0px;
+
+    @media (max-width: 720px) {
+      margin: 0px 0px 8px 0px;
+    }
+  }
+`;
+
+const Title = styled(Text)`
+  margin-top: 64px;
+
+  @media (max-width: 720px) {
+    margin-top: 24px;
+  }
+`;
+
+const Description = styled(Text)`
+  margin-top: 24px;
+  margin-bottom: 48px;
+  width: 40%;
+
+  @media (max-width: 720px) {
+    width: 100%;
   }
 `;
 
@@ -27,12 +49,12 @@ export const Articles = () => {
 
   return (
     <Body selectedButton={HeaderMenuButton.ARTICLES}>
-      <Text h1 style={{ marginTop: 64 }}>
+      <Title h1>
         {articlesText.text.title}
-      </Text>
-      <Text style={{ marginBottom: 48, marginTop: 24, width: '40%' }}>
+      </Title>
+      <Description>
         {articlesText.text.text}
-      </Text>
+      </Description>
       <CardsContainer>
         <ArticleCard id={ChooseTattooId} name={ChooseTattooName} placeholder={ChooseTattooPlaceholder} />
       </CardsContainer>

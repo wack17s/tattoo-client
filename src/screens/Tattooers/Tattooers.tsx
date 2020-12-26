@@ -29,6 +29,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
   flex-wrap: wrap;
   margin-top: 32px;
   margin-bottom: 64px;
+  padding-top: 230px;
 
   & > div {
     margin: 0px 16px 32px 16px;
@@ -39,6 +40,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
     flex-wrap: nowrap;
     margin-top: 24px;
     padding: 0 8px;
+    padding-top: 120px;
 
     & > div {
       margin: 0px 0px 8px 0px;
@@ -81,6 +83,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
     <Body
       innerContainerStyle={{ margin: 0 }}
       selectedButton={HeaderMenuButton.TATTOOERS}
+      stickyHeader
       headerFooter={(
         <Filters
           onStyle={setStyle}
