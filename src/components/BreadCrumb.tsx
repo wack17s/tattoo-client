@@ -1,26 +1,57 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { RightArrow } from './Arrow';
+
 interface IBreadCrumbProps {
-  pageNames: string[];
+  items: { label: string; onPress?: () => void; }[];
 }
 
-export const GreyText = styled.p`
-  color: ${({ theme }) => theme.colors.secondaryText.DEFAULT};
+const Label = styled.p<{ selected?: boolean; }>`
+  /* margin-left: 12px; */
+  margin-right: 8px;
+  cursor: pointer;
+  color: ${({ selected, theme }) => selected ? theme.colors.CORAL_500 : theme.colors.BLACK_400};
+  &:hover {
+    color: ${({ theme }) => theme.colors.CORAL_700};
+  }
+
+  @media (orientation:portrait) {
+    margin: 24px 0px;
+  }
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: row;
   @media (orientation: portrait) {
     display: none;
   }
 `;
 
-export const BreadCrumb: React.FunctionComponent<IBreadCrumbProps> = ({ pageNames }) => {
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const StyledArrow = styled(RightArrow)`
+  margin-right: 12px;
+`;
+
+export const BreadCrumb: React.FunctionComponent<IBreadCrumbProps> = ({ items }) => {
   return (
     <Container>
-      <GreyText>
-        {pageNames.join(' > ')}
-      </GreyText>
+      {items.map((item, index) => (
+        <Row>
+          <Label selected={index >= items.length - 1} onClick={item.onPress}>
+            {item.label}
+          </Label>
+          {Boolean(index < items.length - 1) && (
+            <StyledArrow grey slim />
+          )}
+        </Row>
+      ))}
     </Container>
   )
 };

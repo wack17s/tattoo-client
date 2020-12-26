@@ -26,7 +26,7 @@ interface IChooseStyleProps {
 }
 
 export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) => {
-  const { locale } = useRouter();
+  const { locale, push, reload } = useRouter();
 
   const chooseStyle = getChooseStyle(locale);
   const pageNames = getPageNames(locale);
@@ -39,11 +39,32 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
     filteredTattooers.some(tattooer => tattooer.style_ids && tattooer.style_ids.includes(style.id))
   );
 
+  const breadCrumbs = [
+    {
+      label: pageNames[PageName.MAIN],
+      onPress: () => {
+        push('/');
+      }
+    },
+    {
+      label: pageNames[PageName.CHOOSE_CITY],
+      onPress: () => {
+        push('/choose-city');
+      }
+    },
+    {
+      label: chooseStyle.name,
+      onPress: () => {
+        reload();
+      }
+    },
+  ];
+
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
       <Container>
         <InnerContainer>
-          <BreadCrumb pageNames={[pageNames[PageName.MAIN], pageNames[PageName.CHOOSE_CITY], chooseStyle.name]} />
+          <BreadCrumb items={breadCrumbs} />
           <Text style={{ marginTop: 16 }} h2>{chooseStyle.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: 48 }}>{chooseStyle.text.text}</Text>
           <ChipsContainer displayOnMobile>

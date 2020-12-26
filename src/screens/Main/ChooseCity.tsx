@@ -46,7 +46,7 @@ interface IChooseCityProps {
 }
 
 export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooers }) => {
-  const { locale, push } = useRouter();
+  const { locale, push, reload } = useRouter();
 
   const chooseCity = getChooseCity(locale);
   const pageNames = getPageNames(locale);
@@ -68,13 +68,26 @@ export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooe
     }
   }
 
-  // const tattooerQuery = useTattooersQuery();
+  const breadCrumbs = [
+    {
+      label: pageNames[PageName.MAIN],
+      onPress: () => {
+        push('/');
+      }
+    },
+    {
+      label: chooseCity.name,
+      onPress: () => {
+        reload();
+      }
+    },
+  ];
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
       <Container>
         <InnerContainer>
-          <BreadCrumb pageNames={[pageNames[PageName.MAIN], chooseCity.name]} />
+          <BreadCrumb items={breadCrumbs} />
           <Title h2>{chooseCity.text.title}</Title>
           <StyledText>{chooseCity.text.text}</StyledText>
           <ChipsContainer>

@@ -19,8 +19,9 @@ const Container = styled.div`
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   background: white;
+  justify-content: flex-end;
 
-  @media (min-width: 720px) {
+  @media (min-width: 721px) {
     display: none;
   }
 `;

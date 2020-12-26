@@ -14,14 +14,14 @@ export const Button = styled.div<IButtonProps>`
   text-decoration: none;
   border-radius: 8px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.primaryButton.ACTIVE};
-  background-color: ${({ theme, disabled }) => disabled ? theme.colors.primaryButton.DISABLED : theme.colors.primaryButton.DEFAULT};
+  color: ${({ theme }) => theme.colors.WHITE};
+  background: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_500};
   &:hover {
-    background-color: ${({ theme, disabled }) => disabled ? theme.colors.primaryButton.DISABLED : theme.colors.primaryButton.HOVER};
+    background: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_700};
   }
   opacity: ${({ disabled }) => disabled ? 0.6 : 1};
   &:active {
-    background-color: ${({ theme, disabled }) => disabled ? theme.colors.primaryButton.DISABLED : theme.colors.primaryButton.ACTIVE};
+    background: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_500};
   }
   color: white;
   font-weight: 600;

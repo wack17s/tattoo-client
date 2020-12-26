@@ -23,14 +23,29 @@ const BreadCrumbContainer = styled.div`
 `;
 
 export const Article: NextPage<IArticleProps> = ({ name, component }) => {
-  const { locale } = useRouter();
+  const { locale, reload, push } = useRouter();
 
   const pageNames = getPageNames(locale);
+
+  const breadCrumbs = [
+    {
+      label: pageNames[PageName.ARTICLES],
+      onPress: () => {
+        push('/articles');
+      }
+    },
+    {
+      label: name,
+      onPress: () => {
+        reload();
+      }
+    },
+  ];
 
   return (
     <Body logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES}>
       <BreadCrumbContainer>
-        <BreadCrumb pageNames={[pageNames[PageName.ARTICLES], name]} />
+        <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
       <br></br>
       <Text h2>
