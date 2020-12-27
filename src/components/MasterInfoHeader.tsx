@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ImageWrapper } from './ImageWrapper';
 
 import { Text } from './Text';
+import { ImageWrapper } from './ImageWrapper';
 
 interface IMasterInfoHeaderProps {
   profileIconUri?: string;
@@ -13,6 +13,8 @@ interface IMasterInfoHeaderProps {
 
   small?: boolean;
 }
+
+const PLACEHOLDER_SRC = 'dog.svg';
 
 const Container = styled.div`
   display: flex;
@@ -25,7 +27,7 @@ const ProfileIcon = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  object-fit: 'scale-down';
+  object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 
   margin-right: 16px;
 `;
@@ -62,6 +64,7 @@ export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> =
     {profileIconUri ? (
       <ImageWrapper
         uri={profileIconUri}
+        placeholderUri={PLACEHOLDER_SRC}
         renderComponent={({ src, onError }) => <ProfileIcon src={src} onError={onError} />}
       />
     ) : null}

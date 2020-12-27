@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useRouter } from 'next/router';
+import Head from 'next/head'
 
 // import { tattooerService } from '../../services/tattooer.service';
 import { Body } from '../../components/Body'
@@ -21,6 +22,9 @@ interface ITattooersProps {
   city?: ICity;
 
   tattooers: ITattooer[];
+
+  descriptionTag?: string;
+  titleTag?: string;
 }
 
 const StyledInfiniteScroll = styled(InfiniteScroll)`
@@ -50,7 +54,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
 
 const PER_PAGE = 30;
 
-export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities }) => {
+export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities, descriptionTag, titleTag }) => {
   const { push } = useRouter();
 
   const [tattooersPortioned, setTattooersPortioned] = React.useState([]);
@@ -95,6 +99,10 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
         />
       )}
     >
+      <Head>
+        <title>{titleTag}</title>
+        <meta name="description" content={descriptionTag} />
+      </Head>
       <StyledInfiniteScroll
         dataLength={tattooersPortioned.length} //This is important field to render the next data
         next={addPortion}

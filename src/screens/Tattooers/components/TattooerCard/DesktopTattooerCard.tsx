@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link'
 
 import { MasterInfoHeader } from '../../../../components/MasterInfoHeader';
-import { ImageWrapper, DOG_SRC } from '../../../../components/ImageWrapper';
+import { ImageWrapper, PLACEHOLDER_SRC } from '../../../../components/ImageWrapper';
 
 interface IDesktopTattooerCardProps {
   postURIs: string[];
@@ -54,7 +54,8 @@ const PreviewImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
   border-radius: 8px;
-  object-fit: ${({ src }) => src === DOG_SRC ? 'scale-down' : 'cover'};
+  background: ${({ theme }) => theme.colors.BLACK_200};
+  object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 
   ${Container}:hover & {
     display: none;
@@ -89,7 +90,8 @@ const FullImage = styled.img`
   height: ${fullImageSize}px;
   border-radius: 8px 8px 0px 0px;
   object-fit: cover;
-  object-fit: ${({ src }) => src === DOG_SRC ? 'scale-down' : 'cover'};
+  background: ${({ theme }) => theme.colors.BLACK_200};
+  object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 `;
 
 const ImageSelectContainer = styled.div`
@@ -124,12 +126,10 @@ export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardPr
     <Link href="/[superslug]" as={`${instagram}`}>
       <Wrapper>
         <Container>
-          {currentImage && (
-            <ImageWrapper
-              uri={currentImage}
-              renderComponent={({ src, onError }) => <PreviewImage src={src} onError={onError} />}
-            />
-          )}
+          <ImageWrapper
+            uri={currentImage}
+            renderComponent={({ src, onError }) => <PreviewImage src={src} onError={onError} />}
+          />
           <FullCard>
             <ImageWrapper
               uri={currentImage}
@@ -144,8 +144,6 @@ export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardPr
             </ImageSelectContainer>
             <TextContainer>
               <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
-              {/* <Title>{tattooer.instagram}</Title>
-              {cities.find(item => item.id === tattooer.city) ? <Text>{cities.find(item => item.id === tattooer.city)[locale]}</Text> : null} */}
             </TextContainer>
           </FullCard>
         </Container>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import lo from 'lodash';
 import { useRouter } from 'next/router';
 import linkify from 'linkifyjs/html';
+import Head from 'next/head'
 
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
@@ -15,10 +16,13 @@ import { ITattooer } from '../../types/tattooer';
 import { Button } from '../../components/Button';
 import { telify } from '../../utils/telify';
 
-import { ImageWrapper, DOG_SRC } from '../../components/ImageWrapper';
+import { ImageWrapper, PLACEHOLDER_SRC } from '../../components/ImageWrapper';
 
 interface ITattooerProps {
   tattooer: ITattooer | null;
+
+  descriptionTag?: string;
+  titleTag?: string;
 }
 
 const previewSize = 276;
@@ -121,9 +125,10 @@ const DescriptionText = styled.div`
 const StyledImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
+  background: ${({ theme }) => theme.colors.BLACK_100};
 
   border-radius: 8px;
-  object-fit: ${({ src }) => src === DOG_SRC ? 'scale-down' : 'cover'};
+  object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
   background: white;
 
   @media (max-width: 720px) {
@@ -132,7 +137,7 @@ const StyledImage = styled.img`
   }
 `;
 
-export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) => {
+export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer, titleTag, descriptionTag }) => {
   const { locale, push, reload, back } = useRouter();
 
   const pageNames = getPageNames(locale);
@@ -155,6 +160,10 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer }) 
 
   return tattooer ? (
     <Body selectedButton={HeaderMenuButton.TATTOOERS} logoUri='../logo.png' innerContainerStyle={{ margin: 0 }}>
+      <Head>
+        <title>{titleTag}</title>
+        <meta name="description" content={descriptionTag} />
+      </Head>
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
