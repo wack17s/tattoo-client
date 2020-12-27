@@ -50,7 +50,7 @@ export const NotFound = () => {
           <Text style={{ marginTop: 24, marginBottom: '3em' }}>{notFoundLocales.text.text}</Text>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/404.svg" />
+          <Image src="/images/404.svg" />
         </InnerContainer>
       </Container>
     </Body>

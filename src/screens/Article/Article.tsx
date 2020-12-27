@@ -9,20 +9,31 @@ import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 import { getPageNames } from '../../utils/getLocalizedText';
 import { PageName } from '../../types/pageName.enum';
-import { ChooseTattooArticle } from '../../articles/ChooseTattoo';
-import { chooseTattooArticleData } from '../../articles/types';
+import { ChooseTattooArticle } from '../../articles/ChooseTattooArticle';
+import { MyTattooArticle } from '../../articles/MyTattooArticle';
+import { HealthTattooArticle } from '../../articles/HealthTattooArticle';
+import { JapaneseTattooArticle } from '../../articles/JapaneseTattooArticle';
+import { chooseTattooArticleData, myTattooArticleData, healthTattooArticleData, japaneseTattooArticleData } from '../../articles/types';
 
 interface IArticleProps {
   name?: string;
   id?: string;
-  component?: any;
 }
 
 const BreadCrumbContainer = styled.div`
-  margin: 40px 0px 0px 16px;
+  margin-top: 40px;
 `;
 
-export const Article: NextPage<IArticleProps> = ({ name, component }) => {
+const Title = styled(Text)`
+  max-width: 600px;
+  margin-bottom: 24px;
+
+  @media (min-width: 721px) {
+    margin-top: 24px;
+  }
+`;
+
+export const Article: NextPage<IArticleProps> = ({ name, id }) => {
   const { locale, reload, push } = useRouter();
 
   const pageNames = getPageNames(locale);
@@ -42,24 +53,43 @@ export const Article: NextPage<IArticleProps> = ({ name, component }) => {
     },
   ];
 
+  let article = null;
+
+  switch (id) {
+    case chooseTattooArticleData.id: {
+      article = <ChooseTattooArticle />;
+      break;
+    }
+    case myTattooArticleData.id: {
+      article = <MyTattooArticle />;
+      break;
+    }
+    case healthTattooArticleData.id: {
+      article = <HealthTattooArticle />;
+      break;
+    }
+    case japaneseTattooArticleData.id: {
+      article = <JapaneseTattooArticle />;
+      break;
+    }
+  }
+
+
   return (
     <Body logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES}>
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
-      <br></br>
-      <Text h2>
+      <Title h2>
         {name}
-      </Text>
-      <br></br>
-      <div className='article' style={{ maxWidth: 700 }} dangerouslySetInnerHTML={{ __html: component }}></div>
+      </Title>
+      {article}
     </Body>
   )
 }
 
 export async function getStaticProps(context) {
   const props: IArticleProps = {
-    component: undefined,
     name: undefined,
     id: undefined,
   };
@@ -67,8 +97,23 @@ export async function getStaticProps(context) {
   switch (context.params.id) {
     case chooseTattooArticleData.id: {
       props.name = chooseTattooArticleData.name;
-      props.component = ChooseTattooArticle;
       props.id = chooseTattooArticleData.id;
+      break;
+    }
+    case myTattooArticleData.id: {
+      props.name = myTattooArticleData.name;
+      props.id = myTattooArticleData.id;
+      break;
+    }
+    case healthTattooArticleData.id: {
+      props.name = healthTattooArticleData.name;
+      props.id = healthTattooArticleData.id;
+      break;
+    }
+    case japaneseTattooArticleData.id: {
+      props.name = japaneseTattooArticleData.name;
+      props.id = japaneseTattooArticleData.id;
+      break;
     }
   }
 

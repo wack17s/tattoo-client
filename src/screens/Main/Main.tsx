@@ -36,7 +36,7 @@ export const Main: NextPage = () => {
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/dog.svg" />
+          <Image src="/images/dog.svg" />
         </InnerContainer>
       </Container>
     </Body>
