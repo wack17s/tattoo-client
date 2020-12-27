@@ -16,7 +16,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 292px;
+  height: 280px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   background: white;

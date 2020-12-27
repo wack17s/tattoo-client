@@ -100,7 +100,7 @@ export const About = () => {
     <Body selectedButton={HeaderMenuButton.ABOUT}>
       <Container>
         <Title h1>{about.text.title}</Title>
-        <Description>{about.text.text1}</Description>
+        <Description>{about.text.description}</Description>
         <Row>
           <Image src='/images/puma.svg' />
           <InnerContainer>
