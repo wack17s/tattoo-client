@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link'
 
 import { MasterInfoHeader } from '../../../../components/MasterInfoHeader';
+import { ImageWrapper, PLACEHOLDER_SRC } from '../../../../components/ImageWrapper';
 
 interface IMobileTattooerCardProps {
   postURIs: string[];
@@ -43,6 +44,9 @@ const Image = styled.img`
   margin-right: 4px;
   object-fit: cover;
   display: inline;
+
+  background: ${({ theme }) => theme.colors.BLACK_200};
+  object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 `;
 
 const TextContainer = styled.div`
@@ -54,7 +58,15 @@ export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProp
     <Link href="/[instagram]" as={`${instagram}`}>
       <Container>
         <ImageContainer>
-          {postURIs.map(item => <Image src={item} key={`img_${item}`} />)}
+          {postURIs.map(item => (
+            <ImageWrapper
+              key={`img_${item}`}
+              uri={item}
+              renderComponent={({ src, onError }) => (
+                <Image src={src} onError={onError} />
+              )}
+            />
+          ))}
         </ImageContainer>
         <TextContainer>
           <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />

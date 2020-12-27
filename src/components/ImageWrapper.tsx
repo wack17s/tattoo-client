@@ -3,16 +3,17 @@ import * as React from 'react';
 interface IImageProps {
   uri?: string;
   renderComponent: (props: { src: string; onError: () => void; }) => any;
+  placeholderUri?: string;
 }
 
-export const DOG_SRC = 'dog.svg';
+export const PLACEHOLDER_SRC = 'snake.svg';
 
-export const ImageWrapper: React.FunctionComponent<IImageProps> = ({ uri, renderComponent }) => {
+export const ImageWrapper: React.FunctionComponent<IImageProps> = ({ uri, renderComponent, placeholderUri }) => {
   const [src, setSrc] = React.useState(uri);
 
   React.useEffect(() => {
     if (!uri) {
-      setDogSrc()
+      setPlaceholderSrc()
     }
 
     if (uri !== src) {
@@ -20,9 +21,9 @@ export const ImageWrapper: React.FunctionComponent<IImageProps> = ({ uri, render
     }
   }, [uri])
 
-  const setDogSrc = () => {
-    setSrc(DOG_SRC);
+  const setPlaceholderSrc = () => {
+    setSrc(placeholderUri || PLACEHOLDER_SRC);
   }
 
-  return renderComponent({ src, onError: setDogSrc });
+  return renderComponent({ src, onError: setPlaceholderSrc });
 }

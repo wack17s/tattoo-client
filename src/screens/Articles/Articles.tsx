@@ -7,7 +7,7 @@ import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 
 import { ArticleCard } from './components/ArticleCard';
-import { ChooseTattooId, ChooseTattooName, ChooseTattooPlaceholder } from '../../articles/ChooseTattoo/params';
+import { chooseTattooArticleData } from '../../articles/types';
 
 const CardsContainer = styled.div`
   display: flex;
@@ -56,7 +56,7 @@ export const Articles = () => {
         {articlesText.text.text}
       </Description>
       <CardsContainer>
-        <ArticleCard id={ChooseTattooId} name={ChooseTattooName} placeholder={ChooseTattooPlaceholder} />
+        <ArticleCard id={chooseTattooArticleData.id} name={chooseTattooArticleData.name} placeholder={chooseTattooArticleData.placeholder} />
       </CardsContainer>
     </Body>
   )

@@ -1,6 +1,6 @@
 import { Article, getStaticProps } from '../../screens/Article';
 
-import { ChooseTattooId } from '../../articles/ChooseTattoo/params'
+import { chooseTattooArticleData } from '../../articles/types'
 
 export { getStaticProps };
 
@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   return {
     paths: [{
       params: {
-        id: ChooseTattooId
+        id: chooseTattooArticleData.id
       }
     }],
     fallback: true,

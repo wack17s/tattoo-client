@@ -9,8 +9,8 @@ import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 import { getPageNames } from '../../utils/getLocalizedText';
 import { PageName } from '../../types/pageName.enum';
-import { ChooseTattooArticle } from '../../articles/ChooseTattoo/ChooseTattoo';
-import { ChooseTattooId, ChooseTattooName } from '../../articles/ChooseTattoo/params';
+import { ChooseTattooArticle } from '../../articles/ChooseTattoo';
+import { chooseTattooArticleData } from '../../articles/types';
 
 interface IArticleProps {
   name?: string;
@@ -65,10 +65,10 @@ export async function getStaticProps(context) {
   };
   
   switch (context.params.id) {
-    case ChooseTattooId: {
-      props.name = ChooseTattooName;
+    case chooseTattooArticleData.id: {
+      props.name = chooseTattooArticleData.name;
       props.component = ChooseTattooArticle;
-      props.id = ChooseTattooId;
+      props.id = chooseTattooArticleData.id;
     }
   }
 
