@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 
 import { MasterInfoHeader } from '../../../../components/MasterInfoHeader';
 import { ImageWrapper, PLACEHOLDER_SRC } from '../../../../components/ImageWrapper';
@@ -37,7 +38,7 @@ const ImageContainer = styled.div`
   white-space: nowrap;
 `;
 
-const Image = styled.img`
+const StyledImage = styled(Image)`
   width: 222px;
   height: 222px;
   border-radius: 6px;
@@ -63,7 +64,7 @@ export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProp
               key={`img_${item}`}
               uri={item}
               renderComponent={({ src, onError }) => (
-                <Image src={src} onError={onError} />
+                <StyledImage src={src} onError={onError} width={222} height={222} />
               )}
             />
           ))}

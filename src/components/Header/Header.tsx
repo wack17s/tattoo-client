@@ -72,7 +72,7 @@ const Container = styled.div<{ hamburgerOpen?: boolean; headerFooter?: boolean; 
 
   /* transition: all 0.3s ease-out; */
 
-  overflow: hidden;
+  /* overflow: hidden; */
 
   @media (max-width: 720px) {
     padding: 8px;
