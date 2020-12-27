@@ -66,7 +66,7 @@ export const localizations: ILocalizations = {
         name: "Статьи",
         text: {
           title: 'Статьи',
-          text: 'Мы собрали материал который поможет тебе углубится в мир тату'
+          text: 'Мы собрали материал который поможет тебе углубиться в мир тату'
         }
       },
       [PageName.ABOUT]: {
