@@ -47,7 +47,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
     padding-top: 120px;
 
     & > div {
-      margin: 0px 0px 8px 0px;
+      margin: 0px 0px 20px 0px;
     }
   }
 `;
@@ -56,6 +56,36 @@ const PER_PAGE = 30;
 
 export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities, descriptionTag, titleTag }) => {
   const { push } = useRouter();
+
+  const [hideFilter, setHideFilter] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = (event) => {
+      if (window.innerWidth <= 720) {
+        if (hideFilter) {
+          setHideFilter(false);
+        }
+
+        return;
+      }
+
+      if (window.pageYOffset < 20) {
+        setHideFilter(false);
+
+        return;
+      }
+
+      if (!hideFilter) {
+        setHideFilter(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   const [tattooersPortioned, setTattooersPortioned] = React.useState([]);
 
@@ -90,6 +120,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
       stickyHeader
       headerFooter={(
         <Filters
+          hide={hideFilter}
           onStyle={setStyle}
           onCity={onCity}
           selectedStyles={selectedStyles}

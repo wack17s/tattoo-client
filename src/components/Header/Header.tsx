@@ -59,15 +59,20 @@ const Logo = styled.img`
   }
 `;
 
-const Container = styled.div<{ hamburgerOpen?: boolean }>`
+const Container = styled.div<{ hamburgerOpen?: boolean; headerFooter?: boolean; }>`
   background-color: white;
   width: 100%;
   display: flex;
   pointer-events: auto;
   flex-direction: column;
   padding: 16px;
+  /* max-height: ${({ headerFooter }) => headerFooter ? "200px" : "64px"}; */
   border-radius: ${({ hamburgerOpen }) => hamburgerOpen ? '8px 8px 0px 0px' : '8px 8px 8px 8px'};
   box-shadow: ${({ theme }) => theme.boxShadow};
+
+  /* transition: all 0.3s ease-out; */
+
+  overflow: hidden;
 
   @media (max-width: 720px) {
     padding: 8px;
@@ -140,7 +145,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
   ];
 
   return (
-    <Container hamburgerOpen={hamburgerOpen}>
+    <Container hamburgerOpen={hamburgerOpen} headerFooter={Boolean(headerFooter)}>
       <BurgerMenu open={hamburgerOpen} setOpen={setHamburgerOpen}>
         {menuButtons}
         <BurgeLangContainer>

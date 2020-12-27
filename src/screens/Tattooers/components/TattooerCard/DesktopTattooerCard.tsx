@@ -18,25 +18,25 @@ const previewSize = 276;
 const fullImageSize = 308;
 const TextContainerHeight = 66;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${previewSize}px;
-  height: ${previewSize}px;
+// const Wrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: ${previewSize}px;
+//   height: ${previewSize}px;
 
-  @media (max-width: 720px) {
-    display: none;
-  }
+//   @media (max-width: 720px) {
+//     display: none;
+//   }
 
-  @media (max-width: 1360px) {
-    width: 30%;
-  }
+//   @media (max-width: 1360px) {
+//     width: 30%;
+//   }
 
-  @media (max-width: 1088px) {
-    width: 44%;
-  }
-`;
+//   @media (max-width: 1088px) {
+//     width: 44%;
+//   }
+// `;
 
 const Container = styled.div`
   display: flex;
@@ -48,6 +48,10 @@ const Container = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow};
   background: white;
   cursor: pointer;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 const PreviewImage = styled.img`
@@ -124,7 +128,7 @@ const ImageSelectItemBottom = styled.div`
 export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram, profilePic }) => {
   return (
     <Link href="/[superslug]" as={`${instagram}`}>
-      <Wrapper>
+      {/* <Wrapper> */}
         <Container>
           <ImageWrapper
             uri={currentImage}
@@ -147,7 +151,7 @@ export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardPr
             </TextContainer>
           </FullCard>
         </Container>
-      </Wrapper>
+      {/* </Wrapper> */}
     </Link>
   )
 }
