@@ -19,7 +19,7 @@ const CardsContainer = styled.div`
     margin: 0px 22px 22px 0px;
 
     @media (max-width: 720px) {
-      margin: 0px 0px 8px 0px;
+      margin: 0px 0px 20px 0px;
     }
   }
 `;

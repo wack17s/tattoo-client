@@ -21,14 +21,22 @@ interface IFiltersProps {
 
   onStyle: (style: IStyle) => void;
   onCity: (city?: ICity) => void;
+
+  hide?: boolean;
 }
 
-const Container = styled.div`
+const Container = styled.div<{ hide?: boolean; }>`
   display: flex;
   flex-direction: row;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-  margin-top: 16px;
-  padding-top: 16px;
+  border-top: ${({ hide }) => hide ? 0 : '0.5px solid rgba(0, 0, 0, 0.1)'};
+  margin-top: ${({ hide }) => hide ? 0 : 16}px;
+  padding-top: ${({ hide }) => hide ? 0 : 16}px;
+
+  max-height: ${({ hide }) => hide ? 0 : 150}px;
+
+  overflow: hidden;
+
+  transition: max-height 0.3s ease-out;
 
   @media (max-width: 720px) {
     margin-top: 8px;
@@ -84,7 +92,7 @@ const StyledCitySelect = styled(Select)`
   }
 `;
 
-export const Filters: React.FunctionComponent<IFiltersProps> = ({ cities, styles, selectedCity, selectedStyles, onCity, onStyle }) => {
+export const Filters: React.FunctionComponent<IFiltersProps> = ({ hide, cities, styles, selectedCity, selectedStyles, onCity, onStyle }) => {
   const { locale } = useRouter();
 
   const tattooersLocales = getTattooers(locale);
@@ -101,7 +109,7 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ cities, styles
   const [stylesPickerOpen, setStylesPickerOpen] = React.useState(false);
 
   return (
-    <Container>
+    <Container hide={hide}>
       <LeftContainer>
         <Title h5>{tattooersLocales.text.selectCity}</Title>
         <StyledCitySelect onChange={selectCity} value={selectedCity ? { value: selectedCity.id, label: selectedCity[locale] } : allCitiesOption} options={citiesOptions} />

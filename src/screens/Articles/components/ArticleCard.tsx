@@ -18,7 +18,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: ${CARD_SIZE}px;
-  height: ${CARD_SIZE}px;
 
   @media (max-width: 1364px) {
     width: 44%;
@@ -32,10 +31,10 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: ${CARD_SIZE}px;
-  height: ${CARD_SIZE}px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   cursor: pointer;
+  background-color: white;
 
   @media (max-width: 720px) {
     width: 100%;
@@ -49,7 +48,6 @@ const TextContainer = styled.div`
   justify-content: space-between;
   padding: 16px 24px;
   width: 100%;
-  height: 120px;
   border-radius: 0px 0px 8px 8px;
 `;
 
@@ -76,14 +74,15 @@ const Description = styled(Text)`
 `;
 
 const Image = styled.img`
-  height: 250px;
   width: 100%;
+  object-fit: cover;
+  overflow: hidden;
 `;
 
 export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ name, placeholder, id, imageUri }) => {
   return (
     <Link href="/articles/[id]" as={`articles/${id}`}>
-      <Wrapper>
+      {/* <Wrapper> */}
         <Container>
           <Image src={imageUri} />
           <TextContainer>
@@ -91,7 +90,7 @@ export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ name, 
             <Description p1>{placeholder}</Description>
           </TextContainer>
         </Container>
-      </Wrapper>
+      {/* </Wrapper> */}
     </Link>
   );
 }

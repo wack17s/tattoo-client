@@ -101,7 +101,7 @@ export const About = () => {
       <Container>
         <Title h1>{about.text.title}</Title>
         <Description>{about.text.description}</Description>
-        <Row>
+        {/* <Row>
           <Image src='/images/puma.svg' />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle3}</Text>
@@ -111,16 +111,16 @@ export const About = () => {
               }} />
             </Text>
           </InnerContainer>
-        </Row>
+        </Row> */}
         <RowReverse>
-          <Image src='/images/dober.svg' />
+          <Image src='/images/puma.svg' />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle1}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>{about.text.text1}</Text>
           </InnerContainer>
         </RowReverse>
         <Row>
-          <Image src='/images/dog.svg' />
+          <Image src='/images/dober.svg' />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle2}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>
