@@ -32,9 +32,9 @@ const Container = styled.div<{ hide?: boolean; }>`
   margin-top: ${({ hide }) => hide ? 0 : 16}px;
   padding-top: ${({ hide }) => hide ? 0 : 16}px;
 
-  max-height: ${({ hide }) => hide ? 0 : 150}px;
+  max-height: ${({ hide }) => hide ? 0 : 300}px;
 
-  overflow: hidden;
+  overflow: ${({ hide }) => hide ? 'hidden' : 'base'};
 
   transition: max-height 0.3s ease-out;
 
