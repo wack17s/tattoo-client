@@ -7,7 +7,7 @@ import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 
 import { ArticleCard } from './components/ArticleCard';
-import { chooseTattooArticleData } from '../../articles/types';
+import { chooseTattooArticleData, myTattooArticleData, healthTattooArticleData, japaneseTattooArticleData } from '../../articles/types';
 
 const CardsContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
 
   & > div {
-    margin: 0px 26px 32px 0px;
+    margin: 0px 22px 22px 0px;
 
     @media (max-width: 720px) {
       margin: 0px 0px 8px 0px;
@@ -56,7 +56,30 @@ export const Articles = () => {
         {articlesText.text.text}
       </Description>
       <CardsContainer>
-        <ArticleCard id={chooseTattooArticleData.id} name={chooseTattooArticleData.name} placeholder={chooseTattooArticleData.placeholder} />
+        <ArticleCard
+          id={chooseTattooArticleData.id}
+          name={chooseTattooArticleData.name}
+          placeholder={chooseTattooArticleData.placeholder}
+          imageUri={chooseTattooArticleData.images.preview}
+        />
+        <ArticleCard
+          id={myTattooArticleData.id}
+          name={myTattooArticleData.name}
+          placeholder={myTattooArticleData.placeholder}
+          imageUri={myTattooArticleData.images.preview}
+        />
+        <ArticleCard
+          id={healthTattooArticleData.id}
+          name={healthTattooArticleData.name}
+          placeholder={healthTattooArticleData.placeholder}
+          imageUri={healthTattooArticleData.images.preview}
+        />
+        <ArticleCard
+          id={japaneseTattooArticleData.id}
+          name={japaneseTattooArticleData.name}
+          placeholder={japaneseTattooArticleData.placeholder}
+          imageUri={japaneseTattooArticleData.images.preview}
+        />
       </CardsContainer>
     </Body>
   )

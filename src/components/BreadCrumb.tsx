@@ -43,7 +43,7 @@ export const BreadCrumb: React.FunctionComponent<IBreadCrumbProps> = ({ items })
   return (
     <Container>
       {items.map((item, index) => (
-        <Row>
+        <Row key={`${item.label}_${index}`}>
           <Label selected={index >= items.length - 1} onClick={item.onPress}>
             {item.label}
           </Label>

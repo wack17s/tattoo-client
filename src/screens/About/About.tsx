@@ -102,7 +102,7 @@ export const About = () => {
         <Title h1>{about.text.title}</Title>
         <Description>{about.text.text1}</Description>
         <Row>
-          <Image src='puma.svg' />
+          <Image src='/images/puma.svg' />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle3}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>
@@ -113,14 +113,14 @@ export const About = () => {
           </InnerContainer>
         </Row>
         <RowReverse>
-          <Image src='dober.svg' />
+          <Image src='/images/dober.svg' />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle1}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>{about.text.text1}</Text>
           </InnerContainer>
         </RowReverse>
         <Row>
-          <Image src='dog.svg' />
+          <Image src='/images/dog.svg' />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle2}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>

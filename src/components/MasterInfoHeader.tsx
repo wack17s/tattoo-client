@@ -14,7 +14,7 @@ interface IMasterInfoHeaderProps {
   small?: boolean;
 }
 
-const PLACEHOLDER_SRC = 'dog.svg';
+const PLACEHOLDER_SRC = '/images/dog.svg';
 
 const Container = styled.div`
   display: flex;

@@ -108,7 +108,7 @@ export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooe
           {/* </Link> */}
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/croco.svg" />
+          <Image src="/images/croco.svg" />
         </InnerContainer>
       </Container>
     </Body>

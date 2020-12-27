@@ -79,7 +79,7 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/buffalo.svg" />
+          <Image src="/images/buffalo.svg" />
         </InnerContainer>
       </Container>
     </Body>
