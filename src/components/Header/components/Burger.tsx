@@ -17,7 +17,7 @@ const StyledBurger = styled.button<IStyledProps>`
   justify-content: space-around;
   width: 24px;
   height: 24px;
-  background: transparent;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
@@ -29,7 +29,7 @@ const StyledBurger = styled.button<IStyledProps>`
   div {
     width: 24px;
     height: 2px;
-    background: #0D0C1D;
+    background-color: #0D0C1D;
     border-radius: 17px;
     transition: all 0.3s linear;
     position: relative;

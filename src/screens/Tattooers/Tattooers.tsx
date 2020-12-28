@@ -34,6 +34,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
   margin-top: 32px;
   margin-bottom: 64px;
   padding-top: 230px;
+  overflow: hidden;
 
   & > div {
     margin: 0px 16px 32px 16px;
@@ -113,14 +114,22 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
     }
   }
 
+  const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
+  const [stylesPickerOpen, setStylesPickerOpen] = React.useState(false);
+
   return (
     <Body
       innerContainerStyle={{ margin: 0 }}
       selectedButton={HeaderMenuButton.TATTOOERS}
+      disableScroll={cityPickerOpen || stylesPickerOpen}
       stickyHeader
       headerFooter={(
         <Filters
           hide={hideFilter}
+          cityPickerOpen={cityPickerOpen}
+          setCityPickerOpen={setCityPickerOpen}
+          setStylesPickerOpen={setStylesPickerOpen}
+          stylesPickerOpen={stylesPickerOpen}
           onStyle={setStyle}
           onCity={onCity}
           selectedStyles={selectedStyles}

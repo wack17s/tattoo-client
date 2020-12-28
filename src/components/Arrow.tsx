@@ -27,7 +27,7 @@ const ArrowContainer = styled.div<IArrowProps>`
   overflow: hidden;
 
   & > div {
-    background: ${({ theme, grey }) => grey ? theme.colors.BLACK_400 : theme.colors.BLACK_900};
+    background-color: ${({ theme, grey }) => grey ? theme.colors.BLACK_400 : theme.colors.BLACK_900};
   }
 `;
 

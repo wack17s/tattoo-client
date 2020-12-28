@@ -46,7 +46,7 @@ const Container = styled.div`
   height: ${previewSize}px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
-  background: white;
+  background-color: white;
   cursor: pointer;
 
   @media (max-width: 720px) {
@@ -58,7 +58,7 @@ const PreviewImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.BLACK_200};
+  background-color: ${({ theme }) => theme.colors.BLACK_200};
   object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 
   ${Container}:hover & {
@@ -80,10 +80,11 @@ const FullCard = styled.div`
   flex-direction: column;
   display: none;
   margin-bottom: ${(previewSize - (fullImageSize + TextContainerHeight * 2)) / 2}px;
+  margin-top: ${((fullImageSize + TextContainerHeight * 2) - previewSize) / 2}px;
   margin-left: ${(previewSize - fullImageSize) / 2}px;
   position: absolute;
   border-radius: 8px;
-  background: white;
+  background-color: white;
   ${Container}:hover & {
     display: flex;
   }
@@ -94,7 +95,7 @@ const FullImage = styled.img`
   height: ${fullImageSize}px;
   border-radius: 8px 8px 0px 0px;
   object-fit: cover;
-  background: ${({ theme }) => theme.colors.BLACK_200};
+  background-color: ${({ theme }) => theme.colors.BLACK_200};
   object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 `;
 
@@ -115,7 +116,7 @@ const ImageSelectItem = styled.div`
 
 const ImageSelectItemBottom = styled.div`
   display: flex;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
   height: 6px;
   opacity: 0.5;
   ${ImageSelectItem}:hover & {

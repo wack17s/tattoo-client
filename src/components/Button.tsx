@@ -15,13 +15,13 @@ export const Button = styled.div<IButtonProps>`
   border-radius: 8px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.WHITE};
-  background: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_500};
+  background-color: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_500};
   &:hover {
-    background: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_700};
+    background-color: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_700};
   }
   opacity: ${({ disabled }) => disabled ? 0.6 : 1};
   &:active {
-    background: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_500};
+    background-color: ${({ theme, disabled }) => disabled ? theme.colors.CORAL_300 : theme.colors.CORAL_500};
   }
   color: white;
   font-weight: 600;

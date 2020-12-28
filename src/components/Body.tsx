@@ -10,9 +10,11 @@ interface IBodyProps extends IHeaderProps {
 
   hideHeader?: boolean;
   stickyHeader?: boolean;
+
+  disableScroll?: boolean;
 }
 
-const Background = styled.div`
+const Background = styled.div<{ disableScroll?: boolean; }>`
   background-color: ${({ theme }) => theme.colors.BACKGROUND};
   width: 100%;
   min-height: 100%;
@@ -20,6 +22,8 @@ const Background = styled.div`
   color: ${({ theme }) => theme.colors.BLACK_900};
 
   justify-content: center;
+  overflow: ${({ disableScroll }) => disableScroll ? 'hidden' : 'base'};
+  height: ${({ disableScroll }) => disableScroll ? '100%' : undefined};
 
   display: flex;
 `;
@@ -30,6 +34,7 @@ const Container = styled.div`
   min-height: 100%;
 
   overflow-x: hidden;
+  overflow: hidden;
 
   margin: 32px 64px;
 
@@ -38,6 +43,8 @@ const Container = styled.div`
 
   @media (max-width: 720px) {
     margin: 16px 8px;
+
+    padding-bottom: 50px;
   }
 `;
 
@@ -82,8 +89,8 @@ const InnerContainer = styled.div`
   }
 `;
 
-export const Body: React.FunctionComponent<IBodyProps> = ({ children, innerContainerStyle, hideHeader, stickyHeader = true, ...props }) => (
-  <Background>
+export const Body: React.FunctionComponent<IBodyProps> = ({ disableScroll, children, innerContainerStyle, hideHeader, stickyHeader = true, ...props }) => (
+  <Background disableScroll={disableScroll}>
     <Container>
       {!hideHeader && (
         stickyHeader ? (

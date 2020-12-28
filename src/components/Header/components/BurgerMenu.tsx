@@ -17,7 +17,7 @@ const StyledBurgerMenu = styled.nav<IStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
+  background-color: white;
   /* display: ${({ open }) => open ? 'flex' : 'none'}; */
   transform: ${({ open }) => open ? 'translateY(0)' : 'translateY(-200%)'};
   text-align: left;

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-// import NextImage from 'next/image';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: center; */
-  flex: 1;
+
+  min-height: 100%;
 
   @media (orientation:portrait) {
     flex-direction: column-reverse;
