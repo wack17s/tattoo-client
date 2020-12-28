@@ -14,16 +14,16 @@ export const Chip = styled.div<IChipProps>`
   display: flex;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.BLACK_400};
-  background: ${({ theme, selected }) => selected ? theme.colors.BLACK_200 : theme.colors.BLACK_100};
+  background-color: ${({ theme, selected }) => selected ? theme.colors.BLACK_200 : theme.colors.BLACK_100};
   color: ${({ theme, selected }) => selected ? theme.colors.CORAL_500 : theme.colors.BLACK_400};
   font-size: 14px;
   line-height: 24px;
   box-shadow: ${({ selected, theme }) => selected ? theme.coralBorderShadow : 'none'};
   &:hover {
-    background: ${({ theme }) => theme.colors.BLACK_200};
+    background-color: ${({ theme }) => theme.colors.BLACK_200};
   }
   &:active {
-    background: ${({ theme }) => theme.colors.BLACK_200};
+    background-color: ${({ theme }) => theme.colors.BLACK_200};
     color: ${({ theme }) => theme.colors.CORAL_300};
   }
 

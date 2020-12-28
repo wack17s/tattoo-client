@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { MasterInfoHeader } from '../../../../components/MasterInfoHeader';
 import { ImageWrapper, PLACEHOLDER_SRC } from '../../../../components/ImageWrapper';
@@ -20,7 +19,7 @@ const Container = styled.div`
   height: 280px;
   border-radius: 8px;
   box-shadow: ${({ theme }) => theme.boxShadow};
-  background: white;
+  background-color: white;
   justify-content: flex-end;
 
   @media (min-width: 721px) {
@@ -38,7 +37,7 @@ const ImageContainer = styled.div`
   white-space: nowrap;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.img`
   width: 222px;
   height: 222px;
   border-radius: 6px;
@@ -46,7 +45,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
   display: inline;
 
-  background: ${({ theme }) => theme.colors.BLACK_200};
+  background-color: ${({ theme }) => theme.colors.BLACK_200};
   object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
 `;
 
@@ -64,7 +63,7 @@ export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProp
               key={`img_${item}`}
               uri={item}
               renderComponent={({ src, onError }) => (
-                <StyledImage src={src} onError={onError} width={222} height={222} />
+                <StyledImage src={src} onError={onError} />
               )}
             />
           ))}

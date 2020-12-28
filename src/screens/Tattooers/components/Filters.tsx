@@ -23,6 +23,11 @@ interface IFiltersProps {
   onCity: (city?: ICity) => void;
 
   hide?: boolean;
+
+  cityPickerOpen?: boolean;
+  setCityPickerOpen: (cityPickerOpen?: boolean) => void;
+  setStylesPickerOpen: (stylesPickerOpen?: boolean) => void;
+  stylesPickerOpen?: boolean;
 }
 
 const Container = styled.div<{ hide?: boolean; }>`
@@ -92,7 +97,7 @@ const StyledCitySelect = styled(Select)`
   }
 `;
 
-export const Filters: React.FunctionComponent<IFiltersProps> = ({ hide, cities, styles, selectedCity, selectedStyles, onCity, onStyle }) => {
+export const Filters: React.FunctionComponent<IFiltersProps> = ({ setCityPickerOpen, stylesPickerOpen, setStylesPickerOpen, cityPickerOpen, hide, cities, styles, selectedCity, selectedStyles, onCity, onStyle }) => {
   const { locale } = useRouter();
 
   const tattooersLocales = getTattooers(locale);
@@ -104,9 +109,6 @@ export const Filters: React.FunctionComponent<IFiltersProps> = ({ hide, cities, 
   }
 
   const citiesOptions = [allCitiesOption, ...cities.map(item => ({ value: item.id, label: item[locale] }))];
-
-  const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
-  const [stylesPickerOpen, setStylesPickerOpen] = React.useState(false);
 
   return (
     <Container hide={hide}>

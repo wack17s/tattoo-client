@@ -31,7 +31,7 @@ const Container = styled.div<IStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
   position: absolute;
   top: 0;
@@ -55,7 +55,7 @@ const Header = styled.div`
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   position: absolute;
-  background: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
   overflow: hidden;
 
   z-index: 102;
@@ -72,7 +72,6 @@ const CloseButton = styled.div`
 const ListContainer = styled.div<IStyledProps>`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   overflow-x: hidden; //horizontal
   overflow-y: scroll; //vertical
   padding-top: 72px;
@@ -81,15 +80,19 @@ const ListContainer = styled.div<IStyledProps>`
   padding-bottom: 50px;
 `;
 
-const ListItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  /* align-items: center; */
-  justify-content: space-between;
+const ListItemWrapper = styled.div`
+  display: block;
   width: 100%;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
   margin-left: 16px;
-  padding: 20px 40px 20px 0;
+  padding: 20px 54px 20px 0;
+`;
+
+const ListItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ButtonContainer = styled.div<IStyledProps>`
@@ -101,7 +104,7 @@ const ButtonContainer = styled.div<IStyledProps>`
   display: none;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.BLACK_400};
-  background: ${({ theme }) => theme.colors.BLACK_100};
+  background-color: ${({ theme }) => theme.colors.BLACK_100};
   padding: ${({ small }) => small ? '8px 12px' : '20px 20px 20px 12px'};
 
   @media (max-width: 720px) {
@@ -131,8 +134,26 @@ export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ cities, 
           <CloseButton />
         </Header>
         <ListContainer>
-          <ListItem key={'city_picker_all'} onClick={() => { onCity(); setOpen(false); }}><Text>{tattooersLocale.text.allCities}</Text><RightArrow grey /></ListItem>
-          {cities.map(city => <ListItem key={'city_picker' + city.id} onClick={() => { onCity(city); setOpen(false); }}><Text>{city[locale]}</Text><RightArrow grey /></ListItem>)}
+          <ListItemWrapper>
+            <ListItem
+              key={'city_picker_all'}
+              onClick={() => { onCity(); setOpen(false); }}
+            >
+              <Text>{tattooersLocale.text.allCities}</Text>
+              <RightArrow grey />
+            </ListItem>
+          </ListItemWrapper>
+          {cities.map(city => (
+            <ListItemWrapper>
+              <ListItem
+                key={'city_picker' + city.id}
+                onClick={() => { onCity(city); setOpen(false); }}
+              >
+                <Text>{city[locale]}</Text>
+                <RightArrow grey />
+              </ListItem>
+            </ListItemWrapper>
+          ))}
         </ListContainer>
       </Container>
     </>

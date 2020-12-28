@@ -76,7 +76,7 @@ const StyledSelect = styled(ReactSelect)`
     .Select__option:active,
     .Select__option--is-selected {
       cursor: pointer;
-      background: ${({ theme }) => theme.colors.BLACK_200};
+      background-color: ${({ theme }) => theme.colors.BLACK_200};
       font-size: 14px;
       line-height: 24px;
   }

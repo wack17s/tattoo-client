@@ -5,7 +5,6 @@ import { Text } from '../components/Text';
 
 export const Body = styled.div`
   max-width: 700px;
-  padding-bottom: 80px;
 `;
 
 export const Image = styled.img`

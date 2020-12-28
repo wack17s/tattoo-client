@@ -33,7 +33,7 @@ const Container = styled.div<IStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
   position: absolute;
   top: 0;
@@ -57,7 +57,7 @@ const Header = styled.div`
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   position: absolute;
-  background: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.PICKER_BACKGROUND};
   overflow: hidden;
 
   z-index: 102;
@@ -92,7 +92,7 @@ const ButtonContainer = styled.div<IStyledProps>`
   display: none;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.BLACK_400};
-  background: ${({ theme }) => theme.colors.BLACK_100};
+  background-color: ${({ theme }) => theme.colors.BLACK_100};
   padding: ${({ small }) => small ? '8px 12px' : '20px 20px 20px 12px'};
 
   @media (max-width: 720px) {
@@ -112,7 +112,7 @@ const Circle = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 12px;
-  background: ${({ theme }) => theme.colors.CORAL_500};
+  background-color: ${({ theme }) => theme.colors.CORAL_500};
   align-items: center;
   justify-content: center;
   display: flex;

@@ -43,7 +43,7 @@ const Container = styled.div`
 const BreadCrumbContainer = styled.div`
   margin: 120px 0px 0px 16px;
   position: fixed;
-  background: ${({ theme }) => theme.colors.BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.BACKGROUND};
   padding: 4px;
   border-radius: 4px;
 
@@ -126,11 +126,11 @@ const DescriptionText = styled.div`
 const StyledImage = styled.img`
   width: ${previewSize}px;
   height: ${previewSize}px;
-  background: ${({ theme }) => theme.colors.BLACK_100};
+  background-color: ${({ theme }) => theme.colors.BLACK_100};
 
   border-radius: 8px;
   object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
-  background: white;
+  background-color: white;
 
   @media (max-width: 720px) {
     width: 85%;
