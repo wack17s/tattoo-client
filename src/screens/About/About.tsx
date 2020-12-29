@@ -39,7 +39,7 @@ const Row = styled.div`
   justify-content: space-between;
   padding: 0 24px;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     flex-direction: column;
   }
 `;
@@ -51,7 +51,7 @@ const RowReverse = styled.div`
   align-items: center;
   padding: 0 24px;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     flex-direction: column;
   }
 `;
@@ -62,7 +62,7 @@ export const InnerContainer = styled.div`
   justify-content: center;
   width: 30vw;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     width: 100%;
   }
 `;
@@ -73,7 +73,7 @@ export const Image = styled.img`
 
   max-width: 445px;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     width: 64vw;
     height: 64vw;
   }

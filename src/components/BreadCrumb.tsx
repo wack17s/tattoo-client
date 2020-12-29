@@ -16,7 +16,7 @@ const Label = styled.p<{ selected?: boolean; }>`
     color: ${({ theme }) => theme.colors.CORAL_700};
   }
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     margin: 24px 0px;
   }
 `;

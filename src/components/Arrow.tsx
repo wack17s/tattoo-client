@@ -39,6 +39,10 @@ const RightArrowContainer = styled(ArrowContainer)`
   transform: rotate(135deg);
 `;
 
+const BottomArrowContainer = styled(ArrowContainer)`
+  transform: rotate(-135deg);
+`;
+
 export const LeftArrow: React.FunctionComponent<IArrowProps> = ({ className, grey, slim }) => (
   <LeftArrowContainer className={className} grey={grey}>
     <Horizontal slim={slim} />
@@ -51,4 +55,11 @@ export const RightArrow: React.FunctionComponent<IArrowProps> = ({ className, gr
     <Horizontal slim={slim} />
     <Vertical slim={slim} />
   </RightArrowContainer>
+);
+
+export const BottomArrow: React.FunctionComponent<IArrowProps> = ({ className, grey, slim }) => (
+  <BottomArrowContainer className={className} grey={grey}>
+    <Horizontal slim={slim} />
+    <Vertical slim={slim} />
+  </BottomArrowContainer>
 );

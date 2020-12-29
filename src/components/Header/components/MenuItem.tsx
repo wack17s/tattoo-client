@@ -18,7 +18,7 @@ const Label = styled.p<Pick<IMenuItemProps, 'selected'>>`
     color: ${({ theme }) => theme.colors.CORAL_700};
   }
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     margin: 24px 0px;
   }
 `;
