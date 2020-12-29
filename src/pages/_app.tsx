@@ -163,6 +163,21 @@ const MyApp = ({ Component, pageProps }) => (
       <meta property="og:title" content="MyTattoo" />
       <meta property="og:description" content="Cервис для поиска татуировщиков в Украине." />
       <meta property="og:image" content="/og.jpg" />
+
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-4FY8ERK24M"
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4FY8ERK24M');
+          `,
+        }}
+      />
     </Head>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
