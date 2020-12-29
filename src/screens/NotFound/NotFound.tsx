@@ -14,7 +14,7 @@ const Container = styled.div`
 
   padding: 0 10vw;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -33,7 +33,7 @@ const Image = styled.img`
 
   max-width: 445px;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     width: 64vw;
     height: 64vw;
   }

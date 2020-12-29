@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import { getPageNames } from '../../utils/getLocalizedText';
+import { getPageNames, getTattooers } from '../../utils/getLocalizedText';
 import { Language } from '../../localizations.types';
 import { PageName } from '../../types/pageName.enum';
 // import { useTattooersQuery } from '../../hooks/useTattooersQuery';
@@ -13,7 +13,12 @@ import { MenuItem } from './components/MenuItem';
 import { Burger } from './components/Burger';
 import { BurgerMenu } from './components/BurgerMenu';
 import { LangItem } from './components/LangItem';
+import { Filters, IFiltersProps } from './components/Filters';
 import { ICity } from '../../types/city';
+import { Chip } from '../Chip';
+import { Text } from '../Text';
+import { IStyle } from '../../types/style';
+import { BottomArrow } from '../Arrow';
 // import { useSelectedCity } from '../../hooks/useSelectedCity';
 
 export enum HeaderMenuButton {
@@ -27,17 +32,51 @@ export enum HeaderMenuButton {
 export interface IHeaderProps {
   selectedButton?: HeaderMenuButton;
 
-  headerFooter?: any;
+  filterProps?: IFiltersProps;
+  minimizeFilter?: boolean;
+  openFilters?: () => void;
 
   logoUri?: string;
 
   selectedCity?: ICity;
+  selectedStyles?: IStyle[];
+  discardStyles?: () => void;
 }
 
-const MenuContainer = styled.div`
+const InnerWrapper = styled.div`
+  @media (max-width: 720px) {
+    display: none;
+  }
+`;
+
+const MenuContainer = styled.div<{ visible?: boolean; }>`
   display: flex;
   flex-direction: row;
-  @media (orientation:portrait) {
+  align-items: center;
+
+  height: ${({ visible }) => !visible ? 0 : '40px'};
+  opacity: ${({ visible }) => !visible ? 0 : 1};
+
+  transition: ${({ visible }) => !visible ? 'opacity 0.2s, height 0s linear 0.2s' : 'opacity 0.2s linear 0.2s, height 0s linear 0.2s'};
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+`;
+
+const MiniFilterContainer = styled.div<{ visible?: boolean; }>`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  height: ${({ visible }) => !visible ? 0 : '40px'};
+  opacity: ${({ visible }) => !visible ? 0 : 1};
+
+  transition: ${({ visible }) => !visible ? 'opacity 0.2s, height 0s linear 0.2s' : 'opacity 0.2s linear 0.2s, height 0s linear 0.2s'};
+
+  @media (max-width: 720px) {
     display: none;
   }
 `;
@@ -45,7 +84,7 @@ const MenuContainer = styled.div`
 const BurgerContainer = styled.div`
   display: none;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     display: flex;
   }
 `;
@@ -59,20 +98,16 @@ const Logo = styled.img`
   }
 `;
 
-const Container = styled.div<{ hamburgerOpen?: boolean; headerFooter?: boolean; }>`
+const Container = styled.div<{ hamburgerOpen?: boolean; }>`
   background-color: white;
   width: 100%;
   display: flex;
   pointer-events: auto;
   flex-direction: column;
-  padding: 16px;
-  /* max-height: ${({ headerFooter }) => headerFooter ? "200px" : "64px"}; */
+  padding: 12px;
+  justify-content: center;
   border-radius: ${({ hamburgerOpen }) => hamburgerOpen ? '8px 8px 0px 0px' : '8px 8px 8px 8px'};
   box-shadow: ${({ theme }) => theme.boxShadow};
-
-  /* transition: all 0.3s ease-out; */
-
-  /* overflow: hidden; */
 
   @media (max-width: 720px) {
     padding: 8px;
@@ -102,10 +137,25 @@ const BurgeLangContainer = styled.div`
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
 `;
 
-export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, headerFooter, logoUri }) => {
+const CityChip = styled<any>(Chip)`
+  margin-right: ${({ marginRight }) => marginRight ? '8px' : 0};
+`;
+
+const OpenButton = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const Header: NextPage<IHeaderProps> = ({ discardStyles, selectedCity, selectedStyles, selectedButton, filterProps, logoUri, minimizeFilter, openFilters }) => {
   const { locale, pathname, query } = useRouter();
 
   const pageNames = getPageNames(locale);
+
+  const tattooersLocales = getTattooers(locale);
 
   // const [selectedCity] = useSelectedCity();
 
@@ -145,7 +195,7 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
   ];
 
   return (
-    <Container hamburgerOpen={hamburgerOpen} headerFooter={Boolean(headerFooter)}>
+    <Container hamburgerOpen={hamburgerOpen}>
       <BurgerMenu open={hamburgerOpen} setOpen={setHamburgerOpen}>
         {menuButtons}
         <BurgeLangContainer>
@@ -159,14 +209,33 @@ export const Header: NextPage<IHeaderProps> = ({ selectedCity, selectedButton, h
         <BurgerContainer>
           <Burger open={hamburgerOpen} setOpen={setHamburgerOpen} />
         </BurgerContainer>
-        <MenuContainer>
-          {menuButtons}
-        </MenuContainer>
-        <MenuContainer>
-          {langButtons}
-        </MenuContainer>
+        <InnerWrapper>
+          <MenuContainer visible={!(filterProps && minimizeFilter)}>
+            {menuButtons}
+          </MenuContainer>
+          <MiniFilterContainer visible={filterProps && minimizeFilter}>
+            <CityChip marginRight={selectedStyles && selectedStyles.length}>
+              {selectedCity ? selectedCity[locale] : tattooersLocales.text.allCities}
+            </CityChip>
+            {Boolean(selectedStyles && selectedStyles.length) && (
+              <Chip>
+                {selectedStyles.length > 1 ? `${selectedStyles[0].en} +${selectedStyles.length - 1}` : selectedStyles[0].en}
+              </Chip>
+            )}
+          </MiniFilterContainer>
+        </InnerWrapper>
+        <InnerWrapper>
+          <MenuContainer visible={!(filterProps && minimizeFilter)}>
+            {langButtons}
+          </MenuContainer>
+          <MiniFilterContainer visible={filterProps && minimizeFilter}>
+            <OpenButton onClick={openFilters}>
+              <BottomArrow grey />
+            </OpenButton>
+          </MiniFilterContainer>
+        </InnerWrapper>
       </InnerContainer>
-      {headerFooter}
+      {filterProps && <Filters {...filterProps} discardStyles={discardStyles} hide={minimizeFilter} />}
     </Container>
   )
 };

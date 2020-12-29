@@ -9,7 +9,6 @@ import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { useSelectedStyles } from '../../hooks/useSelectedStyles';
 
-import { Filters } from './components/Filters'
 import { TattooerCard } from './components/TattooerCard'
 import { ITattooer } from '../../types/tattooer';
 import { ICity } from '../../types/city';
@@ -70,7 +69,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
         return;
       }
 
-      if (window.pageYOffset < 20) {
+      if (window.pageYOffset < 50) {
         setHideFilter(false);
 
         return;
@@ -123,21 +122,23 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
       selectedButton={HeaderMenuButton.TATTOOERS}
       disableScroll={cityPickerOpen || stylesPickerOpen}
       stickyHeader
-      headerFooter={(
-        <Filters
-          hide={hideFilter}
-          cityPickerOpen={cityPickerOpen}
-          setCityPickerOpen={setCityPickerOpen}
-          setStylesPickerOpen={setStylesPickerOpen}
-          stylesPickerOpen={stylesPickerOpen}
-          onStyle={setStyle}
-          onCity={onCity}
-          selectedStyles={selectedStyles}
-          selectedCity={city}
-          cities={cities}
-          styles={styles}
-        />
-      )}
+      discardStyles={() => { setStyles([]); }}
+      selectedCity={city}
+      selectedStyles={selectedStyles}
+      minimizeFilter={hideFilter}
+      openFilters={() => { setHideFilter(false); }}
+      filterProps={{
+        cityPickerOpen: cityPickerOpen,
+        setCityPickerOpen: setCityPickerOpen,
+        setStylesPickerOpen: setStylesPickerOpen,
+        stylesPickerOpen: stylesPickerOpen,
+        onStyle: setStyle,
+        onCity: onCity,
+        selectedStyles: selectedStyles,
+        selectedCity: city,
+        cities: cities,
+        styles: styles,
+      }}
     >
       <Head>
         <title>{titleTag}</title>

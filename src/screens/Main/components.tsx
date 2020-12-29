@@ -7,7 +7,7 @@ export const Container = styled.div`
 
   min-height: 100%;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     flex-direction: column-reverse;
   }
 `;
@@ -25,7 +25,7 @@ export const Image = styled.img`
 
   max-width: 445px;
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     width: 64vw;
     height: 64vw;
   }
@@ -40,7 +40,7 @@ export const ChipsContainer = styled.div<{ displayOnMobile?: boolean }>`
     margin: 0px 10px 10px 0px;
   }
 
-  @media (orientation:portrait) {
+  @media (max-width: 720px) {
     display: ${({ displayOnMobile }) => displayOnMobile ? 'flex' : 'none'};
   }
 `;
