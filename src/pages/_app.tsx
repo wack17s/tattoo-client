@@ -157,7 +157,12 @@ const MyApp = ({ Component, pageProps }) => (
       <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      {/* <meta httpEquiv="content-language" content="ru" /> */}
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Rubik:wght@900&display=swap" rel="stylesheet" />
+
+      <meta property="og:title" content="MyTattoo" />
+      <meta property="og:description" content="Cервис для поиска татуировщиков в Украине." />
+      <meta property="og:image" content="/og.jpg" />
     </Head>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
