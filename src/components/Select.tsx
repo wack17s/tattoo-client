@@ -35,6 +35,7 @@ const StyledSelect = styled(ReactSelect)`
       cursor: pointer;
       background-color: ${({ theme }) => theme.colors.BLACK_100};
       border: 0;
+      overflow: hidden;
       border-radius: 8px;
       color: ${({ theme }) => theme.colors.BLACK_400};
   }

@@ -12,8 +12,6 @@ import { ICity } from '../../../types/city';
 import { IStyle } from '../../../types/style';
 import { StylesPicker } from '../../StylesPicker';
 
-import { MenuItem } from './MenuItem'
-
 export interface IFiltersProps {
   cities: ICity[];
   styles: IStyle[];
@@ -34,13 +32,11 @@ export interface IFiltersProps {
 }
 
 const Container = styled.div<{ hide?: boolean; }>`
-  border-top: ${({ hide }) => hide ? 0 : '0.5px solid rgba(0, 0, 0, 0.1)'};
-
-  max-height: ${({ hide }) => hide ? 0 : 300}px;
+  max-height: ${({ hide }) => hide ? 0 : 400}px;
 
   opacity: ${({ hide }) => hide ? 0 : 1};
 
-  transition: ${({ hide }) => hide ? 'opacity 0.2s, max-height 0.2s linear 0.2s' : 'opacity 0.2s linear 0.2s, max-height 0.2s linear 0.2s'};;
+  transition: ${({ hide }) => hide ? 'opacity 0.2s, max-height 0.2s' : 'opacity 0.2s, max-height 0.2s'};;
 `;
 
 const InnerTopContainer = styled.div`
@@ -54,8 +50,8 @@ const InnerTopContainer = styled.div`
 const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border-top: '0.5px solid rgba(0, 0, 0, 0.1)';
   padding-top: 16px;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
 
   @media (max-width: 720px) {
     padding-top: 8px;
@@ -64,9 +60,11 @@ const InnerContainer = styled.div`
 
 const LeftContainer = styled.div`
   margin-right: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 720px) {
-    flex: 1;
     margin-right: 8px;
   }
 `;
