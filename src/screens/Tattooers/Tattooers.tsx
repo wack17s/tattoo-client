@@ -55,7 +55,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
 const PER_PAGE = 30;
 
 export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities, descriptionTag, titleTag }) => {
-  const { push } = useRouter();
+  const { push, locale } = useRouter();
 
   const [hideFilter, setHideFilter] = React.useState(false);
 
@@ -143,6 +143,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
       <Head>
         <title>{titleTag}</title>
         <meta name="description" content={descriptionTag} />
+        <meta httpEquiv="content-language" content={locale} />
       </Head>
       <StyledInfiniteScroll
         dataLength={tattooersPortioned.length} //This is important field to render the next data

@@ -12,6 +12,7 @@ import { Button } from '../../components/Button';
 
 import { Image, Container, InnerContainer } from './components';
 import { pageTagData } from '../../seo/pageTagData';
+import { pageTagDataUa } from '../../seo/pageTagDataUa';
 import { PageName } from '../../types/pageName.enum';
 
 export const Main: NextPage = () => {
@@ -22,8 +23,8 @@ export const Main: NextPage = () => {
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
       <Head>
-        <title>{pageTagData[PageName.MAIN].title}</title>
-        <meta name="description" content={pageTagData[PageName.MAIN].description} />
+        <title>{(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].title}</title>
+        <meta name="description" content={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].description} />
       </Head>
       <Container>
         <InnerContainer>
