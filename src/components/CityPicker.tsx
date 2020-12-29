@@ -134,9 +134,8 @@ export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ cities, 
           <CloseButton />
         </Header>
         <ListContainer>
-          <ListItemWrapper>
+          <ListItemWrapper key={'city_picker_all'}>
             <ListItem
-              key={'city_picker_all'}
               onClick={() => { onCity(); setOpen(false); }}
             >
               <Text>{tattooersLocale.text.allCities}</Text>
@@ -144,9 +143,8 @@ export const CityPicker: React.FunctionComponent<ICityPickerProps> = ({ cities, 
             </ListItem>
           </ListItemWrapper>
           {cities.map(city => (
-            <ListItemWrapper>
+            <ListItemWrapper key={'city_picker' + city.id}>
               <ListItem
-                key={'city_picker' + city.id}
                 onClick={() => { onCity(city); setOpen(false); }}
               >
                 <Text>{city[locale]}</Text>

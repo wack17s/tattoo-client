@@ -214,12 +214,16 @@ export const Header: NextPage<IHeaderProps> = ({ discardStyles, selectedCity, se
             {menuButtons}
           </MenuContainer>
           <MiniFilterContainer visible={filterProps && minimizeFilter}>
-            <CityChip marginRight={selectedStyles && selectedStyles.length}>
+            <CityChip marginRight={true}>
               {selectedCity ? selectedCity[locale] : tattooersLocales.text.allCities}
             </CityChip>
-            {Boolean(selectedStyles && selectedStyles.length) && (
+            {Boolean(selectedStyles && selectedStyles.length) ? (
               <Chip>
                 {selectedStyles.length > 1 ? `${selectedStyles[0].en} +${selectedStyles.length - 1}` : selectedStyles[0].en}
+              </Chip>
+            ) : (
+              <Chip>
+                {tattooersLocales.text.allStyles}
               </Chip>
             )}
           </MiniFilterContainer>
