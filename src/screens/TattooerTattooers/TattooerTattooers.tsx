@@ -76,7 +76,7 @@ export async function getStaticProps(context) {
     props.descriptionTag = description;
   } else {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 

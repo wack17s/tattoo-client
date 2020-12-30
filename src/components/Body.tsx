@@ -75,17 +75,17 @@ const HeaderInnerContainer = styled.div`
   }
 `;
 
-const InnerContainer = styled.div`
+const InnerContainer = styled.div<{ hideHeader?: boolean; }>`
   display: flex;
   flex-direction: column;
   flex: 1;
 
   margin: 0px 16px;
-  margin-top: 64px;
+  margin-top: ${({ hideHeader }) => hideHeader ? 0 : 64}px;
 
   @media (max-width: 720px) {
     margin: 0px 8px;
-    margin-top: 64px;
+    margin-top: ${({ hideHeader }) => hideHeader ? 0 : 64}px;
   }
 `;
 
@@ -101,7 +101,7 @@ export const Body: React.FunctionComponent<IBodyProps> = ({ disableScroll, child
           </HeaderContainer>
         ) : <Header {...props} />
       )}
-      <InnerContainer style={innerContainerStyle}>
+      <InnerContainer style={innerContainerStyle} hideHeader={hideHeader}>
         {children}
       </InnerContainer>
     </Container>

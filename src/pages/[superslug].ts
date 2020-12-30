@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 
   return {
     paths: _.flatten([...tattooerPaths, ...citiesPaths]),
-    fallback: true,
+    fallback: false,
   }
 }
 

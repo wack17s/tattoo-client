@@ -87,6 +87,7 @@ export const localizations: ILocalizations = {
         text: {
           title: 'Error 404',
           text: 'Страница не найдена.',
+          link: 'На главную'
         }
       }
     }
@@ -176,6 +177,7 @@ export const localizations: ILocalizations = {
         text: {
           title: 'Error 404',
           text: 'Сторінка не знайдена.',
+          link: 'На головну',
         }
       }
     }

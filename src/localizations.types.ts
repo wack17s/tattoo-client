@@ -91,6 +91,7 @@ export interface ILocalization {
       text: {
         title: string;
         text: string;
+        link: string;
       }
     }
   };
