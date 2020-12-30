@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { getChooseStyle, getPageNames } from '../../utils/getLocalizedText';
 import { PageName } from '../../types/pageName.enum';
@@ -26,7 +27,7 @@ interface IChooseStyleProps {
 }
 
 export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) => {
-  const { locale, push, reload } = useRouter();
+  const { locale, push, pathname, reload } = useRouter();
 
   const chooseStyle = getChooseStyle(locale);
   const pageNames = getPageNames(locale);
@@ -62,6 +63,9 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
+      <Head>
+        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
+      </Head>
       <Container>
         <InnerContainer>
           <BreadCrumb items={breadCrumbs} />

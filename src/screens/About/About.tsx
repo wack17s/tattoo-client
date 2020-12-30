@@ -7,6 +7,7 @@ import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
 import { htmlString } from '../../utils/htmlString';
+import Head from 'next/head';
 
 const Container = styled.div`
   flex: 1;
@@ -92,12 +93,15 @@ const DescriptionText = styled.div`
 `;
 
 export const About = () => {
-  const { locale } = useRouter();
+  const { locale, pathname } = useRouter();
 
   const about = getAbout(locale);
 
   return (
     <Body selectedButton={HeaderMenuButton.ABOUT}>
+      <Head>
+        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
+      </Head>
       <Container>
         <Title h1>{about.text.title}</Title>
         <Description>{about.text.description}</Description>

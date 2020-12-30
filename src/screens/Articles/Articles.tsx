@@ -8,6 +8,7 @@ import { Text } from '../../components/Text'
 
 import { ArticleCard } from './components/ArticleCard';
 import { chooseTattooArticleData, myTattooArticleData, healthTattooArticleData, japaneseTattooArticleData } from '../../articles/types';
+import Head from 'next/head';
 
 const CardsContainer = styled.div`
   display: flex;
@@ -43,12 +44,15 @@ const Description = styled(Text)`
 `;
 
 export const Articles = () => {
-  const { locale } = useRouter();
+  const { locale, pathname } = useRouter();
 
   const articlesText = getArticles(locale);
 
   return (
     <Body selectedButton={HeaderMenuButton.ARTICLES}>
+      <Head>
+        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
+      </Head>
       <Title h1>
         {articlesText.text.title}
       </Title>

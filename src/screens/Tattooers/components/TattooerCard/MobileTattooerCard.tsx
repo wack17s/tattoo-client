@@ -21,6 +21,7 @@ const Container = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow};
   background-color: white;
   justify-content: flex-end;
+  overflow: hidden;
 
   @media (min-width: 721px) {
     display: none;

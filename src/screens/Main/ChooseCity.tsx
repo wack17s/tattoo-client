@@ -21,6 +21,7 @@ import { ICity } from '../../types/city';
 import { Image, InnerContainer, Container, ChipsContainer } from './components';
 import { ITattooer } from '../../types/tattooer';
 import { IStyle } from '../../types/style';
+import Head from 'next/head';
 
 const StyledButton = styled(Button)`
   margin-top: 48px;
@@ -46,7 +47,7 @@ interface IChooseCityProps {
 }
 
 export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooers }) => {
-  const { locale, push, reload } = useRouter();
+  const { locale, push, reload, pathname } = useRouter();
 
   const chooseCity = getChooseCity(locale);
   const pageNames = getPageNames(locale);
@@ -85,6 +86,9 @@ export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooe
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
+      <Head>
+        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
+      </Head>
       <Container>
         <InnerContainer>
           <BreadCrumb items={breadCrumbs} />

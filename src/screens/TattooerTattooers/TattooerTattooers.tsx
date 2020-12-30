@@ -59,13 +59,13 @@ export async function getStaticProps(context) {
     const { filteredTattooers, usedStyles } = dataService.getData({ cityName: slug });
     const tagData = locale === 'ua' ? cityTagDataUa : cityTagData;
 
-    props.tattooers = filteredTattooers;
+    props.tattooers = filteredTattooers.map(item => ({ ...item, posts: (item.posts || []).slice(0, 4) }));
     props.city = usedCities.find(item => item.name === slug) || null;
     props.styles = usedStyles;
     props.titleTag = tagData[slug] ? tagData[slug].title : undefined;
     props.descriptionTag = tagData[slug] ? tagData[slug].description : undefined;
   } else if (slug === 'tattooers') {
-    props.tattooers = allTattooers;
+    props.tattooers = allTattooers.map(item => ({ ...item, posts: (item.posts || []).slice(0, 4) }));;
     props.titleTag = (locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.TATTOOERS].title;
     props.descriptionTag = (locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.TATTOOERS].description;
   } else if (allTattooers.some(item => item.instagram === slug)) {

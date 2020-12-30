@@ -25,7 +25,7 @@ const StyledBurgerMenu = styled.nav<IStyledProps>`
   top: 96px;
   left: 64px;
   right: 64px;
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  /* box-shadow: 0px 8px 5px 5px rgba(31, 31, 31, 0.1); */
 
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
   border-radius: 0px 0px 8px 8px;
