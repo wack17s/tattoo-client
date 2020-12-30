@@ -16,7 +16,7 @@ import { pageTagDataUa } from '../../seo/pageTagDataUa';
 import { PageName } from '../../types/pageName.enum';
 
 export const Main: NextPage = () => {
-  const { locale } = useRouter();
+  const { locale, pathname } = useRouter();
 
   const mainPage = getMainPage(locale);
 
@@ -25,6 +25,7 @@ export const Main: NextPage = () => {
       <Head>
         <title>{(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].title}</title>
         <meta name="description" content={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].description} />
+        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
       </Head>
       <Container>
         <InnerContainer>

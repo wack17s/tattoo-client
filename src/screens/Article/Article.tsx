@@ -14,6 +14,7 @@ import { MyTattooArticle } from '../../articles/MyTattooArticle';
 import { HealthTattooArticle } from '../../articles/HealthTattooArticle';
 import { JapaneseTattooArticle } from '../../articles/JapaneseTattooArticle';
 import { chooseTattooArticleData, myTattooArticleData, healthTattooArticleData, japaneseTattooArticleData } from '../../articles/types';
+import Head from 'next/head';
 
 interface IArticleProps {
   name?: string;
@@ -34,7 +35,7 @@ const Title = styled(Text)`
 `;
 
 export const Article: NextPage<IArticleProps> = ({ name, id }) => {
-  const { locale, reload, push } = useRouter();
+  const { locale, reload, push, pathname, query } = useRouter();
 
   const pageNames = getPageNames(locale);
 
@@ -77,6 +78,9 @@ export const Article: NextPage<IArticleProps> = ({ name, id }) => {
 
   return (
     <Body logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES}>
+      <Head>
+        <link rel="canonical" href={`/articles/${query.id}`} />
+      </Head>
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>

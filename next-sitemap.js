@@ -1,10 +1,11 @@
+const cityNames = require('./cityNames.js');
+
 module.exports = {
   siteUrl: 'https://mytattoo.com.ua',
-  changefreq: 'daily',
-  priority: 0.8,
+  changefreq: 'monthly',
+  priority: 0.6,
   sitemapSize: 5000,
   generateRobotsTxt: true,
-  exclude: ['/protected-page', '/awesome/secret-page'],
   // Default transformation function
   transform: (config, url) => {
     const newConfig = {...config};
@@ -12,33 +13,33 @@ module.exports = {
 
     if (url === '/') {
       newConfig.priority = 1;
-      newConfig.changefreq = 'monthly';
       newUrl = '/ru/';
     }
 
     if (url === '/about') {
-      newConfig.priority = 0.6;
-      newConfig.changefreq = 'monthly';
       newUrl = '/ru/about';
     }
 
     if (url === '/articles') {
-      newConfig.changefreq = 'weekly';
+      newConfig.priority = 0.8;
       newUrl = '/ru/articles';
+      newConfig.changefreq = 'weekly';
     } else if (url.match(/\/articles/g)) {
-      newConfig.changefreq = 'monthly';
+      newConfig.priority = 0.8;
+      newConfig.changefreq = 'weekly';
     }
 
     if (url === '/choose-city') {
-      newConfig.priority = 0.6;
-      newConfig.changefreq = 'monthly';
       newUrl = '/ru/choose-city';
     }
 
     if (url === '/choose-style') {
-      newConfig.priority = 0.6;
-      newConfig.changefreq = 'monthly';
       newUrl = '/ru/choose-style';
+    }
+
+    if (cityNames.some(city => url.match(city))) {
+      newConfig.priority = 0.8;
+      newConfig.changefreq = 'weekly';
     }
 
     return {

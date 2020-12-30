@@ -71,6 +71,7 @@ const LeftContainer = styled.div`
 
 const RightContainer = styled.div`
   margin-right: 40px;
+  flex: 5;
 
   @media (max-width: 720px) {
     flex: 1;

@@ -164,6 +164,7 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer, ti
       <Head>
         <title>{titleTag}</title>
         <meta name="description" content={descriptionTag} />
+        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${tattooer.instagram}`} />
       </Head>
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />

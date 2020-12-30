@@ -107,7 +107,6 @@ const Container = styled.div<{ hamburgerOpen?: boolean; }>`
   padding: 12px;
   justify-content: center;
   border-radius: ${({ hamburgerOpen }) => hamburgerOpen ? '8px 8px 0px 0px' : '8px 8px 8px 8px'};
-  box-shadow: ${({ theme }) => theme.boxShadow};
 
   @media (max-width: 720px) {
     padding: 8px;
