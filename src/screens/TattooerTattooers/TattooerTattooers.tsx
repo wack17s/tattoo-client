@@ -77,7 +77,6 @@ export async function getStaticProps(context) {
   } else {
     return {
       notFound: true,
-      errorCode: 404
     }
   }
 
