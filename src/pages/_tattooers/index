@@ -1,5 +1,0 @@
-import { Tattooers } from '../../screens/Tattooers';
-
-// export { getStaticProps };
-
-export default Tattooers;
