@@ -33,6 +33,11 @@ module.exports = {
       newUrl = '/ru/choose-city';
     }
 
+    if (url === '/ru/tattooers') {
+      newConfig.priority = 0.8;
+      newConfig.changefreq = 'weekly';
+    }
+
     if (url === '/choose-style') {
       newUrl = '/ru/choose-style';
     }

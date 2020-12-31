@@ -33,8 +33,16 @@ export async function getStaticPaths() {
     params: { superslug: citySlug, locale: 'ua' }
   }]));
 
+  const tattooerPath = [
+    {
+      params: { superslug: 'tattooers', locale: 'ru' }
+    }, {
+      params: { superslug: 'tattooers', locale: 'ua' }
+    }
+  ]
+
   return {
-    paths: _.flatten([...tattooerPaths, ...citiesPaths]),
+    paths: _.flatten([...tattooerPaths, ...citiesPaths, ...tattooerPath]),
     fallback: false,
   }
 }
