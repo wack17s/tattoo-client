@@ -16,28 +16,28 @@ export async function getStaticPaths() {
   const citiesSlugs = usedCities.map(item => item.name);
 
   const tattooerPaths = allTattooers.map(tattooer => ([{
-    params: { superslug: tattooer.instagram, locale: 'ru' }
+    params: { superslug: tattooer.instagram }, locale: 'ru'
   }, {
-    params: { superslug: tattooer.instagram, locale: 'ua' }
+    params: { superslug: tattooer.instagram }, locale: 'ua'
   }]));
 
   // const pagesPaths = pagesSlugs.map(pagesSlug => ([{
-  //   params: { superslug: pagesSlug, locale: 'ru' }
+  //   params: { superslug: pagesSlug }, locale: 'ru'
   // }, {
-  //   params: { superslug: pagesSlug, locale: 'ua' }
+  //   params: { superslug: pagesSlug }, locale: 'ua'
   // }]));
 
   const citiesPaths = citiesSlugs.map(citySlug => ([{
-    params: { superslug: citySlug, locale: 'ru' }
+    params: { superslug: citySlug }, locale: 'ru'
   }, {
-    params: { superslug: citySlug, locale: 'ua' }
+    params: { superslug: citySlug }, locale: 'ua'
   }]));
 
   const tattooerPath = [
     {
-      params: { superslug: 'tattooers', locale: 'ru' }
+      params: { superslug: 'tattooers' }, locale: 'ru'
     }, {
-      params: { superslug: 'tattooers', locale: 'ua' }
+      params: { superslug: 'tattooers' }, locale: 'ua'
     }
   ]
 

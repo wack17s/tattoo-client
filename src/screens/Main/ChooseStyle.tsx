@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 
 import { getChooseStyle, getPageNames } from '../../utils/getLocalizedText';
 import { PageName } from '../../types/pageName.enum';
@@ -20,6 +19,7 @@ import { useSelectedCity } from '../../hooks/useSelectedCity';
 import { IStyle } from '../../types/style';
 import { dataService } from '../../services/data.service';
 import { ITattooer } from '../../types/tattooer';
+import { Tags } from '../../seo/Tags';
 
 interface IChooseStyleProps {
   styles: IStyle[];
@@ -63,9 +63,7 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
-      <Head>
-        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
-      </Head>
+      <Tags />
       <Container>
         <InnerContainer>
           <BreadCrumb items={breadCrumbs} />
@@ -83,7 +81,7 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/images/buffalo.svg" />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/buffalo.svg`} />
         </InnerContainer>
       </Container>
     </Body>

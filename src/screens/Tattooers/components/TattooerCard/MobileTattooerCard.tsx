@@ -70,7 +70,7 @@ export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProp
           ))}
         </ImageContainer>
         <TextContainer>
-          <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
+          <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
         </TextContainer>
       </Container>
     </Link>

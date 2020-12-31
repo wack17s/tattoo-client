@@ -138,33 +138,6 @@ const GlobalStyle = createGlobalStyle`
 const MyApp = ({ Component, pageProps }) => (
   <>
     <Head>
-      <title>MyTattoo - Cервис для поиска татуировщиков в Украине.</title>
-
-      <meta charSet="utf-8" />
-      <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
-
-      <link rel="alternate" hrefLang="ru" href="https://mytattoo.com.ua/" />
-      <link rel="alternate" hrefLang="ua" href="https://mytattoo.com.ua/ua/" />
-
-      <meta property="og:title" content="MyTattoo - Cервис для поиска татуировщиков в Украине." />
-      <meta property="og:description" content="Найти лучших тату мастеров с помощью сайта MyTattoo – просто и удобно. Мы собрали множество работ и эскизов различных тату мастеров Украины. У нас вы можете узнать отзывы и цены татуировщиков, связаться с мастером." />
-      <meta property="og:image" content="https://mytattoo.com.ua/og.jpg" />
-      <meta property="og:site_name" content="MyTattoo" />
-      <meta property="og:url" content="https://mytattoo.com.ua/" />
-      <meta name="robots" content="index, follow" />
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="https://mytattoo.com.ua/" />
-      <meta name="twitter:title" content="MyTattoo - Cервис для поиска татуировщиков в Украине." />
-      <meta name="twitter:description" content="Найти лучших тату мастеров с помощью сайта MyTattoo – просто и удобно. Мы собрали множество работ и эскизов различных тату мастеров Украины. У нас вы можете узнать отзывы и цены татуировщиков, связаться с мастером." />
-      <meta name="twitter:image" content="https://mytattoo.com.ua/og.jpg" />
-
-      <meta property="url" content="https://mytattoo.com.ua/" />
-      <meta property="title" content="MyTattoo - Cервис для поиска татуировщиков в Украине." />
-      <meta property="description" content="Найти лучших тату мастеров с помощью сайта MyTattoo – просто и удобно. Мы собрали множество работ и эскизов различных тату мастеров Украины. У нас вы можете узнать отзывы и цены татуировщиков, связаться с мастером." />
-      <meta name="keywords" content="mytattoo" />
-      <meta property="image" content="https://mytattoo.com.ua/og.jpg" />
-
       <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png" />

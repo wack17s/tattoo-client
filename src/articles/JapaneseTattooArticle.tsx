@@ -1,11 +1,9 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
 
 import { japaneseTattooArticleData } from './types';
 import { Body, Info, TextBlock, SubTitle, SmallSubTitle } from './components';
-import { articleTagData } from '../seo/articleTagData';
 
 export const Row = styled.div`
   display: flex;
@@ -81,10 +79,6 @@ const TEXT13 = 'Маски и демоны связаны с миром духо
 export const JapaneseTattooArticle: React.FunctionComponent = () => {
   return (
     <Body>
-      <Head>
-        <title>{articleTagData[japaneseTattooArticleData.id].title}</title>
-        <meta name="description" content={articleTagData[japaneseTattooArticleData.id].description} />
-      </Head>
       <Info p1>5 дней назад • 5 минут на прочтение</Info>
 
       <Row>

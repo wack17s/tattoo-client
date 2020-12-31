@@ -6,8 +6,7 @@ import { getAbout } from '../../utils/getLocalizedText';
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { Text } from '../../components/Text'
-import { htmlString } from '../../utils/htmlString';
-import Head from 'next/head';
+import { Tags } from '../../seo/Tags';
 
 const Container = styled.div`
   flex: 1;
@@ -99,14 +98,12 @@ export const About = () => {
 
   return (
     <Body selectedButton={HeaderMenuButton.ABOUT}>
-      <Head>
-        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
-      </Head>
+      <Tags />
       <Container>
         <Title h1>{about.text.title}</Title>
         <Description>{about.text.description}</Description>
         {/* <Row>
-          <Image src='/images/puma.svg' />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/puma.svg`} />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle3}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>
@@ -117,14 +114,14 @@ export const About = () => {
           </InnerContainer>
         </Row> */}
         <RowReverse>
-          <Image src='/images/puma.svg' />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/puma.svg`} />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle1}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>{about.text.text1}</Text>
           </InnerContainer>
         </RowReverse>
         <Row>
-          <Image src='/images/dober.svg' />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/dober.svg`} />
           <InnerContainer>
             <Text style={{ marginTop: 16 }} h2>{about.text.subtitle2}</Text>
             <Text style={{ marginTop: 24, marginBottom: 48 }}>

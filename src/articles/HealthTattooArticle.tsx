@@ -1,10 +1,8 @@
 
 import * as React from 'react';
-import Head from 'next/head';
 
 import { healthTattooArticleData } from './types';
 import { Body, Info, TextBlock, SubTitle, Image } from './components';
-import { articleTagData } from '../seo/articleTagData';
 
 const TEXT1 = 'Молодые люди, обращаясь в тату салон, часто недооценивают вред татуировок для здоровья и не задумываются о последствиях, которые бывают очень серьезными. Кроме острых реакций, например покраснения или отека сразу после нанесения рисунка, возможно также долгосрочное ухудшение состояния.';
 
@@ -40,10 +38,6 @@ const TEXT25 = 'Нарушения, вызываемые чернилами в �
 export const HealthTattooArticle: React.FunctionComponent = () => {
   return (
     <Body>
-      <Head>
-        <title>{articleTagData[healthTattooArticleData.id].title}</title>
-        <meta name="description" content={articleTagData[healthTattooArticleData.id].description} />
-      </Head>
       <Info p1>3 дня назад • 5 минут на прочтение</Info>
       <Image src={healthTattooArticleData.images.img1} />
 

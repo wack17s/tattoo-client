@@ -13,6 +13,7 @@ import { TattooerCard } from './components/TattooerCard'
 import { ITattooer } from '../../types/tattooer';
 import { ICity } from '../../types/city';
 import { IStyle } from '../../types/style';
+import { Tags } from '../../seo/Tags';
 
 interface ITattooersProps {
   cities: ICity[];
@@ -140,37 +141,15 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
         styles: styles,
       }}
     >
-      <Head>
-        <title>{titleTag}</title>
-        <meta name="description" content={descriptionTag} />
-        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}/${query.superslug}`} />
-      </Head>
+      <Tags title={titleTag} description={descriptionTag} pathname={`/${query.superslug}`} />
       <StyledInfiniteScroll
-        dataLength={tattooersPortioned.length} //This is important field to render the next data
+        dataLength={tattooersPortioned.length}
         next={addPortion}
         hasMore={tatts.length > tattooersPortioned.length}
         loader={null}
-        // endMessage={
-        //   <p style={{ textAlign: 'center' }}>
-        //     <b>Yay! You have seen it all</b>
-        //   </p>
-        // }
-        // below props only if you need pull down functionality
-        // refreshFunction={() => {}}
-        // pullDownToRefresh
-        // pullDownToRefreshThreshold={50}
-        // pullDownToRefreshContent={
-        //   <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
-        // }
-        // releaseToRefreshContent={
-        //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-        // }
       >
         {tattooersPortioned && tattooersPortioned.length ? tattooersPortioned.map(item => <TattooerCard key={item.instagram} tattooer={item} />) : null}
       </StyledInfiniteScroll>
-      {/* <CardsContainer>
-        
-      </CardsContainer> */}
     </Body>
   )
 }

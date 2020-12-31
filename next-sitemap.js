@@ -13,36 +13,21 @@ module.exports = {
 
     if (url === '/') {
       newConfig.priority = 1;
-      newUrl = '/ru/';
-    }
-
-    if (url === '/about') {
-      newUrl = '/ru/about';
     }
 
     if (url === '/articles') {
-      newConfig.priority = 0.8;
-      newUrl = '/ru/articles';
       newConfig.changefreq = 'weekly';
+      newConfig.priority = 0.8;
     } else if (url.match(/\/articles/g)) {
       newConfig.priority = 0.8;
-      newConfig.changefreq = 'weekly';
     }
 
-    if (url === '/choose-city') {
-      newUrl = '/ru/choose-city';
-    }
-
-    if (url === '/ru/tattooers') {
+    if (url === '/tattooers') {
       newConfig.priority = 0.8;
       newConfig.changefreq = 'weekly';
     }
 
-    if (url === '/choose-style') {
-      newUrl = '/ru/choose-style';
-    }
-
-    if (cityNames.some(city => url.match(city))) {
+    if (cityNames.some(city => url.match(`/${city}`))) {
       newConfig.priority = 0.8;
       newConfig.changefreq = 'weekly';
     }
@@ -70,7 +55,7 @@ module.exports = {
       // },
     ],
     additionalSitemaps: [
-      'https://mytattoo.com.ua/sitemap-ua.xml',
+      // 'https://mytattoo.com.ua/sitemap-ua.xml',
       // 'https://example.com/my-custom-sitemap-2.xml',
       // 'https://example.com/my-custom-sitemap-3.xml',
     ],

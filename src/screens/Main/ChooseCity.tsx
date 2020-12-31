@@ -21,7 +21,7 @@ import { ICity } from '../../types/city';
 import { Image, InnerContainer, Container, ChipsContainer } from './components';
 import { ITattooer } from '../../types/tattooer';
 import { IStyle } from '../../types/style';
-import Head from 'next/head';
+import { Tags } from '../../seo/Tags';
 
 const StyledButton = styled(Button)`
   margin-top: 48px;
@@ -86,9 +86,7 @@ export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooe
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
-      <Head>
-        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
-      </Head>
+      <Tags />
       <Container>
         <InnerContainer>
           <BreadCrumb items={breadCrumbs} />
@@ -112,7 +110,7 @@ export const ChooseCity: NextPage<IChooseCityProps> = ({ cities, styles, tattooe
           {/* </Link> */}
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/images/croco.svg" />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/croco.svg`} />
         </InnerContainer>
       </Container>
     </Body>

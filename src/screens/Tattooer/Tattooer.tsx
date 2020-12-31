@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import lo from 'lodash';
 import { useRouter } from 'next/router';
 import linkify from 'linkifyjs/html';
-import Head from 'next/head'
 
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
@@ -17,6 +16,7 @@ import { Button } from '../../components/Button';
 import { telify } from '../../utils/telify';
 
 import { ImageWrapper, PLACEHOLDER_SRC } from '../../components/ImageWrapper';
+import { Tags } from '../../seo/Tags';
 
 interface ITattooerProps {
   tattooer: ITattooer | null;
@@ -160,18 +160,14 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer, ti
   ];
 
   return tattooer ? (
-    <Body selectedButton={HeaderMenuButton.TATTOOERS} logoUri='../logo.png' innerContainerStyle={{ margin: 0 }}>
-      <Head>
-        <title>{titleTag}</title>
-        <meta name="description" content={descriptionTag} />
-        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${tattooer.instagram}`} />
-      </Head>
+    <Body selectedButton={HeaderMenuButton.TATTOOERS} innerContainerStyle={{ margin: 0 }}>
+      <Tags title={titleTag} description={descriptionTag} pathname={`/${tattooer.instagram}`} ogTitle={tattooer.instagram} />
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
       <Container>
         <InfoContainer>
-          <MasterInfoHeader small profileIconUri={tattooer.profilePic} city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri='instagram.svg' />
+          <MasterInfoHeader small profileIconUri={tattooer.profilePic} city={tattooer.city ? tattooer.city[locale] : undefined} instagram={tattooer.instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
           <Divider />
           <Text p5>{tattooerLocales.text.description}</Text>
           <Description p1>

@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { getPageNames, getTattooers } from '../../utils/getLocalizedText';
 import { Language } from '../../localizations.types';
 import { PageName } from '../../types/pageName.enum';
-// import { useTattooersQuery } from '../../hooks/useTattooersQuery';
 
 import { MenuItem } from './components/MenuItem';
 import { Burger } from './components/Burger';
@@ -16,10 +15,8 @@ import { LangItem } from './components/LangItem';
 import { Filters, IFiltersProps } from './components/Filters';
 import { ICity } from '../../types/city';
 import { Chip } from '../Chip';
-import { Text } from '../Text';
 import { IStyle } from '../../types/style';
 import { BottomArrow } from '../Arrow';
-// import { useSelectedCity } from '../../hooks/useSelectedCity';
 
 export enum HeaderMenuButton {
   MAIN = 'HeaderMenuButton::MAIN',
@@ -35,8 +32,6 @@ export interface IHeaderProps {
   filterProps?: IFiltersProps;
   minimizeFilter?: boolean;
   openFilters?: () => void;
-
-  logoUri?: string;
 
   selectedCity?: ICity;
   selectedStyles?: IStyle[];
@@ -149,16 +144,12 @@ const OpenButton = styled.div`
   cursor: pointer;
 `;
 
-export const Header: NextPage<IHeaderProps> = ({ discardStyles, selectedCity, selectedStyles, selectedButton, filterProps, logoUri, minimizeFilter, openFilters }) => {
+export const Header: NextPage<IHeaderProps> = ({ discardStyles, selectedCity, selectedStyles, selectedButton, filterProps, minimizeFilter, openFilters }) => {
   const { locale, pathname, query } = useRouter();
 
   const pageNames = getPageNames(locale);
 
   const tattooersLocales = getTattooers(locale);
-
-  // const [selectedCity] = useSelectedCity();
-
-  // const tattooerQuery = useTattooersQuery();
 
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
@@ -203,7 +194,7 @@ export const Header: NextPage<IHeaderProps> = ({ discardStyles, selectedCity, se
       </BurgerMenu>
       <InnerContainer>
         <Link href='/tattooers'>
-          <Logo src={logoUri || './logo.png'} />
+          <Logo src={`${process.env.NEXT_PUBLIC_HOST}/logo.png`} />
         </Link>
         <BurgerContainer>
           <Burger open={hamburgerOpen} setOpen={setHamburgerOpen} />
