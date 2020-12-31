@@ -45,8 +45,6 @@ export const Article: NextPage<IArticleProps> = ({ id }) => {
   let description = '';
   let image = undefined;
 
-  console.log('id', id)
-
   switch (id) {
     case chooseTattooArticleData.id: {
       article = <ChooseTattooArticle />;
@@ -120,7 +118,6 @@ export const Article: NextPage<IArticleProps> = ({ id }) => {
 }
 
 export async function getStaticProps(context) {
-  console.log('context.params.id', context)
   return {
     props: {
       id: context.params.id,
