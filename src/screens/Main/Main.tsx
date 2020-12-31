@@ -14,19 +14,19 @@ import { Image, Container, InnerContainer } from './components';
 import { pageTagData } from '../../seo/pageTagData';
 import { pageTagDataUa } from '../../seo/pageTagDataUa';
 import { PageName } from '../../types/pageName.enum';
+import { Tags } from '../../seo/Tags';
 
 export const Main: NextPage = () => {
-  const { locale, pathname } = useRouter();
+  const { locale } = useRouter();
 
   const mainPage = getMainPage(locale);
 
   return (
     <Body selectedButton={HeaderMenuButton.MAIN}>
-      <Head>
-        <title>{(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].title}</title>
-        <meta name="description" content={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].description} />
-        <link rel="canonical" href={`${locale === 'ua' ? '/ua' : ''}${pathname}`} />
-      </Head>
+      <Tags
+        description={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].description}
+        title={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].title}
+      />
       <Container>
         <InnerContainer>
           <Text h1>{mainPage.text.title}</Text>
@@ -38,7 +38,7 @@ export const Main: NextPage = () => {
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/images/dog.svg" />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/dog.svg`} />
         </InnerContainer>
       </Container>
     </Body>

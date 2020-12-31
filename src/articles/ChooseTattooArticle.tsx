@@ -1,10 +1,8 @@
 
 import * as React from 'react';
-import Head from 'next/head';
 
 import { chooseTattooArticleData } from './types';
 import { Body, Info, Description, TextBlock, SubTitle, Image } from './components';
-import { articleTagData } from '../seo/articleTagData';
 
 const DESC = 'Вы собираетесь в салон за своей первой татуировкой? Тогда вопрос, сколько по времени делается тату, конечно, очень интересует вас. Как утверждают опытные мастера-татуировщики, стандартный сеанс длится 4 часа, но в целом продолжительность процесса зависит от самых разных факторов. Рассмотрим их детально.';
 const TEXT1 = 'Параметры изображений непосредственно влияют на то, сколько по времени набивается тату, но тут есть свои нюансы. Например, композиция из простых геометрических элементов, нанесенная на всё предплечье, займет 3-4 часа. А набивка такого же по величине портрета в стиле «реализм» может быть выполнена за пару-тройку дней.';
@@ -30,11 +28,7 @@ const TEXT15 = 'Красивые изображения на теле подни
 export const ChooseTattooArticle: React.FunctionComponent = () => {
   return (
     <Body>
-      <Head>
-        <title>{articleTagData[chooseTattooArticleData.id].title}</title>
-        <meta name="description" content={articleTagData[chooseTattooArticleData.id].description} />
-      </Head>
-      <Description p5book>{DESC}</Description>
+      <Description p5book>{chooseTattooArticleData.placeholder}</Description>
       <Info p1>3 дня назад • 5 минут на прочтение</Info>
       <Image src={chooseTattooArticleData.images.img1} />
 

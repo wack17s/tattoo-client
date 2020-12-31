@@ -148,7 +148,7 @@ export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardPr
               )).slice(0, Math.min(postURIs.length, 4))}
             </ImageSelectContainer>
             <TextContainer>
-              <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri='instagram.svg' />
+              <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
             </TextContainer>
           </FullCard>
         </Container>

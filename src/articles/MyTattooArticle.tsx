@@ -1,10 +1,8 @@
 
 import * as React from 'react';
-import Head from 'next/head';
 
 import { myTattooArticleData } from './types';
 import { Body, Info, TextBlock, SubTitle, Image } from './components';
-import { articleTagData } from '../seo/articleTagData';
 
 const TEXT1 = 'Татуировки — популярный способ украсить свое тело и подчеркнуть индивидуальность. Но качество рисунка напрямую зависит от мастерства татуировщика. Правильный выбор мастера является первостепенной задачей для человека, у которого появляется сформулированное желание «хочу тату», требующее немедленного воплощение в жизнь. Если вы мечтаете набить татуировку, то сервис Mytattoo поможет вам найти лучшего мастера в вашем городе.';
 
@@ -29,10 +27,6 @@ const TEXT16 = 'Если вы давно мечтаете о стильной т
 export const MyTattooArticle: React.FunctionComponent = () => {
   return (
     <Body>
-      <Head>
-        <title>{articleTagData[myTattooArticleData.id].title}</title>
-        <meta name="description" content={articleTagData[myTattooArticleData.id].description} />
-      </Head>
       <Info p1>3 дня назад • 5 минут на прочтение</Info>
       <Image src={myTattooArticleData.images.img1} />
 

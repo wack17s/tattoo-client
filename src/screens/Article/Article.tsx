@@ -14,7 +14,8 @@ import { MyTattooArticle } from '../../articles/MyTattooArticle';
 import { HealthTattooArticle } from '../../articles/HealthTattooArticle';
 import { JapaneseTattooArticle } from '../../articles/JapaneseTattooArticle';
 import { chooseTattooArticleData, myTattooArticleData, healthTattooArticleData, japaneseTattooArticleData } from '../../articles/types';
-import Head from 'next/head';
+import { Tags } from '../../seo/Tags';
+import { articleTagData } from '../../seo/articleTagData';
 
 interface IArticleProps {
   name?: string;
@@ -34,10 +35,50 @@ const Title = styled(Text)`
   }
 `;
 
-export const Article: NextPage<IArticleProps> = ({ name, id }) => {
-  const { locale, reload, push, pathname, query } = useRouter();
+export const Article: NextPage<IArticleProps> = ({ id }) => {
+  const { locale, reload, push, query } = useRouter();
 
   const pageNames = getPageNames(locale);
+
+  let article = null;
+  let name = '';
+  let description = '';
+  let image = undefined;
+
+  switch (id) {
+    case chooseTattooArticleData.id: {
+      article = <ChooseTattooArticle />;
+      name = chooseTattooArticleData.name;
+      description = chooseTattooArticleData.placeholder;
+      image = chooseTattooArticleData.images.preview;
+
+      break;
+    }
+    case myTattooArticleData.id: {
+      article = <MyTattooArticle />;
+      name = myTattooArticleData.name;
+      description = myTattooArticleData.placeholder;
+      image = myTattooArticleData.images.preview;
+
+      break;
+    }
+    case healthTattooArticleData.id: {
+      article = <HealthTattooArticle />;
+      name = healthTattooArticleData.name;
+      description = healthTattooArticleData.placeholder;
+      image = healthTattooArticleData.images.preview;
+
+      break;
+    }
+    case japaneseTattooArticleData.id: {
+      article = <JapaneseTattooArticle />;
+      name = japaneseTattooArticleData.name;
+      description = japaneseTattooArticleData.placeholder;
+      image = japaneseTattooArticleData.images.preview;
+
+      break;
+    }
+  }
 
   const breadCrumbs = [
     {
@@ -54,33 +95,17 @@ export const Article: NextPage<IArticleProps> = ({ name, id }) => {
     },
   ];
 
-  let article = null;
-
-  switch (id) {
-    case chooseTattooArticleData.id: {
-      article = <ChooseTattooArticle />;
-      break;
-    }
-    case myTattooArticleData.id: {
-      article = <MyTattooArticle />;
-      break;
-    }
-    case healthTattooArticleData.id: {
-      article = <HealthTattooArticle />;
-      break;
-    }
-    case japaneseTattooArticleData.id: {
-      article = <JapaneseTattooArticle />;
-      break;
-    }
-  }
-
-
   return (
-    <Body logoUri='../logo.png' selectedButton={HeaderMenuButton.ARTICLES}>
-      <Head>
-        <link rel="canonical" href={`/articles/${query.id}`} />
-      </Head>
+    <Body selectedButton={HeaderMenuButton.ARTICLES}>
+      <Tags
+        pathname={`/articles/${query.id}`}
+        hideUa
+        title={articleTagData[id].title}
+        description={articleTagData[id].description}
+        ogTitle={name}
+        ogDescription={description}
+        iamgeUrl={image}
+      />
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
@@ -93,35 +118,9 @@ export const Article: NextPage<IArticleProps> = ({ name, id }) => {
 }
 
 export async function getStaticProps(context) {
-  const props: IArticleProps = {
-    name: undefined,
-    id: undefined,
-  };
-  
-  switch (context.params.id) {
-    case chooseTattooArticleData.id: {
-      props.name = chooseTattooArticleData.name;
-      props.id = chooseTattooArticleData.id;
-      break;
-    }
-    case myTattooArticleData.id: {
-      props.name = myTattooArticleData.name;
-      props.id = myTattooArticleData.id;
-      break;
-    }
-    case healthTattooArticleData.id: {
-      props.name = healthTattooArticleData.name;
-      props.id = healthTattooArticleData.id;
-      break;
-    }
-    case japaneseTattooArticleData.id: {
-      props.name = japaneseTattooArticleData.name;
-      props.id = japaneseTattooArticleData.id;
-      break;
-    }
-  }
-
   return {
-    props
+    props: {
+      id: context.params.id,
+    }
   }
 }

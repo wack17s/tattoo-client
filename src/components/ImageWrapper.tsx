@@ -6,7 +6,7 @@ interface IImageProps {
   placeholderUri?: string;
 }
 
-export const PLACEHOLDER_SRC = '/images/snake.svg';
+export const PLACEHOLDER_SRC = `${process.env.NEXT_PUBLIC_HOST}/images/snake.svg`;
 
 export const ImageWrapper: React.FunctionComponent<IImageProps> = ({ uri, renderComponent, placeholderUri }) => {
   const [src, setSrc] = React.useState(uri);

@@ -70,7 +70,7 @@ export const NotFound = () => {
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
-          <Image src="/images/404.svg" />
+          <Image src={`${process.env.NEXT_PUBLIC_HOST}/images/404.svg`} />
         </InnerContainer>
       </Container>
     </Body>

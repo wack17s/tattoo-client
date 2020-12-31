@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components';
 
 import { Text } from '../../../components/Text';
+import { useRouter } from 'next/router';
 
 interface IArticleCardProps {
   name: string;
@@ -80,8 +81,10 @@ const Image = styled.img`
 `;
 
 export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ name, placeholder, id, imageUri }) => {
+  const { locale } = useRouter();
+
   return (
-    <Link href="/articles/[id]" as={`articles/${id}`}>
+    <Link href="/articles/[id]" as={`articles/${id}`} locale={locale}>
       {/* <Wrapper> */}
         <Container>
           <Image src={imageUri} />

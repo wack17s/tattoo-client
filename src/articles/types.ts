@@ -1,48 +1,50 @@
+const HOST = process.env.NEXT_PUBLIC_HOST;
+
 export const chooseTattooArticleData = {
   name: 'Сколько по времени набивается тату',
   id: 'skolko-po-vremeni-nabivaetsya-tatu',
-  placeholder: 'Вы собираетесь в салон за своей первой татуировкой? Тогда вопрос...',
+  placeholder: 'Вы собираетесь в салон за своей первой татуировкой? Тогда вопрос, сколько по времени делается тату, конечно, очень интересует вас. Как утверждают опытные мастера-татуировщики, стандартный сеанс длится 4 часа, но в целом продолжительность процесса зависит от самых разных факторов. Рассмотрим их детально.',
   images: {
-    preview: '/article/skop.jpg',
-    img1: '/article/sko1.jpg'
+    preview: `${HOST}/article/skop.jpg`,
+    img1: `${HOST}/article/sko1.jpg`
   }
 };
 
 export const myTattooArticleData = {
   name: 'Хотите набить тату — MyTattoo лучший сервис для поиска тату мастера',
   id: 'mytattoo-luchshij-servis-dlya-vybor-tatu-mastera',
-  placeholder: 'Татуировки — популярный способ...',
+  placeholder: 'Татуировки — популярный способ украсить свое тело и подчеркнуть индивидуальность. Но качество рисунка напрямую зависит от мастерства татуировщика. Правильный выбор мастера является первостепенной задачей для человека, у которого появляется сформулированное желание «хочу тату», требующее немедленного воплощение в жизнь. Если вы мечтаете набить татуировку, то сервис Mytattoo поможет вам найти лучшего мастера в вашем городе.',
   images: {
-    preview: '/article/myp.jpg',
-    img1: '/article/my1.jpg'
+    preview: `${HOST}/article/myp.jpg`,
+    img1: `${HOST}/article/my1.jpg`
   }
 };
 
 export const healthTattooArticleData = {
   name: 'Нанесение татуировок: опасные последствия для здоровья',
   id: 'nanesenie-tatuirovok-opasnye-posledstviya-dlya-zdorovya',
-  placeholder: 'Молодые люди, обращаясь в тату салон...',
+  placeholder: 'Молодые люди, обращаясь в тату салон, часто недооценивают вред татуировок для здоровья и не задумываются о последствиях, которые бывают очень серьезными. Кроме острых реакций, например покраснения или отека сразу после нанесения рисунка, возможно также долгосрочное ухудшение состояния.',
   images: {
-    preview: '/article/heap.jpg',
-    img1: '/article/hea1.jpg'
+    preview: `${HOST}/article/heap.jpg`,
+    img1: `${HOST}/article/hea1.jpg`
   }
 };
 
 export const japaneseTattooArticleData = {
   name: 'Значение японских тату: история происхождения',
   id: 'znachenie-yaponskih-tatu',
-  placeholder: 'История японской татуировки тесно...',
+  placeholder: 'История японской татуировки тесно связана с культурным, политическим и даже экономическим развитием страны. В глубокой древности японцы покрывали тело сакральными татуировками, которые выполняли роль оберегов, а много позже искусство ирэдзуми стало табуированным и запрещенным для простых смертных. До сих пор в Японии существует множество предубеждений, связанных с татуировками. Но, несмотря на это, искусство ирэдзуми интересует западный мир. Давайте узнаем значение японских тату, а также разберемся, подойдут ли такие рисунки человеку другой культуры.',
   images: {
-    preview: '/article/japp.jpg',
-    img1: '/article/jap1.jpg',
-    img2: '/article/jap2.jpg',
-    img3: '/article/jap3.jpg',
-    img4: '/article/jap4.jpg',
-    img5: '/article/jap5.jpg',
-    img6: '/article/jap6.jpg',
-    img7: '/article/jap7.jpg',
-    img8: '/article/jap8.jpg',
-    img9: '/article/jap9.jpg',
-    img10: '/article/jap10.jpg'
+    preview: `${HOST}/article/japp.jpg`,
+    img1: `${HOST}/article/jap1.jpg`,
+    img2: `${HOST}/article/jap2.jpg`,
+    img3: `${HOST}/article/jap3.jpg`,
+    img4: `${HOST}/article/jap4.jpg`,
+    img5: `${HOST}/article/jap5.jpg`,
+    img6: `${HOST}/article/jap6.jpg`,
+    img7: `${HOST}/article/jap7.jpg`,
+    img8: `${HOST}/article/jap8.jpg`,
+    img9: `${HOST}/article/jap9.jpg`,
+    img10: `${HOST}/article/jap10.jpg`
   }
 };
