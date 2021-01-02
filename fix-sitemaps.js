@@ -23,7 +23,7 @@ const replaceTo = `<url><loc>https://mytattoo.com.ua/</loc><changefreq>monthly</
 
 const fixSiteMaps = async () => {
   fs.readFile('./public/sitemap.xml', (err, data) => {
-    const siteMap = data.toString().replace(new RegExp(toExclude, 'g'), replaceTo);
+    const siteMap = data.toString().replace(new RegExp(toExclude, 'g'), replaceTo).replace(new RegExp('<lastmod>undefined</lastmod>', 'g'), '');
 
     // fs.writeFile('./public/sitemap-ua.xml', siteMap.replace(/\/ru\//gi, '/ua/').replace(new RegExp(toExclude, 'g'), ''), () => {
     //   //

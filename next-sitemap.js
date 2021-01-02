@@ -6,6 +6,7 @@ module.exports = {
   priority: 0.6,
   sitemapSize: 5000,
   generateRobotsTxt: true,
+  autoLastmod: false,
   // Default transformation function
   transform: (config, url) => {
     const newConfig = {...config};
@@ -36,7 +37,7 @@ module.exports = {
       loc: newUrl,
       changefreq: newConfig.changefreq,
       priority: newConfig.priority,
-      lastmod: undefined,
+      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
     }
   },
   robotsTxtOptions: {
