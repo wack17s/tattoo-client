@@ -39,6 +39,7 @@ const TextContainerHeight = 66;
 // `;
 
 const Container = styled.div`
+margin: 0px 16px 32px 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -129,30 +130,32 @@ const ImageSelectItemBottom = styled.div`
 export const DesktopTattooerCard: React.FunctionComponent<IDesktopTattooerCardProps> = ({ postURIs, currentImage, setCurrentImage, city, instagram, profilePic }) => {
   return (
     <Link href="/[superslug]" as={`${instagram}`}>
-      {/* <Wrapper> */}
-        <Container>
-          <ImageWrapper
-            uri={currentImage}
-            renderComponent={({ src, onError }) => <PreviewImage src={src} onError={onError} />}
-          />
-          <FullCard>
+      <a>
+        {/* <Wrapper> */}
+          <Container>
             <ImageWrapper
               uri={currentImage}
-              renderComponent={({ src, onError }) => <FullImage src={src} onError={onError} />}
+              renderComponent={({ src, onError }) => <PreviewImage src={src} onError={onError} />}
             />
-            <ImageSelectContainer>
-              {postURIs.map(item => (
-                <ImageSelectItem key={item} onMouseEnter={() => { setCurrentImage(item); }}>
-                  <ImageSelectItemBottom />
-                </ImageSelectItem>
-              )).slice(0, Math.min(postURIs.length, 4))}
-            </ImageSelectContainer>
-            <TextContainer>
-              <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
-            </TextContainer>
-          </FullCard>
-        </Container>
-      {/* </Wrapper> */}
+            <FullCard>
+              <ImageWrapper
+                uri={currentImage}
+                renderComponent={({ src, onError }) => <FullImage src={src} onError={onError} />}
+              />
+              <ImageSelectContainer>
+                {postURIs.map(item => (
+                  <ImageSelectItem key={item} onMouseEnter={() => { setCurrentImage(item); }}>
+                    <ImageSelectItemBottom />
+                  </ImageSelectItem>
+                )).slice(0, Math.min(postURIs.length, 4))}
+              </ImageSelectContainer>
+              <TextContainer>
+                <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
+              </TextContainer>
+            </FullCard>
+          </Container>
+        {/* </Wrapper> */}
+      </a>
     </Link>
   )
 }

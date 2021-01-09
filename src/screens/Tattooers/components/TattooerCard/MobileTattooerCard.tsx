@@ -14,6 +14,7 @@ interface IMobileTattooerCardProps {
 
 const Container = styled.div`
   display: flex;
+  margin: 0px 0px 20px 0px;
   flex-direction: column;
   width: 100%;
   height: 280px;
@@ -57,22 +58,24 @@ const TextContainer = styled.div`
 export const MobileTattooerCard: React.FunctionComponent<IMobileTattooerCardProps> = ({ postURIs, city, instagram, profilePic }) => {
   return (
     <Link href="/[instagram]" as={`${instagram}`}>
-      <Container>
-        <ImageContainer>
-          {postURIs.map(item => (
-            <ImageWrapper
-              key={`img_${item}`}
-              uri={item}
-              renderComponent={({ src, onError }) => (
-                <StyledImage src={src} onError={onError} />
-              )}
-            />
-          ))}
-        </ImageContainer>
-        <TextContainer>
-          <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
-        </TextContainer>
-      </Container>
+      <a>
+        <Container>
+          <ImageContainer>
+            {postURIs.map(item => (
+              <ImageWrapper
+                key={`img_${item}`}
+                uri={item}
+                renderComponent={({ src, onError }) => (
+                  <StyledImage src={src} onError={onError} />
+                )}
+              />
+            ))}
+          </ImageContainer>
+          <TextContainer>
+            <MasterInfoHeader profileIconUri={profilePic} city={city} instagram={instagram} instagramIconUri={`${process.env.NEXT_PUBLIC_HOST}/instagram.svg`} />
+          </TextContainer>
+        </Container>
+      </a>
     </Link>
   )
 }

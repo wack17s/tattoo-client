@@ -65,8 +65,10 @@ export const NotFound = () => {
       <InnerContainer>
           <Text h1>{notFoundLocales.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: 72 }}>{notFoundLocales.text.text}</Text>
-          <Link href='/' locale={locale}>
-            <Button>{notFoundLocales.text.link}</Button>
+          <Link href='/' locale={locale} passHref>
+            <a>
+              <Button>{notFoundLocales.text.link}</Button>
+            </a>
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>

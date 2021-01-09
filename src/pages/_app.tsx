@@ -133,6 +133,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     line-height: 24px;
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const MyApp = ({ Component, pageProps }) => (

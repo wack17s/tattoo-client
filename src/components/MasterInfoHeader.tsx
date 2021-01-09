@@ -61,7 +61,7 @@ const Title = styled<any>(Text)`
 
 export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> = ({ profileIconUri, instagram, city, instagramIconUri, small }) => (
   <Container>
-    {profileIconUri ? (
+    {false ? (
       <ImageWrapper
         uri={profileIconUri}
         placeholderUri={PLACEHOLDER_SRC}

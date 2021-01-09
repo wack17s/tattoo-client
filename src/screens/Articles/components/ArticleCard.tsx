@@ -36,9 +36,11 @@ const Container = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow};
   cursor: pointer;
   background-color: white;
+  margin: 0px 22px 22px 0px;
 
   @media (max-width: 720px) {
     width: 100%;
+    margin: 0px 0px 20px 0px;
   }
 `;
 
@@ -85,15 +87,17 @@ export const ArticleCard: React.FunctionComponent<IArticleCardProps> = ({ name, 
 
   return (
     <Link href="/articles/[id]" as={`articles/${id}`} locale={locale}>
-      {/* <Wrapper> */}
-        <Container>
-          <Image src={imageUri} />
-          <TextContainer>
-            <Title h4>{name}</Title>
-            <Description p1>{placeholder}</Description>
-          </TextContainer>
-        </Container>
-      {/* </Wrapper> */}
+      <a>
+        {/* <Wrapper> */}
+          <Container>
+            <Image src={imageUri} />
+            <TextContainer>
+              <Title h4>{name}</Title>
+              <Description p1>{placeholder}</Description>
+            </TextContainer>
+          </Container>
+        {/* </Wrapper> */}
+      </a>
     </Link>
   );
 }
