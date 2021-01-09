@@ -130,7 +130,6 @@ const StyledImage = styled.img`
 
   border-radius: 8px;
   object-fit: ${({ src }) => src === PLACEHOLDER_SRC ? 'scale-down' : 'cover'};
-  background-color: white;
 
   @media (max-width: 720px) {
     width: 85%;
@@ -161,7 +160,7 @@ export const Tattooer: React.FunctionComponent<ITattooerProps> = ({ tattooer, ti
 
   return tattooer ? (
     <Body selectedButton={HeaderMenuButton.TATTOOERS} innerContainerStyle={{ margin: 0 }}>
-      <Tags title={titleTag} description={descriptionTag} pathname={`/${tattooer.instagram}`} ogTitle={tattooer.instagram} />
+      <Tags title={titleTag} description={descriptionTag} pathname={`/${tattooer.instagram}`} ogTitle={tattooer.instagram} hideUa />
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>

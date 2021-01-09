@@ -193,8 +193,10 @@ export const Header: NextPage<IHeaderProps> = ({ discardStyles, selectedCity, se
         </BurgeLangContainer>
       </BurgerMenu>
       <InnerContainer>
-        <Link href='/tattooers'>
-          <Logo src={`${process.env.NEXT_PUBLIC_HOST}/logo.png`} />
+        <Link href='/tattooers' passHref>
+          <a>
+            <Logo src={`${process.env.NEXT_PUBLIC_HOST}/logo.png`} />
+          </a>
         </Link>
         <BurgerContainer>
           <Burger open={hamburgerOpen} setOpen={setHamburgerOpen} />

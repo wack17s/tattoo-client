@@ -36,20 +36,16 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
   padding-top: 230px;
   overflow: hidden;
 
-  & > div {
-    margin: 0px 16px 32px 16px;
-  }
-
   @media (max-width: 720px) {
     flex-direction: column;
     flex-wrap: nowrap;
     margin-top: 24px;
     padding: 0 8px;
     padding-top: 120px;
+  }
 
-    & > div {
-      margin: 0px 0px 20px 0px;
-    }
+  & > a {
+    color: ${({ theme }) => theme.colors.BLACK_900};
   }
 `;
 
@@ -141,7 +137,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
         styles: styles,
       }}
     >
-      <Tags title={titleTag} description={descriptionTag} pathname={`/${query.superslug}`} />
+      <Tags title={titleTag} description={descriptionTag} pathname={`/${query.superslug}`} hideUa />
       <StyledInfiniteScroll
         dataLength={tattooersPortioned.length}
         next={addPortion}

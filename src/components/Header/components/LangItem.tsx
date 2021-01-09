@@ -22,7 +22,9 @@ const Label = styled.p<Pick<ILangItemProps, 'selected'>>`
 `;
 
 export const LangItem: React.FunctionComponent<ILangItemProps> = ({ selected, label, locale, href, as }) => (
-  <Link locale={locale} href={href} as={as}>
-    <Label selected={selected}>{label}</Label>
+  <Link locale={locale} href={href} as={as} passHref>
+    <a>
+      <Label selected={selected}>{label}</Label>
+    </a>
   </Link>
 );

@@ -24,7 +24,9 @@ const Label = styled.p<Pick<IMenuItemProps, 'selected'>>`
 `;
 
 export const MenuItem: React.FunctionComponent<IMenuItemProps> = ({ selected, label, href, locale }) => (
-  <Link href={href} locale={locale}>
-    <Label selected={selected}>{label}</Label>
+  <Link href={href} locale={locale} passHref>
+    <a>
+      <Label selected={selected}>{label}</Label>
+    </a>
   </Link>
 );

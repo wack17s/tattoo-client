@@ -26,15 +26,18 @@ export const Main: NextPage = () => {
       <Tags
         description={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].description}
         title={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].title}
+        canonical='https://mytattoo.com.ua/'
       />
       <Container>
         <InnerContainer>
           <Text h1>{mainPage.text.title}</Text>
           <Text style={{ marginTop: 24, marginBottom: '3em' }}>{mainPage.text.text}</Text>
-          <Link href='/choose-city'>
-            <Button>
-              {mainPage.text.button}
-            </Button>
+          <Link href='/choose-city' passHref>
+            <a>
+              <Button>
+                {mainPage.text.button}
+              </Button>
+            </a>
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>

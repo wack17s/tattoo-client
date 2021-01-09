@@ -13,6 +13,8 @@ interface ITagsProps {
   keywords?: string;
 
   hideUa?: boolean;
+
+  canonical?: string;
 }
 
 const HOST = process.env.NEXT_PUBLIC_HOST;
@@ -30,6 +32,7 @@ export const Tags: React.FunctionComponent<ITagsProps> = ({
   keywords = DEFAULT_KEYWORDS,
   pathname: propPathname,
   hideUa,
+  canonical
 }) => {
   const { locale, pathname: routerPathname } = useRouter();
   const pathname = propPathname || routerPathname;
@@ -43,7 +46,7 @@ export const Tags: React.FunctionComponent<ITagsProps> = ({
       <meta charSet="utf-8" />
       <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
 
-      <link rel="canonical" href={`${!hideUa && locale === 'ua' ? '/ua' : ''}${pathname}`} />
+      <link rel="canonical" href={canonical || `${!hideUa && locale === 'ua' ? '/ua' : ''}${pathname}`} />
       <link rel="alternate" hrefLang="ru" href={`${HOST}${pathname}`} />
       {!hideUa && <link rel="alternate" hrefLang="ua" href={`${HOST}/ua${pathname}`} />}
 

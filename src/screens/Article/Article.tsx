@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { Body } from '../../components/Body'
 import { BreadCrumb } from '../../components/BreadCrumb'
 import { HeaderMenuButton } from '../../components/Header'
-import { Text } from '../../components/Text'
 import { getPageNames } from '../../utils/getLocalizedText';
 import { PageName } from '../../types/pageName.enum';
 import { ChooseTattooArticle } from '../../articles/ChooseTattooArticle';
@@ -26,7 +25,15 @@ const BreadCrumbContainer = styled.div`
   margin-top: 40px;
 `;
 
-const Title = styled(Text)`
+const Title = styled.h1`
+  font-family: 'Rubik';
+  font-size: 42px;
+  line-height: 56px;
+
+  @media (max-width: 720px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
   max-width: 600px;
   margin-bottom: 24px;
 
@@ -109,7 +116,7 @@ export const Article: NextPage<IArticleProps> = ({ id }) => {
       <BreadCrumbContainer>
         <BreadCrumb items={breadCrumbs} />
       </BreadCrumbContainer>
-      <Title h2>
+      <Title>
         {name}
       </Title>
       {article}

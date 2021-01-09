@@ -74,10 +74,12 @@ export const ChooseStyle: NextPage<IChooseStyleProps> = ({ styles, tattooers }) 
               <Chip key={`${item.id}_${item.en}`} selected={selectedStyles && selectedStyles.some(selectedStyle => selectedStyle.id === item.id)} onClick={setStyle.bind(null, item)}>{item[locale] || item.en}</Chip>
             ))}
           </ChipsContainer>
-          <Link href={{ pathname: selectedCity ? selectedCity.name : 'tattooers' }} locale={locale}>
-            <Button style={{ marginTop: 48 }}>
-              {selectedStyles.length ? chooseStyle.text.chooseButton : chooseStyle.text.button}
-            </Button>
+          <Link href={{ pathname: selectedCity ? selectedCity.name : 'tattooers' }} locale={locale} passHref>
+            <a>
+              <Button style={{ marginTop: 48 }}>
+                {selectedStyles.length ? chooseStyle.text.chooseButton : chooseStyle.text.button}
+              </Button>
+            </a>
           </Link>
         </InnerContainer>
         <InnerContainer style={{ alignItems: 'center' }}>
