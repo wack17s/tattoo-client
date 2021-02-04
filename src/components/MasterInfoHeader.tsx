@@ -69,7 +69,7 @@ export const MasterInfoHeader: React.FunctionComponent<IMasterInfoHeaderProps> =
       />
     ) : null}
     <TextContainer>
-      <Title small={small} p1>{instagram}</Title>
+      <Title small={small} h1 styleAs='P1'>{instagram}</Title>
       <Text p2>{city || ''}</Text>
     </TextContainer>
     <a href={`https://instagram.com/${instagram}`} target="_blank">

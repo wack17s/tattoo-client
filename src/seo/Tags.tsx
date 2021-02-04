@@ -35,9 +35,14 @@ export const Tags: React.FunctionComponent<ITagsProps> = ({
   canonical
 }) => {
   const { locale, pathname: routerPathname } = useRouter();
-  const pathname = propPathname || routerPathname;
-  const title = `MyTattoo - ${propTitle}`;
-  const ogTitle = `MyTattoo - ${propOgTitle}`;
+  let pathname = (propPathname || routerPathname || '');
+
+  if (pathname !== '/') {
+    pathname = pathname + '/';
+  }
+
+  const title = `${propTitle}`;
+  const ogTitle = `${propOgTitle}`;
 
   return (
     <Head>
@@ -46,9 +51,9 @@ export const Tags: React.FunctionComponent<ITagsProps> = ({
       <meta charSet="utf-8" />
       <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
 
-      <link rel="canonical" href={canonical || `${!hideUa && locale === 'ua' ? '/ua' : ''}${pathname}`} />
+      <link rel="canonical" href={HOST + (canonical || `${!hideUa && locale === 'ua' ? '/ua' : ''}${pathname}`)} />
       <link rel="alternate" hrefLang="ru" href={`${HOST}${pathname}`} />
-      {!hideUa && <link rel="alternate" hrefLang="ua" href={`${HOST}/ua${pathname}`} />}
+      {!hideUa && <link rel="alternate" hrefLang="uk" href={`${HOST}/ua${pathname}`} />}
 
       <meta name="robots" content="index, follow" />
 

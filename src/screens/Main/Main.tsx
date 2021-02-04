@@ -26,7 +26,6 @@ export const Main: NextPage = () => {
       <Tags
         description={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].description}
         title={(locale === 'ua' ? pageTagDataUa : pageTagData)[PageName.MAIN].title}
-        canonical='https://mytattoo.com.ua/'
       />
       <Container>
         <InnerContainer>
