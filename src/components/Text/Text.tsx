@@ -24,17 +24,19 @@ interface ITextProps {
   p3book?: boolean;
   p4book?: boolean;
   p5book?: boolean;
+
+  styleAs?: 'P1' | 'P2' | 'P3' | 'P4' | 'P5' | 'P1Book' | 'P2Book' | 'P3Book' | 'P4Book' | 'P5Book' | 'H1' | 'H2' | 'H3' | 'H4' | 'H5';
 }
 
 export const Text: React.FunctionComponent<ITextProps> = ({
   h1, h2, h3, h4, h5,
   p1, p2, p3, p4, p5,
   p1book, p2book, p3book, p4book, p5book,
-  children, style, className
+  children, style, className, styleAs
 }) => {
   if (h1) {
     return (
-      <H1 className={className} style={style}>
+      <H1 className={`${styleAs} ${className}`} style={style}>
         {children}
       </H1>
     )
@@ -42,7 +44,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (h2) {
     return (
-      <H2 className={className} style={style}>
+      <H2 className={`${styleAs} ${className}`} style={style}>
         {children}
       </H2>
     )
@@ -50,7 +52,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (h3) {
     return (
-      <H3 className={className} style={style}>
+      <H3 className={`${styleAs} ${className}`} style={style}>
         {children}
       </H3>
     )
@@ -58,7 +60,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (h4) {
     return (
-      <H4 className={className} style={style}>
+      <H4 className={`${styleAs} ${className}`} style={style}>
         {children}
       </H4>
     )
@@ -66,7 +68,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (h5) {
     return (
-      <H5 className={className} style={style}>
+      <H5 className={`${styleAs} ${className}`} style={style}>
         {children}
       </H5>
     )
@@ -74,7 +76,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p1) {
     return (
-      <P1 className={className} style={style}>
+      <P1 className={`${styleAs} ${className}`} style={style}>
         {children}
       </P1>
     )
@@ -82,7 +84,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p2) {
     return (
-      <P2 className={className} style={style}>
+      <P2 className={`${styleAs} ${className}`} style={style}>
         {children}
       </P2>
     )
@@ -90,7 +92,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p3) {
     return (
-      <P3 className={className} style={style}>
+      <P3 className={`${styleAs} ${className}`} style={style}>
         {children}
       </P3>
     )
@@ -98,7 +100,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p4) {
     return (
-      <P4 className={className} style={style}>
+      <P4 className={`${styleAs} ${className}`} style={style}>
         {children}
       </P4>
     )
@@ -106,7 +108,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p5) {
     return (
-      <P5 className={className} style={style}>
+      <P5 className={`${styleAs} ${className}`} style={style}>
         {children}
       </P5>
     )
@@ -114,7 +116,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p1book) {
     return (
-      <P1Book className={className} style={style}>
+      <P1Book className={`${styleAs} ${className}`} style={style}>
         {children}
       </P1Book>
     )
@@ -122,7 +124,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p2book) {
     return (
-      <P2Book className={className} style={style}>
+      <P2Book className={`${styleAs} ${className}`} style={style}>
         {children}
       </P2Book>
     )
@@ -130,7 +132,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p3book) {
     return (
-      <P3Book className={className} style={style}>
+      <P3Book className={`${styleAs} ${className}`} style={style}>
         {children}
       </P3Book>
     )
@@ -138,7 +140,7 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p4book) {
     return (
-      <P4Book className={className} style={style}>
+      <P4Book className={`${styleAs} ${className}`} style={style}>
         {children}
       </P4Book>
     )
@@ -146,11 +148,11 @@ export const Text: React.FunctionComponent<ITextProps> = ({
 
   if (p5book) {
     return (
-      <P5Book className={className} style={style}>
+      <P5Book className={`${styleAs} ${className}`} style={style}>
         {children}
       </P5Book>
     )
   }
 
-  return <p className={className} style={style}>{children}</p>
+  return <p className={`${styleAs} ${className}`} style={style}>{children}</p>
 };

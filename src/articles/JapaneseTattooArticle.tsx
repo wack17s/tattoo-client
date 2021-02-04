@@ -86,7 +86,7 @@ export const JapaneseTattooArticle: React.FunctionComponent = () => {
         <Image src={japaneseTattooArticleData.images.img1} />
       </Row>
 
-      <SubTitle small p2book>Ирэдзуми: история возникновения</SubTitle>
+      <SubTitle small h2 styleAs='P2Book'>Ирэдзуми: история возникновения</SubTitle>
       <Row>
         <ColumnDesktop>
           <TextBlock p1book>{TEXT2}</TextBlock>
@@ -110,48 +110,48 @@ export const JapaneseTattooArticle: React.FunctionComponent = () => {
         </div>
       </Row>
 
-      <SubTitle small p2book>Значение популярных японских тату</SubTitle>
+      <SubTitle small h2 styleAs='P2Book'>Значение популярных японских тату</SubTitle>
       <TextBlock p1book>{TEXT6}</TextBlock>
       <TextBlock p1book>{TEXT7}</TextBlock>
 
       <RowStyle>
         <div>
-          <SmallSubTitle p3book>Дракон</SmallSubTitle>
+          <SmallSubTitle h3 styleAs='P3Book'>Дракон</SmallSubTitle>
           <TextBlock noMargin p1book>{TEXT8}</TextBlock>
         </div>
         <Image src={japaneseTattooArticleData.images.img5} />
       </RowStyle>
       <RowStyle>
         <div>
-          <SmallSubTitle p3book>Карп Кои</SmallSubTitle>
+          <SmallSubTitle h3 styleAs='P3Book'>Карп Кои</SmallSubTitle>
           <TextBlock noMargin p1book>{TEXT9}</TextBlock>
         </div>
         <Image src={japaneseTattooArticleData.images.img6} />
       </RowStyle>
       <RowStyle>
         <div>
-          <SmallSubTitle p3book>Тигр и лев</SmallSubTitle>
+          <SmallSubTitle h3 styleAs='P3Book'>Тигр и лев</SmallSubTitle>
           <TextBlock noMargin p1book>{TEXT10}</TextBlock>
         </div>
         <Image src={japaneseTattooArticleData.images.img7} />
       </RowStyle>
       <RowStyle>
         <div>
-          <SmallSubTitle p3book>Змея</SmallSubTitle>
+          <SmallSubTitle h3 styleAs='P3Book'>Змея</SmallSubTitle>
           <TextBlock noMargin p1book>{TEXT11}</TextBlock>
         </div>
         <Image src={japaneseTattooArticleData.images.img8} />
       </RowStyle>
       <RowStyle>
         <div>
-          <SmallSubTitle p3book>Цветы</SmallSubTitle>
+          <SmallSubTitle h3 styleAs='P3Book'>Цветы</SmallSubTitle>
           <TextBlock noMargin p1book>{TEXT12}</TextBlock>
         </div>
         <Image src={japaneseTattooArticleData.images.img9} />
       </RowStyle>
       <RowStyle>
         <div>
-          <SmallSubTitle p3book>Японские демоны</SmallSubTitle>
+          <SmallSubTitle h3 styleAs='P3Book'>Японские демоны</SmallSubTitle>
           <TextBlock noMargin p1book>{TEXT13}</TextBlock>
         </div>
         <Image src={japaneseTattooArticleData.images.img10} />

@@ -32,14 +32,14 @@ export const MyTattooArticle: React.FunctionComponent = () => {
 
       <TextBlock p1book>{TEXT1}</TextBlock>
 
-      <SubTitle p2book>MyTattoo: что это и как работает</SubTitle>
+      <SubTitle h2 styleAs='P2Book'>MyTattoo: что это и как работает</SubTitle>
       <TextBlock p1book>{TEXT2}</TextBlock>
       <TextBlock p1book>{TEXT3}</TextBlock>
       <TextBlock p1book>{TEXT4}</TextBlock>
       <TextBlock p1book>{TEXT5}</TextBlock>
       <TextBlock p1book>{TEXT6}</TextBlock>
 
-      <SubTitle p2book>Преимущества сервиса Mytattoo</SubTitle>
+      <SubTitle h2 styleAs='P2Book'>Преимущества сервиса Mytattoo</SubTitle>
       <TextBlock p1book>{TEXT7}</TextBlock>
       <TextBlock p1book>{TEXT8}</TextBlock>
       <TextBlock noMargin p1book>{TEXT9}</TextBlock>
@@ -48,7 +48,7 @@ export const MyTattooArticle: React.FunctionComponent = () => {
       <TextBlock noMargin p1book>{TEXT12}</TextBlock>
       <TextBlock noMargin p1book>{TEXT13}</TextBlock>
 
-      <SubTitle p2book>Как пользоваться сервисом</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Как пользоваться сервисом</SubTitle>
       <TextBlock p1book>{TEXT14}</TextBlock>
       <TextBlock p1book>{TEXT15}</TextBlock>
       <TextBlock p1book>{TEXT16}</TextBlock>

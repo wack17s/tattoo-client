@@ -1,8 +1,8 @@
-import App from 'next/app';
 import Head from 'next/head';
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { theme } from '../styles/theme';
+import { TextStyle } from '../styles/TextStyle';
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -179,6 +179,7 @@ const MyApp = ({ Component, pageProps }) => (
       />
     </Head>
     <GlobalStyle />
+    <TextStyle />
     <ThemeProvider theme={theme}>
       <Component {...pageProps} />
     </ThemeProvider>

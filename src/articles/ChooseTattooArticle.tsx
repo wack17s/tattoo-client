@@ -32,23 +32,23 @@ export const ChooseTattooArticle: React.FunctionComponent = () => {
       <Info p1>3 дня назад • 5 минут на прочтение</Info>
       <Image src={chooseTattooArticleData.images.img1} />
 
-      <SubTitle p2book>Размеры рисунка</SubTitle>
+      <SubTitle h2 styleAs='P2Book'>Размеры рисунка</SubTitle>
       <TextBlock p1book>{TEXT1}</TextBlock>
       <TextBlock p1book>{TEXT2}</TextBlock>
 
-      <SubTitle p2book>Сложность изображения</SubTitle>
+      <SubTitle h2 styleAs='P2Book'>Сложность изображения</SubTitle>
       <TextBlock p1book>{TEXT3}</TextBlock>
       <TextBlock p1book>{TEXT4}</TextBlock>
 
-      <SubTitle p2book>Цвет картинки</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Цвет картинки</SubTitle>
       <TextBlock p1book>{TEXT5}</TextBlock>
       <TextBlock p1book>{TEXT6}</TextBlock>
 
-      <SubTitle p2book>Коррекция татуировки</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Коррекция татуировки</SubTitle>
       <TextBlock p1book>{TEXT7}</TextBlock>
       <TextBlock p1book>{TEXT8}</TextBlock>
 
-      <SubTitle p2book>Болевые ощущения</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Болевые ощущения</SubTitle>
       <TextBlock p1book>{TEXT9}</TextBlock>
       <TextBlock p1book>{TEXT10}</TextBlock>
       <TextBlock p1book>{TEXT11}</TextBlock>

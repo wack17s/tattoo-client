@@ -43,7 +43,7 @@ export const HealthTattooArticle: React.FunctionComponent = () => {
 
       <TextBlock p1book>{TEXT1}</TextBlock>
 
-      <SubTitle p2book>Риск доказан учеными про вред тату</SubTitle>
+      <SubTitle h2 styleAs='P2Book'>Риск доказан учеными про вред тату</SubTitle>
       <TextBlock p1book>{TEXT2}</TextBlock>
       <TextBlock p1book>{TEXT3}</TextBlock>
       <TextBlock p1book>{TEXT4}</TextBlock>
@@ -52,12 +52,12 @@ export const HealthTattooArticle: React.FunctionComponent = () => {
       <TextBlock noMargin p1book>{TEXT7}</TextBlock>
       <TextBlock p1book>{TEXT8}</TextBlock>
 
-      <SubTitle p2book>Вероятность инфицирования от сделанной татуировки</SubTitle>
+      <SubTitle h2 styleAs='P2Book'>Вероятность инфицирования от сделанной татуировки</SubTitle>
       <TextBlock p1book>{TEXT9}</TextBlock>
       <TextBlock p1book>{TEXT10}</TextBlock>
       <TextBlock p1book>{TEXT11}</TextBlock>
 
-      <SubTitle p2book>Вред пигментов</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Вред пигментов</SubTitle>
       <TextBlock p1book>{TEXT12}</TextBlock>
       <TextBlock p1book>{TEXT13}</TextBlock>
       <TextBlock p1book>{TEXT14}</TextBlock>
@@ -70,11 +70,11 @@ export const HealthTattooArticle: React.FunctionComponent = () => {
       <TextBlock noMargin p1book>{TEXT21}</TextBlock>
       <TextBlock p1book>{TEXT22}</TextBlock>
 
-      <SubTitle p2book>Удаление тату</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Удаление тату</SubTitle>
       <TextBlock p1book>{TEXT23}</TextBlock>
       <TextBlock p1book>{TEXT24}</TextBlock>
 
-      <SubTitle p2book>Вероятность инфицирования от сделанной татуировки</SubTitle>
+      <SubTitle h3 styleAs='P2Book'>Вероятность инфицирования от сделанной татуировки</SubTitle>
       <TextBlock p1book>{TEXT25}</TextBlock>
     </Body>
   );
