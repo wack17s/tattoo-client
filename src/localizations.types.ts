@@ -56,6 +56,7 @@ export interface ILocalization {
         allStyles: string;
         discard: string;
         select: string;
+        expandText: string;
       }
     };
     [PageName.TATTOOER]: {

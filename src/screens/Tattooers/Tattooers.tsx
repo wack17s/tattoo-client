@@ -8,12 +8,14 @@ import Head from 'next/head'
 import { Body } from '../../components/Body'
 import { HeaderMenuButton } from '../../components/Header'
 import { useSelectedStyles } from '../../hooks/useSelectedStyles';
+import { TattooersText } from '../../components/TattooersText';
 
 import { TattooerCard } from './components/TattooerCard'
 import { ITattooer } from '../../types/tattooer';
 import { ICity } from '../../types/city';
 import { IStyle } from '../../types/style';
 import { Tags } from '../../seo/Tags';
+import { getTattooers } from '../../utils/getLocalizedText';
 
 interface ITattooersProps {
   cities: ICity[];
@@ -25,6 +27,13 @@ interface ITattooersProps {
 
   descriptionTag?: string;
   titleTag?: string;
+
+  text?: {
+    title: string;
+    text: string;
+    leftColTexts?: { title: string; text: string; }[];
+    rightColTexts?: { title: string; text: string; }[];
+  }
 }
 
 const StyledInfiniteScroll = styled(InfiniteScroll)`
@@ -51,7 +60,7 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
 
 const PER_PAGE = 30;
 
-export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities, descriptionTag, titleTag }) => {
+export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers, city, styles, cities, descriptionTag, titleTag, text }) => {
   const { push, locale, query } = useRouter();
 
   const [hideFilter, setHideFilter] = React.useState(false);
@@ -99,19 +108,21 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
     setTattooersPortioned(tatts.slice(0, PER_PAGE));
   }, [selectedStyles, city]);
 
-  const onCity = (city: ICity) => {
+  const onCity = React.useCallback((city: ICity) => {
     push(city ? city.name : 'tattooers');
     setStyles([]);
-  }
+  }, []);
 
-  const addPortion = () => {
+  const addPortion = React.useCallback(() => {
     if (tatts.length > tattooersPortioned.length) {
       setTattooersPortioned([...tattooersPortioned, ...tatts.slice(tattooersPortioned.length, tattooersPortioned.length + PER_PAGE)]);
     }
-  }
+  }, [tatts, tattooersPortioned])
 
   const [cityPickerOpen, setCityPickerOpen] = React.useState(false);
   const [stylesPickerOpen, setStylesPickerOpen] = React.useState(false);
+
+  const locales = getTattooers(locale);
 
   return (
     <Body
@@ -146,6 +157,7 @@ export const Tattooers: React.FunctionComponent<ITattooersProps> = ({ tattooers,
       >
         {tattooersPortioned && tattooersPortioned.length ? tattooersPortioned.map(item => <TattooerCard key={item.instagram} tattooer={item} />) : null}
       </StyledInfiniteScroll>
+      {text && <TattooersText {...text} showMoreButtonText={locales.text.expandText} />}
     </Body>
   )
 }
