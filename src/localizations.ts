@@ -51,7 +51,8 @@ export const localizations: ILocalizations = {
           allCities: 'Все города',
           allStyles: 'Все стили',
           discard: 'Сбросить',
-          select: 'Выбрать'
+          select: 'Выбрать',
+          expandText: 'Читать полностью'
         }
       },
       [PageName.TATTOOER]: {
@@ -141,7 +142,8 @@ export const localizations: ILocalizations = {
           allCities: 'Всі міста',
           allStyles: 'Всі стилі',
           discard: 'Скинути',
-          select: 'Обрати'
+          select: 'Обрати',
+          expandText: 'Читати повністю'
         }
       },
       [PageName.TATTOOER]: {
